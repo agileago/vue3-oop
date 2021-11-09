@@ -21,7 +21,6 @@ class App extends VueComponent {
       <ConfigProvider locale={zhCN}>
         <h2 style={{ textAlign: 'center' }}>全局服务</h2>
         <RouterView></RouterView>
-        <Table></Table>
       </ConfigProvider>
     )
   }

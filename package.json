@@ -19,9 +19,11 @@
     "lint": "eslint --fix .",
     "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
     "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
-    "prepare": "install-peers",
     "release": "standard-version",
-    "prepublishOnly": "yarn run-s build release"
+    "prepublishOnly": "yarn run-s build release",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "files": [
     "dist",
@@ -45,7 +47,7 @@
     "type": "git",
     "url": "git+https://github.com/agileago/vue3-oop.git"
   },
-  "homepage": "https://github.com/agileago/vue3-oop#readme",
+  "homepage": "https://agileago.github.io/vue3-oop",
   "license": "MIT",
   "devDependencies": {
     "@abraham/reflection": "^0.8.0",
@@ -63,7 +65,6 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
-    "install-peers-cli": "^2.2.0",
     "lint-staged": "^11.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
@@ -72,7 +73,7 @@
     "typescript": "^4.3.5",
     "vite": "^2.5.0",
     "vite-plugin-ts": "^1.1.8",
-    "vxe-table": "^4.1.5",
+    "vitepress": "^0.20.1",
     "yorkie": "^2.0.0"
   },
   "config": {
@@ -93,16 +94,14 @@
       "prettier --write"
     ]
   },
-  "peerDependencies": {
-    "injection-js": "^2.4.0",
-    "vue": "^3.2.20",
-    "vue-router": "^4.0.12"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "dependencies": {
-    "autobind-decorator": "^2.4.0"
+    "autobind-decorator": "^2.4.0",
+    "injection-js": "^2.4.0",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
   }
 }
