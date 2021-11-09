@@ -20,8 +20,8 @@
     "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
     "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
     "release": "standard-version",
-    "release:github": "conventional-github-releaser -p angular",
-    "prepublishOnly": "yarn run-s build release release:github",
+    "github:release": "conventional-github-releaser -p angular",
+    "prepublishOnly": "yarn run-s build release",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"

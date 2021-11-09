@@ -2,13 +2,13 @@
   "types": {
     "feat": {
       "description": "特性:    一个新的特性",
-      "scopes": {
-        "特性模块一": {},
-        "特性模块二": {}
-      }
+      "scopes": {}
     },
     "fix": {
       "description": "修复:    修复一个Bug"
+    },
+    "chore": {
+      "description": "发布:    发布一个版本"
     },
     "逻辑": {
       "description": "逻辑:   修改业务逻辑"
@@ -42,8 +42,8 @@
     }
   },
   "commonScopes": {
-    "模块一": {
-      "description": "我是模块一"
+    "release": {
+      "description": "发布"
     }
   }
 }
