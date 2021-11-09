@@ -7,7 +7,7 @@ import { Component } from '@/di'
 import { UserService } from './module/auth/user.service'
 import './theme/app.css'
 import 'ant-design-vue/dist/antd.css'
-import { ConfigProvider, Table } from 'ant-design-vue'
+import { Button, ConfigProvider, Table } from 'ant-design-vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setupHttp } from './api/http'
 
