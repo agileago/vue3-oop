@@ -23,7 +23,7 @@ export default defineConfig(({ command, mode }) => {
         formats: ['es', 'cjs'],
       },
       rollupOptions: {
-        external: ['vue', 'injection-js', 'autobind-decorator'],
+        external: ['vue', 'injection-js'],
       },
       minify: false,
     },

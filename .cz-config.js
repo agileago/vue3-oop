@@ -30,7 +30,7 @@ module.exports = {
   },
 
   allowCustomScopes: true,
-  allowBreakingChanges: ['特性', '修复'],
+  allowBreakingChanges: ['feat', 'fix'],
   subjectLimit: 100,
   skipQuestions: ['body', 'footer'],
 }

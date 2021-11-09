@@ -1,17 +1,19 @@
-# vue3 class component
+# vue3 oop
 
-使用类来书写vue3组件,实践`OOP`
+类组件+自动化的依赖注入(可选) = 极致的代码体验
 
-### 使用前提条件
+### 前提条件
 
-需要安装 `reflect-metadata` 这个库，并且在项目入口需要引入:
+需要**reflect-metadata** 的支持
 
 ```shell
-npm add reflect-metadata
+yarn add @abraham/reflection injection-js 
 ```
 
+项目入口需要引入 `reflect-metadata`
+
 ```typescript
-import 'reflect-metadata'
+import '@abraham/reflection'
 ```
 
 **`tsconfig.json`** 需要增加配置:
@@ -20,6 +22,7 @@ import 'reflect-metadata'
 {
   "compilerOptions": {
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "useDefineForClassFields": false
   } 
 }
@@ -28,8 +31,12 @@ import 'reflect-metadata'
 ### 安装
 
 ```shell
-npm add @titanmatrix/vue3-class-component --save
+yarn add vue3-oop 
 ```
+
+### vite配置
+
+因为esbuild不支持装饰器的metadata属性，所以需要安装 [vite-plugin-ts](https://github.com/CarterLi/vite/tree/main/packages/plugin-vue-jsx#readme) 插件使用原始ts编译
 
 ### API
 
