@@ -1,0 +1,104 @@
+{
+  "name": "vue3-oop",
+  "version": "0.0.1",
+  "main": "dist/vue3-oop.cjs.js",
+  "module": "dist/vue3-oop.es.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-oop.es.js",
+      "require": "./dist/vue3-oop.cjs.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && rimraf types && tsc --build tsconfig.build.json",
+    "serve": "vite preview",
+    "type:check": "tsc --noEmit --skipLibCheck",
+    "commit": "git-cz",
+    "lint": "eslint --fix .",
+    "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
+    "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
+    "release": "npm run build && npm version patch && npm publish",
+    "prepare": "install-peers"
+  },
+  "files": [
+    "dist",
+    "types",
+    "package.json"
+  ],
+  "author": {
+    "name": "agileago",
+    "email": "593728759@qq.com"
+  },
+  "keywords": [
+    "vue-oop",
+    "oop",
+    "vue",
+    "di",
+    "vue-di",
+    "ioc",
+    "vue class component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agileago/vue3-oop.git"
+  },
+  "homepage": "https://github.com/agileago/vue3-oop#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "@abraham/reflection": "^0.8.0",
+    "@commitlint/cli": "^13.1.0",
+    "@types/prettier": "^2.3.2",
+    "@types/swagger-schema-official": "^2.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "@vitejs/plugin-vue": "^1.9.4",
+    "ant-design-vue": "^3.0.0-alpha.10",
+    "axios": "^0.24.0",
+    "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.2",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "install-peers-cli": "^2.2.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.5",
+    "vite": "^2.5.0",
+    "vite-plugin-ts": "^1.1.8",
+    "vxe-table": "^4.1.5",
+    "yorkie": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -E GIT_PARAMS"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss,html,json}": [
+      "prettier --write"
+    ]
+  },
+  "peerDependencies": {
+    "autobind-decorator": "^2.4.0",
+    "injection-js": "^2.4.0",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "dependencies": {}
+}
