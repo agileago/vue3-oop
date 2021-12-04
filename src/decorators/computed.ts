@@ -8,7 +8,7 @@ interface ComputedItem {
 }
 
 const MetadataKey = Symbol('Computed')
-export function Computed() {
+export function Computed(): MethodDecorator {
   return function (target: any, key: string | symbol) {
     let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
     list = list.slice()

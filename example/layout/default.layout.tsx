@@ -1,4 +1,4 @@
-import { VueComponent } from '@/extends/component'
+import { VueComponent } from '@/index'
 import { RouterView } from 'vue-router'
 
 export default class DefaultLayout extends VueComponent {

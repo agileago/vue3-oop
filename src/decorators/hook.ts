@@ -36,7 +36,7 @@ type Lifecycle =
 
 const MetadataKey = Symbol('Hook')
 
-export function Hook(lifecycle: Lifecycle) {
+export function Hook(lifecycle: Lifecycle): MethodDecorator {
   return function (target: any, key: string | symbol) {
     let list: HookItem[] = Reflect.getMetadata(MetadataKey, target) || []
     list = list.slice()

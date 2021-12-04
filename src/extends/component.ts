@@ -1,20 +1,23 @@
-import { Prop, provide, SetupContext, VNodeChild, VNodeProps } from 'vue'
+import { getCurrentInstance, Prop, provide, SetupContext, VNodeChild, VNodeProps } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '@/helper'
-import { AnyContructor, Hanlder } from '@/type'
+import { Hanlder, VueComponentStaticContructor } from '@/type'
 import { RefHandler } from '@/decorators/ref'
 import { ComputedHandler } from '@/decorators/computed'
 import { HookHandler } from '@/decorators/hook'
-import { ProviderKey } from '@/extends/service'
 import { LinkHandler } from '@/decorators/link'
 
+export const GlobalStoreKey = 'GlobalStoreKey'
+
 export abstract class VueComponent<T = Record<string, any>> {
+  /** 装饰器处理 */
   static handler: Hanlder[] = [RefHandler, ComputedHandler, LinkHandler, HookHandler]
-  static resolveComponent: any
-  static __vccOpts__value: any
+  /** 是否自定义解析组件 */
+  static resolveComponent?: any
+  static __vccOpts__value?: any
+  /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static get __vccOpts() {
     if (this.__vccOpts__value) return this.__vccOpts__value
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const CompConstructor = this as unknown as AnyContructor
+    const CompConstructor = this as unknown as VueComponentStaticContructor
 
     return (this.__vccOpts__value = {
       ...CompConstructor,
@@ -35,35 +38,43 @@ export abstract class VueComponent<T = Record<string, any>> {
       },
     })
   }
-
-  /**
-   * 主要给jsx提示用
-   */
+  /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
+  static globalStore?: boolean
+  /** 是否把自己当做服务provide出去，以便子组件可注入 */
+  static ProviderKey?: string | symbol
+  /** 主要给jsx提示用 */
   get $props() {
     return this.props
   }
-
-  /**
-   * 组件属性
-   */
+  /** 组件属性 */
   public props: T & VNodeProps & Record<string, any>
-  /**
-   * 组件上下文
-   */
+  /** 组件上下文 */
   public context: SetupContext
 
   constructor() {
     this.props = useProps<T & VNodeProps>()
     this.context = useCtx()
     this.context.expose(this)
-    // @ts-ignore
-    if (this.constructor[ProviderKey]) provide(this.constructor[ProviderKey], this)
+    const ThisConstructor = this.constructor as VueComponentStaticContructor
+    if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)
+    if (ThisConstructor.globalStore) {
+      // 如果作为全局的服务，则注入到根上面
+      const current = getCurrentInstance()!
+      const app = current.appContext.app
+      app.provide(GlobalStoreKey, this)
+      app.getStore = () => this
+      app.getService = (token) => {
+        if ((typeof token === 'function' || typeof token === 'object') && 'ProviderKey' in token) {
+          token = token.ProviderKey
+        }
+        // @ts-ignore
+        return current?.provides[token]
+      }
+    }
     VueComponent.handler.forEach((handler) => handler.handler(this))
   }
 
-  /**
-   * 渲染函数
-   */
+  /** 渲染函数 */
   abstract render(): VNodeChild
   abstract render(ctx?: any): VNodeChild
   abstract render(ctx?: any, cache?: any[]): VNodeChild

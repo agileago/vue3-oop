@@ -6,7 +6,6 @@ const MetadataKey = Symbol('Ref')
 export function Ref(): PropertyDecorator {
   return function (target: any, key: string | symbol) {
     let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
-    // 处理原型链上的数据
     list = list.slice()
     const hasItem = list.find((k) => k === key)
     if (!hasItem) list.push(key)

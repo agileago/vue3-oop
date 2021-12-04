@@ -6,8 +6,8 @@ const MetadataKey = Symbol('Component')
 
 declare module 'vue' {
   interface App {
-    getStore(): ReflectiveInjector
-    getService: ReflectiveInjector['get']
+    getStore(): any
+    getService(token: any): any
   }
 }
 
@@ -30,7 +30,7 @@ export interface ComponentOptions {
   globalStore?: boolean
 }
 
-export function Component(options?: ComponentOptions) {
+export function Component(options?: ComponentOptions): ClassDecorator {
   return function (target: any) {
     if (!target.resolveComponent) target.resolveComponent = resolveComponent
     Reflect.defineMetadata(MetadataKey, options, target)

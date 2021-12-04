@@ -1,5 +1,5 @@
-export { VueComponent } from './extends/component'
-export { VueService, VueGlobalService } from './extends/service'
+export { VueComponent, GlobalStoreKey } from './extends/component'
+export { VueService, ProviderKey } from './extends/service'
 export { Ref } from './decorators/ref'
 export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'

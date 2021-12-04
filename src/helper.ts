@@ -20,7 +20,9 @@ export function useCtx(): SetupContext {
   // @ts-ignore
   return instance.setupContext
 }
-
+export function getCurrentApp() {
+  return getCurrentInstance()?.appContext.app
+}
 export function getProtoMetadata(target: any, key: symbol, returnDesc = false): any[] {
   if (!target) return []
   const proto = Reflect.getPrototypeOf(target)
@@ -44,14 +46,12 @@ export function getProtoMetadata(target: any, key: symbol, returnDesc = false): 
   }
   return res
 }
-
 export function getDeepOwnDescriptor(proto: any, key: string): PropertyDescriptor | null {
   if (!proto) return null
   const desc = Reflect.getOwnPropertyDescriptor(proto, key)
   if (desc) return desc
   return getDeepOwnDescriptor(Reflect.getPrototypeOf(proto), key)
 }
-
 export function getEmitsFromProps(defaultProps: Record<string, any>) {
   const keys = Object.keys(defaultProps)
   const emits: string[] = []
