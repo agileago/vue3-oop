@@ -8,6 +8,11 @@ import { LinkHandler } from '@/decorators/link'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 
+// 处理tsx slots 类型问题
+type WithVSlots<T extends Record<string, any>> = 'slots' extends keyof T
+  ? { 'v-slots'?: T['slots'] & { $stable?: boolean } }
+  : Record<string, never>
+
 export abstract class VueComponent<T = Record<string, any>> {
   /** 装饰器处理 */
   static handler: Hanlder[] = [RefHandler, ComputedHandler, LinkHandler, HookHandler]
@@ -47,12 +52,12 @@ export abstract class VueComponent<T = Record<string, any>> {
     return this.props
   }
   /** 组件属性 */
-  public props: T & VNodeProps & Record<string, any>
+  public props: Omit<T, 'slots'> & WithVSlots<T> & VNodeProps & Record<string, any>
   /** 组件上下文 */
   public context: SetupContext
 
   constructor() {
-    this.props = useProps<T & VNodeProps>()
+    this.props = useProps<Omit<T, 'slots'> & VNodeProps & WithVSlots<T>>()
     this.context = useCtx()
     this.context.expose(this)
     const ThisConstructor = this.constructor as VueComponentStaticContructor
@@ -81,5 +86,5 @@ export abstract class VueComponent<T = Record<string, any>> {
 }
 
 export type ComponentProps<T extends Record<string, any>> = {
-  [U in keyof T]-?: Prop<any>
+  [U in keyof Omit<T, 'slots'>]-?: Prop<any>
 }

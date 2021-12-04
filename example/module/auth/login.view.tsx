@@ -6,6 +6,7 @@ import { CatchLoading } from '../../common/decorators/catch.decorator'
 import { Autobind } from '@/helper'
 import { CountService } from '../../count.service'
 import { SkipSelf } from 'injection-js'
+import { VNodeChild } from 'vue'
 
 @Component({
   providers: [CountService],
@@ -35,6 +36,12 @@ export default class LoginView extends VueComponent {
   }
 
   render() {
+    const hslots: HomeChild<any>['props']['v-slots'] = {
+      $stable: true,
+      item(): VNodeChild {
+        return <div>111</div>
+      },
+    }
     return (
       <Row type={'flex'} justify={'center'} align={'middle'} style={{ height: '80%' }}>
         <Col span={12}>
@@ -65,8 +72,24 @@ export default class LoginView extends VueComponent {
               </Button>
             </Form.Item>
           </Form>
+          <HomeChild v-slots={hslots}></HomeChild>
         </Col>
       </Row>
     )
+  }
+}
+interface HomeChild_Props<DataItem = any> {
+  list?: DataItem[]
+  title?: string | ((list: DataItem[]) => VNodeChild)
+  /**
+   * 插槽
+   */
+  slots?: {
+    item(): VNodeChild
+  }
+}
+class HomeChild<T> extends VueComponent<HomeChild_Props<T>> {
+  render() {
+    return <div></div>
   }
 }
