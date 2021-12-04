@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>VUE3-OOP</title>
-    <meta name="description" content="vue3 oop是vue3开发进入面向对象阶段">
-    <link rel="stylesheet" href="/vue3-oop/assets/style.d82f6ee1.css">
-    <link rel="modulepreload" href="/vue3-oop/assets/Home.e19a39ad.js">
-    <link rel="modulepreload" href="/vue3-oop/assets/app.a7769e12.js">
-    <link rel="modulepreload" href="/vue3-oop/assets/index.md.4fa1ccf3.lean.js">
-    <link rel="modulepreload" href="/vue3-oop/assets/app.a7769e12.js">
-    <meta name="twitter:title" content="VUE3-OOP">
-    <meta property="og:title" content="VUE3-OOP">
-  </head>
-  <body>
-    <div id="app"><!--[--><div class="no-sidebar theme"><header class="nav-bar" data-v-675d8756><div class="sidebar-button" data-v-675d8756><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/vue3-oop/" aria-label="VUE3-OOP, back to home" data-v-675d8756 data-v-4a583abe><!----> VUE3-OOP</a><div class="flex-grow" data-v-675d8756></div><div class="nav" data-v-675d8756><nav class="nav-links" data-v-675d8756 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/vue3-oop/guide/" data-v-b8818f8c>指南 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/vue3-oop/api/" data-v-b8818f8c>API参考 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item isExternal" href="https://github.com/agileago/vue3-oop" target="_blank" rel="noopener noreferrer" data-v-b8818f8c>Github <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-b8818f8c><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-83e92a68><nav class="nav-links nav" data-v-83e92a68 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/vue3-oop/guide/" data-v-b8818f8c>指南 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/vue3-oop/api/" data-v-b8818f8c>API参考 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item isExternal" href="https://github.com/agileago/vue3-oop" target="_blank" rel="noopener noreferrer" data-v-b8818f8c>Github <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-b8818f8c><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><!----><!--[--><!--]--></aside><!-- TODO: make this button accessible --><div class="sidebar-mask"></div><!--[--><!-- A slot for customizing the entire homepage easily --><!--[--><main class="home" aria-labelledby="main-title" data-v-10122c92><header class="home-hero" data-v-10122c92 data-v-370f18c0><!----><h1 id="main-title" class="title" data-v-370f18c0>VUE3面向对象编程</h1><p class="tagline" data-v-370f18c0>极致优秀的编码体验</p><div class="nav-link action" data-v-370f18c0 data-v-b8818f8c><a class="item" href="/vue3-oop/guide/" data-v-b8818f8c>开始使用 <!----></a></div><!----></header><!--[--><!--]--><div class="home-features" data-v-10122c92 data-v-e39c13e0><div class="wrapper" data-v-e39c13e0><div class="container" data-v-e39c13e0><div class="features" data-v-e39c13e0><!--[--><section class="feature" data-v-e39c13e0><h2 class="title" data-v-e39c13e0>类组件</h2><p class="details" data-v-e39c13e0>功能与类型融为一体，无需多次声明类型，独立的属性类型声明，各种HOC组合轻而易举</p></section><section class="feature" data-v-e39c13e0><h2 class="title" data-v-e39c13e0>自动的依赖注入</h2><p class="details" data-v-e39c13e0>基于动态解析的 injection-js 依赖注入，让使用服务丝般自然</p></section><section class="feature" data-v-e39c13e0><h2 class="title" data-v-e39c13e0>vue3无ref编程</h2><p class="details" data-v-e39c13e0>无需关注ref及其value，正常声明变量，编程体验更自然</p></section><!--]--></div></div></div></div><div class="home-content" data-v-10122c92><div style="position:relative;" data-v-10122c92><div><h4 id="以下代码展示常用api" tabindex="-1">以下代码展示常用API <a class="header-anchor" href="#以下代码展示常用api" aria-hidden="true">#</a></h4><div class="language-typescript jsx"><pre><code><span class="token keyword">import</span> <span class="token punctuation">{</span> VueComponent<span class="token punctuation">,</span> Ref<span class="token punctuation">,</span> Autobind<span class="token punctuation">,</span> VueService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue3-oop&quot;</span>
+import{_ as n,c as s,o as a,a as t}from"./app.a7769e12.js";const f='{"title":"Home","description":"","frontmatter":{"home":true,"heroText":"VUE3\u9762\u5411\u5BF9\u8C61\u7F16\u7A0B","tagline":"\u6781\u81F4\u4F18\u79C0\u7684\u7F16\u7801\u4F53\u9A8C","actionText":"\u5F00\u59CB\u4F7F\u7528","actionLink":"/guide/","features":[{"title":"\u7C7B\u7EC4\u4EF6","details":"\u529F\u80FD\u4E0E\u7C7B\u578B\u878D\u4E3A\u4E00\u4F53\uFF0C\u65E0\u9700\u591A\u6B21\u58F0\u660E\u7C7B\u578B\uFF0C\u72EC\u7ACB\u7684\u5C5E\u6027\u7C7B\u578B\u58F0\u660E\uFF0C\u5404\u79CDHOC\u7EC4\u5408\u8F7B\u800C\u6613\u4E3E"},{"title":"\u81EA\u52A8\u7684\u4F9D\u8D56\u6CE8\u5165","details":"\u57FA\u4E8E\u52A8\u6001\u89E3\u6790\u7684 injection-js \u4F9D\u8D56\u6CE8\u5165\uFF0C\u8BA9\u4F7F\u7528\u670D\u52A1\u4E1D\u822C\u81EA\u7136"},{"title":"vue3\u65E0ref\u7F16\u7A0B","details":"\u65E0\u9700\u5173\u6CE8ref\u53CA\u5176value\uFF0C\u6B63\u5E38\u58F0\u660E\u53D8\u91CF\uFF0C\u7F16\u7A0B\u4F53\u9A8C\u66F4\u81EA\u7136"}]},"relativePath":"index.md","lastUpdated":1638661850712}',p={},o=t(`<h4 id="\u4EE5\u4E0B\u4EE3\u7801\u5C55\u793A\u5E38\u7528api" tabindex="-1">\u4EE5\u4E0B\u4EE3\u7801\u5C55\u793A\u5E38\u7528API <a class="header-anchor" href="#\u4EE5\u4E0B\u4EE3\u7801\u5C55\u793A\u5E38\u7528api" aria-hidden="true">#</a></h4><div class="language-typescript jsx"><pre><code><span class="token keyword">import</span> <span class="token punctuation">{</span> VueComponent<span class="token punctuation">,</span> Ref<span class="token punctuation">,</span> Autobind<span class="token punctuation">,</span> VueService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue3-oop&quot;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;injection-js&quot;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> createApp<span class="token punctuation">,</span> VNodeChild <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span>
 
-<span class="token comment">// 服务，即可复用的逻辑 类似 useXXX</span>
+<span class="token comment">// \u670D\u52A1\uFF0C\u5373\u53EF\u590D\u7528\u7684\u903B\u8F91 \u7C7B\u4F3C useXXX</span>
 <span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">class</span> <span class="token class-name">CountService</span> <span class="token keyword">extends</span> <span class="token class-name">VueService</span> <span class="token punctuation">{</span>
   <span class="token decorator"><span class="token at operator">@</span><span class="token function">Ref</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> count <span class="token operator">=</span> <span class="token number">0</span>
@@ -33,12 +17,12 @@
     <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">--</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token comment">// 组件</span>
+<span class="token comment">// \u7EC4\u4EF6</span>
 <span class="token decorator"><span class="token at operator">@</span><span class="token function">Component</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   providers<span class="token operator">:</span> <span class="token punctuation">[</span>CountService<span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token keyword">class</span> <span class="token class-name">Home</span> <span class="token keyword">extends</span> <span class="token class-name">VueComponent</span> <span class="token punctuation">{</span>
-  <span class="token comment">// 构造函数注入服务，无需new</span>
+  <span class="token comment">// \u6784\u9020\u51FD\u6570\u6CE8\u5165\u670D\u52A1\uFF0C\u65E0\u9700new</span>
   <span class="token class-name">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> countService<span class="token operator">:</span> CountService<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
@@ -52,7 +36,7 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment">// 子组件属性</span>
+<span class="token comment">// \u5B50\u7EC4\u4EF6\u5C5E\u6027</span>
 <span class="token keyword">interface</span> <span class="token class-name">HomeChild_Props<span class="token operator">&lt;</span>DataItem <span class="token operator">=</span> <span class="token builtin">any</span><span class="token operator">&gt;</span></span> <span class="token punctuation">{</span>
   list<span class="token operator">:</span> DataItem<span class="token punctuation">[</span><span class="token punctuation">]</span>
   title<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>list<span class="token operator">:</span> DataItem<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> VNodeChild<span class="token punctuation">)</span>
@@ -62,7 +46,7 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment">// 子组件</span>
+<span class="token comment">// \u5B50\u7EC4\u4EF6</span>
 <span class="token keyword">class</span> <span class="token class-name">HomeChild<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span> <span class="token keyword">extends</span> <span class="token class-name">VueComponent<span class="token operator">&lt;</span>HomeChild_Props<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;&gt;</span></span> <span class="token punctuation">{</span>
   <span class="token keyword">static</span> defaultProps<span class="token operator">:</span> ComponentProps<span class="token operator">&lt;</span>HomeChild_Props<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
     list<span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -89,9 +73,4 @@
 
 <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">createApp</span><span class="token punctuation">(</span>Home<span class="token punctuation">)</span>
 app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">&#39;#app&#39;</span><span class="token punctuation">)</span>
-</code></pre></div></div></div></div><!--[--><!--]--><!----><!--[--><!--]--></main><!--]--><!--]--></div><!----><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"index.md\":\"4fa1ccf3\"}")</script>
-    <script type="module" async src="/vue3-oop/assets/app.a7769e12.js"></script>
-    
-  </body>
-</html>
+</code></pre></div>`,2),e=[o];function c(l,u,k,r,i,d){return a(),s("div",null,e)}var y=n(p,[["render",c]]);export{f as __pageData,y as default};
