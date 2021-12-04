@@ -76,7 +76,11 @@
     "vite": "^2.5.0",
     "vite-plugin-ts": "^1.1.8",
     "vitepress": "^0.20.1",
-    "yorkie": "^2.0.0"
+    "yorkie": "^2.0.0",
+    "autobind-decorator": "^2.4.0",
+    "injection-js": "^2.4.0",
+    "vue": "^3.2.20",
+    "vue-router": "^4.0.12"
   },
   "config": {
     "commitizen": {
@@ -100,10 +104,9 @@
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
-  "dependencies": {
-    "autobind-decorator": "^2.4.0",
+  "peerDependencies": {
+    "@abraham/reflection": "^0.8.0",
     "injection-js": "^2.4.0",
-    "vue": "^3.2.20",
-    "vue-router": "^4.0.12"
+    "vue": "^3.2.20"
   }
 }
