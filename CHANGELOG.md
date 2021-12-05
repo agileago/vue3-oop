@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/agileago/vue3-oop/compare/v0.0.6...v0.0.7) (2021-12-05)
+
+
+### Features
+
+* 增加类型帮助函数 ([07ef3a6](https://github.com/agileago/vue3-oop/commit/07ef3a606fcb91cce32655fe27f818aaa37796ef))
+
 ### [0.0.6](https://github.com/agileago/vue3-oop/compare/v0.0.5...v0.0.6) (2021-12-04)
 
 ### [0.0.5](https://github.com/agileago/vue3-oop/compare/v0.0.4...v0.0.5) (2021-12-04)
