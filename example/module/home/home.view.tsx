@@ -3,11 +3,15 @@ import { CountService } from '../../count.service'
 import { Optional, SkipSelf } from 'injection-js'
 import { Button, Col, Row } from 'ant-design-vue'
 import { watch } from 'vue'
+import { focusDirective } from '../../focus.directive'
 
 @Component({
   providers: [CountService],
 })
 export default class HomeView extends VueComponent {
+  static directives = {
+    focus: focusDirective,
+  }
   constructor(
     @SkipSelf() private parentCountService: CountService,
     private countService: CountService,
@@ -36,6 +40,7 @@ export default class HomeView extends VueComponent {
             <Button type={'primary'} danger onClick={this.countService.remove}>
               减
             </Button>
+            <input v-focus placeholder={'测试指令'} />
           </Col>
         </Row>
       </>

@@ -8,10 +8,19 @@ import { LinkHandler } from '@/decorators/link'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 
+type VueComponentProps<T extends Record<string, any>> = Omit<T, 'slots'> & WithVSlots<T> & VNodeProps
+
 // 处理tsx slots 类型问题
 type WithVSlots<T extends Record<string, any>> = 'slots' extends keyof T
-  ? { 'v-slots'?: T['slots'] & { $stable?: boolean } }
-  : Record<string, never>
+  ? {
+      'v-slots'?: Partial<T['slots'] & { $stable: boolean; default(): VNodeChild }>
+      [name: string]: any
+    }
+  : Record<string, any>
+
+type WithSlotTypes<T extends Record<string, any>> = Omit<SetupContext, 'slots'> & {
+  slots: Partial<T['slots'] & { default(): VNodeChild }>
+}
 
 export abstract class VueComponent<T = Record<string, any>> {
   /** 装饰器处理 */
@@ -52,13 +61,13 @@ export abstract class VueComponent<T = Record<string, any>> {
     return this.props
   }
   /** 组件属性 */
-  public props: Omit<T, 'slots'> & WithVSlots<T> & VNodeProps & Record<string, any>
+  public props: VueComponentProps<T>
   /** 组件上下文 */
-  public context: SetupContext
+  public context: WithSlotTypes<T>
 
   constructor() {
-    this.props = useProps<Omit<T, 'slots'> & VNodeProps & WithVSlots<T>>()
-    this.context = useCtx()
+    this.props = useProps<VueComponentProps<T>>()
+    this.context = useCtx() as WithSlotTypes<T>
     this.context.expose(this)
     const ThisConstructor = this.constructor as VueComponentStaticContructor
     if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)
@@ -88,3 +97,9 @@ export abstract class VueComponent<T = Record<string, any>> {
 export type ComponentProps<T extends Record<string, any>> = {
   [U in keyof Omit<T, 'slots'>]-?: Prop<any>
 }
+
+export type ComponentSlots<T extends { props: any }> = T extends { props: infer U }
+  ? 'v-slots' extends keyof U
+    ? U['v-slots']
+    : Record<string, unknown>
+  : never
