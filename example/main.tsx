@@ -1,7 +1,8 @@
 import '@abraham/reflection'
+import type { ClassType } from '@/index'
 import { Autobind, Component, ComponentProps, Computed, Hook, Link, Ref, VueComponent, VueService } from '@/index'
 import { forwardRef, Inject, Injectable, SkipSelf } from 'injection-js'
-import { createApp, watch } from 'vue'
+import { createApp, VNodeChild, watch } from 'vue'
 
 // 服务，即可复用的逻辑 类似 useXXX
 @Injectable()
@@ -22,6 +23,10 @@ class CountService extends VueService {
 // 组件属性声明
 interface HomeChild_Props {
   size: 'small' | 'large'
+  // 组件个性化定义属性
+  slots: {
+    item(name: string): VNodeChild
+  }
 }
 
 // 带属性组件
@@ -34,7 +39,7 @@ class HomeChild extends VueComponent<HomeChild_Props> {
   constructor(
     private countService: CountService,
     @SkipSelf() private parentCountService: CountService,
-    @Inject(forwardRef(() => Home)) private parent: InstanceType<typeof Home>,
+    @Inject(forwardRef(() => Home)) private parent: ClassType<Home>,
   ) {
     super()
   }
@@ -50,12 +55,16 @@ class HomeChild extends VueComponent<HomeChild_Props> {
         <button onClick={this.countService.add}>+</button>
         {this.countService.count}
         <button onClick={this.countService.remove}>-</button>
+        <div>
+          <h3>这里是组件定制化内容</h3>
+          {this.context.slots.item?.('我是定制化内容')}
+        </div>
       </div>
     )
   }
 }
-
 // 组件
+@Autobind() // 绑定this 也可以放到这里
 @Component({ providers: [CountService] }) // 声明自己的服务
 class Home extends VueComponent {
   // 构造函数注入服务，无需new
@@ -83,14 +92,12 @@ class Home extends VueComponent {
   }
 
   // 子组件引用 链接🔗
-  @Link() child?: HomeChild
+  @Link() child?: ClassType<HomeChild>
 
-  @Autobind()
   add() {
     this.count++
   }
 
-  @Autobind()
   remove() {
     this.count--
   }
@@ -108,7 +115,15 @@ class Home extends VueComponent {
         {this.count}
         <button onClick={this.remove}>-</button>
 
-        <HomeChild ref="child" size={'small'}></HomeChild>
+        <HomeChild
+          ref="child"
+          size={'small'}
+          v-slots={{
+            item(name: string) {
+              return <span>{name}</span>
+            },
+          }}
+        ></HomeChild>
       </div>
     )
   }

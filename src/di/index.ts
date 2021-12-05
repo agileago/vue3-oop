@@ -41,7 +41,7 @@ export function Component(options?: ComponentOptions): ClassDecorator {
 export function resolveComponent(target: { new (...args: []): any }) {
   // 如果没有使用 injection-js 则不创建注入器
   if (!Reflect.getMetadata('annotations', target)) return new target()
-  const parent = inject(InjectorKey)
+  const parent = inject(InjectorKey, undefined)
   const options: ComponentOptions | undefined = Reflect.getOwnMetadata(MetadataKey, target)
   // 自动解析依赖,根据组件
   let deps: Provider[] = options?.autoResolveDeps ? resolveDependencies(target) : options?.providers || []

@@ -12,6 +12,3 @@ features:
 - title: vue3无ref编程
   details: 无需关注ref及其value，正常声明变量，编程体验更自然
 ---
-
-
-<iframe src="https://stackblitz.com/edit/vite-y7m4fy?embed=1&file=main.tsx" height="600" width="100%" frameborder="0"></iframe>
