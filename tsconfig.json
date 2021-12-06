@@ -21,7 +21,8 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "vue3-oop": ["src/index.ts"]
     }
   },
   "include": [

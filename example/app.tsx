@@ -1,5 +1,5 @@
 import { Component } from '@/di'
-import { VueComponent } from '@/index'
+import { VueComponent } from 'vue3-oop'
 import { UserService } from './module/auth/user.service'
 import { Button, Col, ConfigProvider, Row } from 'ant-design-vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
