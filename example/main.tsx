@@ -44,9 +44,11 @@ class HomeChild extends VueComponent<HomeChild_Props> {
     super()
   }
 
+  @Link() div?: ClassType<HTMLDivElement>
+
   render() {
     return (
-      <div style={{ marginTop: '40px' }}>
+      <div style={{ marginTop: '40px' }} ref="div">
         <h1>子组件</h1>
         <h4>子组件属性是：{this.props.size}</h4>
         <h4>父组件外部服务状态: {this.parentCountService.count}</h4>

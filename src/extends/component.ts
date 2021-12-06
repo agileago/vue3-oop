@@ -105,4 +105,4 @@ export type ComponentSlots<T extends { props: any }> = T extends { props: infer 
   : never
 
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
-export type ClassType<T extends Record<string, any>> = T
+export type ClassType<T> = T

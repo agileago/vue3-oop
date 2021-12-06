@@ -1,0 +1,46 @@
+.code-tabs {
+  border-radius: 3px;
+  [class^='language-'],
+  input {
+    display: none;
+  }
+  input:checked + [class^='language-'] {
+    display: block;
+  }
+  label {
+    color: rgba(191, 191, 191, 1);
+  }
+  input:checked + label {
+    color: rgba(38, 38, 38, 1);
+  }
+  ul {
+    font-size: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: auto;
+    user-select: none;
+    border-bottom: 1px solid rgb(240, 240, 240);
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+  }
+  label {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 5px;
+    font-size: 14px;
+  }
+  li ~ li::before {
+    content: '';
+    height: 12px;
+    width: 1px;
+    background: rgba(191, 191, 191, 1);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
