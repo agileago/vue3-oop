@@ -9,9 +9,9 @@ jobs:
 
       - name: 安装依赖和构建 🔧
         run: |
-          node --version
-          yarn install
-          yarn run docs:build
+          npm i pnpm -g
+          pnpm install
+          pnpm run docs:build
 
       - name: 部署 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5

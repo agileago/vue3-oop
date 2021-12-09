@@ -1,13 +1,13 @@
 # vue3 oop
 
-类组件+自动化的依赖注入(可选) = 极致的代码体验
+类组件+自动化的依赖注入(可选) = 极致的代码体验 [DEMO](https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx)
 
 ### 前提条件
 
 需要**reflect-metadata** 的支持
 
 ```shell
-yarn add @abraham/reflection injection-js 
+pnpm add @abraham/reflection injection-js 
 ```
 
 项目入口需要引入 `reflect-metadata`
@@ -31,7 +31,7 @@ import '@abraham/reflection'
 ### 安装
 
 ```shell
-yarn add vue3-oop 
+pnpm add vue3-oop 
 ```
 
 ### vite配置
