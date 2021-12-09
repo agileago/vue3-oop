@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/agileago/vue3-oop/compare/v0.0.12...v0.0.13) (2021-12-09)
+
+
+### Features
+
+* update component type ([9debbad](https://github.com/agileago/vue3-oop/commit/9debbad2525291badddfc97669e07af794c04128))
+
 ### [0.0.12](https://github.com/agileago/vue3-oop/compare/v0.0.11...v0.0.12) (2021-12-09)
 
 
