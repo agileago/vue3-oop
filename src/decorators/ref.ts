@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import { Hanlder } from '@/type'
-import { getProtoMetadata } from '@/helper'
+import { Hanlder } from '../type'
+import { getProtoMetadata } from '../helper'
 
 const MetadataKey = Symbol('Ref')
 export function Ref(): PropertyDecorator {

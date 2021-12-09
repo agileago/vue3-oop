@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import { Hanlder } from '@/type'
-import { getProtoMetadata } from '@/helper'
+import { Hanlder } from '../type'
+import { getProtoMetadata } from '../helper'
 
 interface ComputedItem {
   key: string | symbol

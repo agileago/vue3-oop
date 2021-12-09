@@ -12,8 +12,8 @@ import {
   onUnmounted,
   onUpdated,
 } from 'vue'
-import { Hanlder } from '@/type'
-import { getProtoMetadata } from '@/helper'
+import { Hanlder } from '../type'
+import { getProtoMetadata } from '../helper'
 
 interface HookItem {
   key: string | symbol

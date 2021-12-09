@@ -1,9 +1,9 @@
-import { RefHandler } from '@/decorators/ref'
-import { ComputedHandler } from '@/decorators/computed'
-import { HookHandler } from '@/decorators/hook'
+import { RefHandler } from '../decorators/ref'
+import { ComputedHandler } from '../decorators/computed'
+import { HookHandler } from '../decorators/hook'
 import { provide } from 'vue'
-import { Hanlder, VueComponentStaticContructor } from '@/type'
-import { LinkHandler } from '@/decorators/link'
+import { Hanlder, VueComponentStaticContructor } from '../type'
+import { LinkHandler } from '../decorators/link'
 
 export const ProviderKey = 'ProviderKey' as const
 

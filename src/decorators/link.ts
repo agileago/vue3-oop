@@ -1,6 +1,6 @@
 import { getCurrentInstance } from 'vue'
-import { Hanlder } from '@/type'
-import { getProtoMetadata } from '@/helper'
+import { Hanlder } from '../type'
+import { getProtoMetadata } from '../helper'
 
 const MetadataKey = Symbol('Link')
 export function Link(): PropertyDecorator {

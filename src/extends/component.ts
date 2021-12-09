@@ -1,10 +1,10 @@
 import { getCurrentInstance, provide, VNodeChild, VNodeProps } from 'vue'
-import { getEmitsFromProps, useCtx, useProps } from '@/helper'
-import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '@/type'
-import { RefHandler } from '@/decorators/ref'
-import { ComputedHandler } from '@/decorators/computed'
-import { HookHandler } from '@/decorators/hook'
-import { LinkHandler } from '@/decorators/link'
+import { getEmitsFromProps, useCtx, useProps } from '../helper'
+import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
+import { RefHandler } from '../decorators/ref'
+import { ComputedHandler } from '../decorators/computed'
+import { HookHandler } from '../decorators/hook'
+import { LinkHandler } from '../decorators/link'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 
