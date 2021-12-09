@@ -52,8 +52,8 @@ export function getDeepOwnDescriptor(proto: any, key: string): PropertyDescripto
   if (desc) return desc
   return getDeepOwnDescriptor(Reflect.getPrototypeOf(proto), key)
 }
-export function getEmitsFromProps(defaultProps: Record<string, any>) {
-  const keys = Object.keys(defaultProps)
+export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) {
+  const keys = Array.isArray(defaultProps) ? defaultProps : Object.keys(defaultProps)
   const emits: string[] = []
 
   for (let key of keys) {

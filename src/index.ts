@@ -7,4 +7,11 @@ export { Hook } from './decorators/hook'
 export * from './helper'
 export { Component, InjectorKey } from './di'
 export type { ComponentOptions } from './di'
-export type { ComponentProps, ComponentSlots, ClassType } from './extends/component'
+export type {
+  ComponentProps,
+  ComponentSlots,
+  ClassType,
+  WithVModel,
+  ComponentPropsArray,
+  ComponentPropsObject,
+} from './type'

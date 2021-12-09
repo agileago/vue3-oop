@@ -1,6 +1,6 @@
 import '@abraham/reflection'
-import type { ClassType } from '@/index'
-import { Autobind, Component, ComponentProps, Computed, Hook, Link, Ref, VueComponent, VueService } from '@/index'
+import type { ClassType, ComponentProps } from '@/index'
+import { Autobind, Component, Computed, Hook, Link, Ref, VueComponent, VueService } from '@/index'
 import { forwardRef, Inject, Injectable, SkipSelf } from 'injection-js'
 import { createApp, VNodeChild, watch } from 'vue'
 
@@ -23,6 +23,10 @@ class CountService extends VueService {
 // 组件属性声明
 interface HomeChild_Props {
   size: 'small' | 'large'
+  value?: string
+  'onUpdate:value'?: (name: string) => void
+  check?: boolean
+  'onUpdate:check'?: (check: boolean) => void
   // 组件个性化定义属性
   slots: {
     item(name: string): VNodeChild
@@ -32,9 +36,7 @@ interface HomeChild_Props {
 // 带属性组件
 @Component({ providers: [CountService] })
 class HomeChild extends VueComponent<HomeChild_Props> {
-  static defaultProps: ComponentProps<HomeChild_Props> = {
-    size: String,
-  }
+  static defaultProps: ComponentProps<HomeChild_Props> = ['size', 'value', 'onUpdate:value', 'check', 'onUpdate:check']
 
   constructor(
     private countService: CountService,

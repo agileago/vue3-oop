@@ -1,6 +1,6 @@
-import { getCurrentInstance, Prop, provide, SetupContext, VNodeChild, VNodeProps } from 'vue'
+import { getCurrentInstance, provide, VNodeChild, VNodeProps } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '@/helper'
-import { Hanlder, VueComponentStaticContructor } from '@/type'
+import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '@/type'
 import { RefHandler } from '@/decorators/ref'
 import { ComputedHandler } from '@/decorators/computed'
 import { HookHandler } from '@/decorators/hook'
@@ -8,19 +8,7 @@ import { LinkHandler } from '@/decorators/link'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 
-type VueComponentProps<T extends Record<string, any>> = Omit<T, 'slots'> & WithVSlots<T> & VNodeProps
-
-// 处理tsx slots 类型问题
-type WithVSlots<T extends Record<string, any>> = 'slots' extends keyof T
-  ? {
-      'v-slots'?: Partial<T['slots'] & { $stable: boolean; default(): VNodeChild }>
-      [name: string]: any
-    }
-  : Record<string, any>
-
-type WithSlotTypes<T extends Record<string, any>> = Omit<SetupContext, 'slots'> & {
-  slots: Partial<T['slots'] & { default(): VNodeChild }>
-}
+type VueComponentProps<T extends Record<string, any>> = Omit<T, 'slots'> & WithVModel<T> & WithVSlots<T> & VNodeProps
 
 export abstract class VueComponent<T = Record<string, any>> {
   /** 装饰器处理 */
@@ -93,16 +81,3 @@ export abstract class VueComponent<T = Record<string, any>> {
   abstract render(ctx?: any): VNodeChild
   abstract render(ctx?: any, cache?: any[]): VNodeChild
 }
-
-export type ComponentProps<T extends Record<string, any>> = {
-  [U in keyof Omit<T, 'slots'>]-?: Prop<any>
-}
-
-export type ComponentSlots<T extends { props: any }> = T extends { props: infer U }
-  ? 'v-slots' extends keyof U
-    ? U['v-slots']
-    : Record<string, unknown>
-  : never
-
-/** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
-export type ClassType<T> = T
