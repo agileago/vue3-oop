@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/agileago/vue3-oop/compare/v0.0.10...v0.0.11) (2021-12-09)
+
+
+### Bug Fixes
+
+* 修复类型路径@导致vscode无法识别 ([8a88a32](https://github.com/agileago/vue3-oop/commit/8a88a3206913a0728d406c457056dad2a6ccc80d))
+
 ### [0.0.10](https://github.com/agileago/vue3-oop/compare/v0.0.9...v0.0.10) (2021-12-09)
 
 
