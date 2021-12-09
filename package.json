@@ -21,7 +21,7 @@
     "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
     "release": "standard-version",
     "github:release": "conventional-github-releaser -p angular",
-    "prepublishOnly": "yarn run-s build release",
+    "prepublishOnly": "run-s build release",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
