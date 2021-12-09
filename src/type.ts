@@ -27,15 +27,23 @@ export interface Hanlder {
   handler: (targetThis: any) => void
 }
 
+type DefaultSlots = {
+  default(): VNodeChild
+}
+
+type MixDefaultSlots<T extends {}> = 'default' extends keyof T ? {} : DefaultSlots
+
 // 处理tsx slots 类型问题
 export type WithVSlots<T extends {}> = {
   'v-slots'?: 'slots' extends keyof T
-    ? Partial<T['slots'] & { $stable: boolean; default(): VNodeChild }>
+    ? Partial<T['slots'] & { $stable: boolean } & MixDefaultSlots<T['slots']>>
     : Partial<{ $stable: boolean; default(): VNodeChild }>
 }
 
 export type WithSlotTypes<T extends {}> = Omit<SetupContext, 'slots'> & {
-  slots: 'slots' extends keyof T ? Partial<T['slots'] & { default(): VNodeChild }> : Partial<{ default(): VNodeChild }>
+  slots: 'slots' extends keyof T
+    ? Partial<T['slots'] & MixDefaultSlots<T['slots']>>
+    : Partial<{ default(): VNodeChild }>
 }
 
 type ModelProps<T extends {}> = Exclude<

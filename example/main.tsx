@@ -137,12 +137,14 @@ interface FooProps {
   value?: string
   'onUpdate:value'?: (value: string) => void
   slots: {
+    default(name: string): VNodeChild
     item(): VNodeChild
   }
 }
 
 class Foo extends VueComponent<FooProps> {
   render() {
+    this.context.slots.default?.('aaa')
     return undefined
   }
 }
