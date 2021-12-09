@@ -41,7 +41,7 @@ pnpm add vue3-oop
 ### 定义组件
 
 ```typescript jsx
-import { Autobind, ComponentPropsArray, Computed, Hook, Link, Ref, VueComponent } from 'vue3-oop'
+import { Autobind, ComponentProps, Computed, Hook, Link, Ref, VueComponent } from 'vue3-oop'
 import { Directive, VNodeChild, watch } from 'vue'
 
 const focusDirective: Directive = {
@@ -60,7 +60,7 @@ interface Foo_Props {
 
 class Foo extends VueComponent<Foo_Props> {
   // vue需要的运行时属性检查
-  static defaultProps: ComponentPropsArray<Foo_Props> = ['size']
+  static defaultProps: ComponentProps<Foo_Props> = ['size']
   // 组件需要的局部指令
   static directives: Record<string, Directive> = {
     focus: focusDirective,
