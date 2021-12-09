@@ -1,5 +1,5 @@
 import '@abraham/reflection'
-import type { ClassType, ComponentProps } from '@/index'
+import type { ClassType, ComponentProps } from 'vue3-oop'
 import { Autobind, Component, Computed, Hook, Link, Ref, VueComponent, VueService } from '@/index'
 import { forwardRef, Inject, Injectable, SkipSelf } from 'injection-js'
 import { createApp, VNodeChild, watch } from 'vue'
@@ -130,6 +130,20 @@ class Home extends VueComponent {
         ></HomeChild>
       </div>
     )
+  }
+}
+
+interface FooProps {
+  value?: string
+  'onUpdate:value'?: (value: string) => void
+  slots: {
+    item(): VNodeChild
+  }
+}
+
+class Foo extends VueComponent<FooProps> {
+  render() {
+    return undefined
   }
 }
 

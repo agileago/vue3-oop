@@ -28,40 +28,35 @@ export interface Hanlder {
 }
 
 // 处理tsx slots 类型问题
-export type WithVSlots<T extends Record<string, any>> = 'slots' extends keyof T
-  ? {
-      'v-slots'?: Partial<T['slots'] & { $stable: boolean; default(): VNodeChild }>
-      [name: string]: any
-    }
-  : Record<string, any>
-
-export type WithSlotTypes<T extends Record<string, any>> = Omit<SetupContext, 'slots'> & {
-  slots: Partial<T['slots'] & { default(): VNodeChild }>
+export type WithVSlots<T extends {}> = {
+  'v-slots'?: 'slots' extends keyof T
+    ? Partial<T['slots'] & { $stable: boolean; default(): VNodeChild }>
+    : Partial<{ $stable: boolean; default(): VNodeChild }>
 }
 
-type ModelProps<T extends Record<string, any>> = Exclude<
+export type WithSlotTypes<T extends {}> = Omit<SetupContext, 'slots'> & {
+  slots: 'slots' extends keyof T ? Partial<T['slots'] & { default(): VNodeChild }> : Partial<{ default(): VNodeChild }>
+}
+
+type ModelProps<T extends {}> = Exclude<
   {
     [Prop in keyof T]: T extends { [k in Prop as `onUpdate:${k & string}`]?: any } ? Prop : never
   }[keyof T],
   undefined
 >
 
-export type WithVModel<T extends Record<string, any>, U extends keyof T = ModelProps<T>> = {
+export type WithVModel<T extends {}, U extends keyof T = ModelProps<T>> = {
   [k in U as `v-model:${k & string}`]?: T[k] | [T[k], string[]]
 }
 
-export type ComponentProps<T extends Record<string, any>> = ComponentPropsArray<T> | ComponentPropsObject<T>
+export type ComponentProps<T extends {}> = ComponentPropsArray<T> | ComponentPropsObject<T>
 
-export type ComponentPropsObject<T extends Record<string, any>> = {
+export type ComponentPropsObject<T extends {}> = {
   [U in keyof Omit<T, 'slots'>]-?: Prop<any>
 }
-export type ComponentPropsArray<T extends Record<string, any>> = UnionToTuple<keyof Omit<T, 'slots'>>
+export type ComponentPropsArray<T extends {}> = UnionToTuple<keyof Omit<T, 'slots'>>
 
-export type ComponentSlots<T extends { props: any }> = T extends { props: infer U }
-  ? 'v-slots' extends keyof U
-    ? U['v-slots']
-    : Record<string, unknown>
-  : never
+export type ComponentSlots<T extends { props: any }> = T['props']['v-slots']
 
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
 export type ClassType<T> = T

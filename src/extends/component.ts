@@ -1,4 +1,4 @@
-import { getCurrentInstance, provide, VNodeChild, VNodeProps } from 'vue'
+import { ComponentPublicInstance, getCurrentInstance, provide, VNodeChild, VNodeProps } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
 import { RefHandler } from '../decorators/ref'
@@ -8,9 +8,13 @@ import { LinkHandler } from '../decorators/link'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 
-type VueComponentProps<T extends Record<string, any>> = Omit<T, 'slots'> & WithVModel<T> & WithVSlots<T> & VNodeProps
+type VueComponentProps<T extends {}> = Omit<T, 'slots'> &
+  WithVModel<T> &
+  WithVSlots<T> &
+  VNodeProps &
+  Record<string, unknown>
 
-export abstract class VueComponent<T = Record<string, any>> {
+export abstract class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
   static handler: Hanlder[] = [RefHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
@@ -77,7 +81,5 @@ export abstract class VueComponent<T = Record<string, any>> {
   }
 
   /** 渲染函数 */
-  abstract render(): VNodeChild
-  abstract render(ctx?: any): VNodeChild
-  abstract render(ctx?: any, cache?: any[]): VNodeChild
+  abstract render(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
