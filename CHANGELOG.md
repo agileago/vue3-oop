@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/agileago/vue3-oop/compare/v0.0.9...v0.0.10) (2021-12-09)
+
+
+### Features
+
+* 属性支持数组形式，并给与类型提示 ([d9b4856](https://github.com/agileago/vue3-oop/commit/d9b4856031b72c364904f48a545faf1be00d010c))
+
 ### [0.0.9](https://github.com/agileago/vue3-oop/compare/v0.0.8...v0.0.9) (2021-12-09)
 
 ### [0.0.8](https://github.com/agileago/vue3-oop/compare/v0.0.7...v0.0.8) (2021-12-09)
