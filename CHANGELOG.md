@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/agileago/vue3-oop/compare/v0.0.12...v0.0.14) (2021-12-10)
+
+
+### Features
+
+* update component type ([9debbad](https://github.com/agileago/vue3-oop/commit/9debbad2525291badddfc97669e07af794c04128))
+* update component type ([d124ec9](https://github.com/agileago/vue3-oop/commit/d124ec9c90590cc09e7b245b69895eeb6dd5d9df))
+
+
+### Bug Fixes
+
+* 修复v-model类型 ([5d69c59](https://github.com/agileago/vue3-oop/commit/5d69c592fb158d881d48b26e1f1dd3b15fbe3f14))
+
 ### [0.0.13](https://github.com/agileago/vue3-oop/compare/v0.0.12...v0.0.13) (2021-12-09)
 
 
