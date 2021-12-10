@@ -53,9 +53,12 @@ type ModelProps<T extends {}> = Exclude<
   undefined
 >
 
-export type WithVModel<T extends {}, U extends keyof T = ModelProps<T>> = {
+export type WithVModel<T extends {}, U extends keyof T = ModelProps<T>> = TransformModelValue<{
   [k in U as `v-model:${k & string}`]?: T[k] | [T[k], string[]]
-}
+}>
+export type TransformModelValue<T extends {}> = 'v-model:modelValue' extends keyof T
+  ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
+  : T
 
 export type ComponentProps<T extends {}> = ComponentPropsArray<T> | ComponentPropsObject<T>
 

@@ -9,6 +9,8 @@ const focusDirective: Directive = {
 
 interface Foo_Props {
   size: 'small' | 'large'
+  modelValue?: string
+  'onUpdate:modelValue'?: (val: string) => void
   // 组件的slots
   slots: {
     item(name: string): VNodeChild
@@ -17,9 +19,8 @@ interface Foo_Props {
 
 class Foo extends VueComponent<Foo_Props> {
   // vue需要的运行时属性检查
-  static defaultProps: ComponentProps<Foo_Props> = {
-    size: String,
-  }
+  static defaultProps: ComponentProps<Foo_Props> = ['size', 'modelValue', 'onUpdate:modelValue']
+
   // 组件需要的局部指令
   static directives: Record<string, Directive> = {
     focus: focusDirective,
