@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/agileago/vue3-oop/compare/v0.0.14...v0.0.15) (2021-12-12)
+
+
+### Features
+
+* 初始化未在constructor声明的服务 ([83f0ef3](https://github.com/agileago/vue3-oop/commit/83f0ef3cbe1c209ab59fe7b1bc4b4e24f896ee2a))
+
 ### [0.0.14](https://github.com/agileago/vue3-oop/compare/v0.0.12...v0.0.14) (2021-12-10)
 
 
