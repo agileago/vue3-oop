@@ -49,7 +49,8 @@ export function resolveComponent(target: { new (...args: []): any }) {
   if (options?.exclude?.length) {
     deps = deps.filter((k) => !options.exclude?.includes(k))
   }
-  const injector = ReflectiveInjector.resolveAndCreate(deps, parent)
+  const resolveProviders = ReflectiveInjector.resolve(deps)
+  const injector = ReflectiveInjector.fromResolvedProviders(resolveProviders, parent)
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
     const current = getCurrentInstance()!
@@ -61,5 +62,8 @@ export function resolveComponent(target: { new (...args: []): any }) {
   } else {
     provide(InjectorKey, injector)
   }
-  return injector.get(target)
+  const compInstance = injector.get(target)
+  // 处理一下providers中的未创建实例的服务
+  if (options?.providers?.length) resolveProviders.forEach((k) => injector.get(k.key.token))
+  return compInstance
 }

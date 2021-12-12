@@ -67,9 +67,16 @@ class HomeChild extends VueComponent<HomeChild_Props> {
     )
   }
 }
+class AService extends VueService {
+  constructor() {
+    super()
+    console.log('aservice init')
+  }
+}
+
 // 组件
 @Autobind() // 绑定this 也可以放到这里
-@Component({ providers: [CountService] }) // 声明自己的服务
+@Component({ providers: [CountService, AService] }) // 声明自己的服务
 class Home extends VueComponent {
   // 构造函数注入服务，无需new
   constructor(private countService: CountService) {
