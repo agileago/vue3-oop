@@ -15,6 +15,8 @@ type VueComponentProps<T extends {}> = Omit<T, 'slots'> &
   Record<string, unknown>
 
 export abstract class VueComponent<T extends {} = {}> {
+  /** 热更新使用 */
+  static __hmrId?: string
   /** 装饰器处理 */
   static handler: Hanlder[] = [RefHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
