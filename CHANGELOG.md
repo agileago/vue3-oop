@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/agileago/vue3-oop/compare/v0.0.15...v0.0.16) (2021-12-13)
+
+
+### Features
+
+* webpack支持热更新 ([686672a](https://github.com/agileago/vue3-oop/commit/686672a3416719c6c440f64ce56182a3a91e26a3))
+
 ### [0.0.15](https://github.com/agileago/vue3-oop/compare/v0.0.14...v0.0.15) (2021-12-12)
 
 
