@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/agileago/vue3-oop/compare/v0.0.17...v0.0.18) (2021-12-14)
+
+
+### Bug Fixes
+
+* 修复providerkey类型 ([0d0ed40](https://github.com/agileago/vue3-oop/commit/0d0ed40ba02e813d6aca28f2d11cffb249241518))
+
 ### [0.0.17](https://github.com/agileago/vue3-oop/compare/v0.0.16...v0.0.17) (2021-12-14)
 
 
