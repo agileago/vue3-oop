@@ -1,4 +1,4 @@
-import { ComponentPublicInstance, getCurrentInstance, provide, VNodeChild, VNodeProps } from 'vue'
+import { ComponentPublicInstance, getCurrentInstance, InjectionKey, provide, VNodeChild, VNodeProps } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
 import { RefHandler } from '../decorators/ref'
@@ -49,7 +49,7 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
   static globalStore?: boolean
   /** 是否把自己当做服务provide出去，以便子组件可注入 */
-  static ProviderKey?: string | symbol
+  static ProviderKey?: string | symbol | number | InjectionKey<any>
   /** 主要给jsx提示用 */
   get $props() {
     return this.props

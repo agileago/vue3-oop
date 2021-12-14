@@ -33,7 +33,7 @@ specifiers:
   vitepress: ^0.20.1
   vue: ^3.2.20
   vue-router: ^4.0.12
-  yorkie: ^2.0.0
+  yorkie-pnpm: ^2.0.1
 
 devDependencies:
   '@abraham/reflection': 0.8.0
@@ -68,7 +68,7 @@ devDependencies:
   vitepress: 0.20.4_sass@1.44.0
   vue: 3.2.24
   vue-router: 4.0.12_vue@3.2.24
-  yorkie: 2.0.0
+  yorkie-pnpm: 2.0.1
 
 packages:
 
@@ -5346,8 +5346,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yorkie/2.0.0:
-    resolution: {integrity: sha1-kkEZEtQ1IU4SxRwq4Qk+VLa7g9k=, tarball: yorkie/download/yorkie-2.0.0.tgz}
+  /yorkie-pnpm/2.0.1:
+    resolution: {integrity: sha512-6LoIZBsYD8ihS9Gccy4jr1XIyczNfwcW0URQoBP96i2VdYkD65YYFm6wAkeK1ehoGihnugWokDJsod8W4MBOjA==, tarball: yorkie-pnpm/download/yorkie-pnpm-2.0.1.tgz}
     engines: {node: '>=4'}
     requiresBuild: true
     dependencies:

@@ -1,4 +1,4 @@
-import { Prop, SetupContext, VNodeChild } from 'vue'
+import { InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
 
 export interface VueComponentStaticContructor {
   new (...args: any[]): any
@@ -11,7 +11,7 @@ export interface VueComponentStaticContructor {
   /** 组件使用的指令 */
   directives?: any
   /** 组件作为服务的key */
-  ProviderKey?: symbol | string
+  ProviderKey?: symbol | string | number | InjectionKey<any>
   /** 组件是否作为全局服务 */
   globalStore?: boolean
   /** 自定义解析组件 */

@@ -83,7 +83,7 @@
     "vitepress": "^0.20.1",
     "vue": "^3.2.20",
     "vue-router": "^4.0.12",
-    "yorkie": "^2.0.0"
+    "yorkie-pnpm": "^2.0.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
