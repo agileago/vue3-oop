@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/agileago/vue3-oop/compare/v0.0.16...v0.0.17) (2021-12-14)
+
+
+### Bug Fixes
+
+* 修复npm-run-all在pnpm下无法使用 ([b390981](https://github.com/agileago/vue3-oop/commit/b390981cd22a2bb1a4d00f6c2de483531a8cbc0c))
+
 ### [0.0.16](https://github.com/agileago/vue3-oop/compare/v0.0.15...v0.0.16) (2021-12-13)
 
 
