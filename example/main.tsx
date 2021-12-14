@@ -3,6 +3,7 @@ import type { ClassType, ComponentProps } from 'vue3-oop'
 import { Autobind, Component, Computed, Hook, Link, Ref, VueComponent, VueService } from '@/index'
 import { forwardRef, Inject, Injectable, SkipSelf } from 'injection-js'
 import { createApp, VNodeChild, watch } from 'vue'
+import { Foo } from './example'
 
 // 服务，即可复用的逻辑 类似 useXXX
 @Injectable()
@@ -116,7 +117,7 @@ class Home extends VueComponent {
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
-        <h2>外部服务</h2>
+        <h2>外部服务111</h2>
         <button onClick={this.countService.add}>+</button>
         {this.countService.count}
         <button onClick={this.countService.remove}>-</button>
@@ -135,24 +136,9 @@ class Home extends VueComponent {
             },
           }}
         ></HomeChild>
+        <Foo size={'large'}></Foo>
       </div>
     )
-  }
-}
-
-interface FooProps {
-  value?: string
-  'onUpdate:value'?: (value: string) => void
-  slots: {
-    default(name: string): VNodeChild
-    item(): VNodeChild
-  }
-}
-
-class Foo extends VueComponent<FooProps> {
-  render() {
-    this.context.slots.default?.('aaa')
-    return undefined
   }
 }
 

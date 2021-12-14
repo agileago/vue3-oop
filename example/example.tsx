@@ -1,4 +1,4 @@
-import { Autobind, ComponentProps, Computed, Hook, Link, Ref, VueComponent, VueService } from 'vue3-oop'
+import { Autobind, ComponentProps, Computed, Hook, Link, Ref, VueComponent } from '@/index'
 import { Directive, VNodeChild, watch } from 'vue'
 
 const focusDirective: Directive = {
@@ -17,7 +17,7 @@ interface Foo_Props {
   }
 }
 
-class Foo extends VueComponent<Foo_Props> {
+export class Foo extends VueComponent<Foo_Props> {
   // vue需要的运行时属性检查
   static defaultProps: ComponentProps<Foo_Props> = ['size', 'modelValue', 'onUpdate:modelValue']
 
@@ -69,18 +69,9 @@ class Foo extends VueComponent<Foo_Props> {
         <span>{this.count}</span>
         <button onClick={this.remove}>-</button>
         <div>{this.context.slots.item?.('aaa')}</div>
+        <label>11111</label>
         <input type="text" v-focus />
       </div>
     )
-  }
-}
-
-class CountService extends VueService {
-  @Ref() count = 1
-  add() {
-    this.count++
-  }
-  remove() {
-    this.count--
   }
 }
