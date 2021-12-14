@@ -15,13 +15,13 @@
     "build": "vite build && rimraf types && tsc --build tsconfig.build.json",
     "serve": "vite preview",
     "type:check": "tsc --noEmit --skipLibCheck",
-    "commit": "git-cz",
+    "commit": "cz-customizable",
     "lint": "eslint --fix .",
     "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
     "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
     "release": "standard-version",
     "github:release": "conventional-github-releaser -p angular",
-    "prepublishOnly": "run-s build release",
+    "prepublishOnly": "run-s chrome",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
@@ -84,11 +84,6 @@
     "vue": "^3.2.20",
     "vue-router": "^4.0.12",
     "yorkie": "^2.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

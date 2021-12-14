@@ -2046,11 +2046,11 @@ packages:
       has-symbols: 1.0.2
       internal-slot: 1.0.3
       is-callable: 1.2.4
-      is-negative-zero: 2.0.1
+      is-negative-zero: 2.0.2
       is-regex: 1.1.4
       is-shared-array-buffer: 1.0.1
       is-string: 1.0.7
-      is-weakref: 1.0.1
+      is-weakref: 1.0.2
       object-inspect: 1.11.1
       object-keys: 1.1.1
       object.assign: 4.1.2
@@ -3167,8 +3167,8 @@ packages:
       is-extglob: 2.1.1
     dev: true
 
-  /is-negative-zero/2.0.1:
-    resolution: {integrity: sha1-PedGwY3aIxkkGlNnWQjY92bxHCQ=, tarball: is-negative-zero/download/is-negative-zero-2.0.1.tgz}
+  /is-negative-zero/2.0.2:
+    resolution: {integrity: sha512-dqJvarLawXsFbNDeJW7zAz8ItJ9cd28YufuuFzh0G8pNHjJMnY08Dv7sYX2uF5UpQOwieAeOExEYAWWfu7ZZUA==, tarball: is-negative-zero/download/is-negative-zero-2.0.2.tgz}
     engines: {node: '>= 0.4'}
     dev: true
 
@@ -3260,8 +3260,8 @@ packages:
     resolution: {integrity: sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=, tarball: is-utf8/download/is-utf8-0.2.1.tgz}
     dev: true
 
-  /is-weakref/1.0.1:
-    resolution: {integrity: sha1-hC26TsF/qayYUN8tbvvBc3J08qI=, tarball: is-weakref/download/is-weakref-1.0.1.tgz}
+  /is-weakref/1.0.2:
+    resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==, tarball: is-weakref/download/is-weakref-1.0.2.tgz}
     dependencies:
       call-bind: 1.0.2
     dev: true
