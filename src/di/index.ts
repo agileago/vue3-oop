@@ -1,4 +1,4 @@
-import { Injectable, Provider, ReflectiveInjector, resolveDependencies } from 'injection-js'
+import { ClassProvider, Injectable, InjectionToken, Provider, ReflectiveInjector, SkipSelf } from 'injection-js'
 import { getCurrentInstance, inject, InjectionKey, provide } from 'vue'
 
 export const InjectorKey: InjectionKey<ReflectiveInjector> = Symbol('ReflectiveInjector')
@@ -43,9 +43,17 @@ export function resolveComponent(target: { new (...args: []): any }) {
   if (!Reflect.getMetadata('annotations', target)) return new target()
   const parent = inject(InjectorKey, undefined)
   const options: ComponentOptions | undefined = Reflect.getOwnMetadata(MetadataKey, target)
-  // 自动解析依赖,根据组件
-  let deps: Provider[] = options?.autoResolveDeps ? resolveDependencies(target) : options?.providers || []
-  if (!deps.includes(target)) deps.unshift(target)
+
+  // 依赖
+  let deps: Provider[] = [target]
+  if (options?.providers?.length) {
+    deps = deps.concat(options.providers)
+  }
+  // 自动解析依赖的依赖
+  if (options?.autoResolveDeps !== false) {
+    deps = resolveDependencies(deps)
+  }
+  // 排除掉某些依赖
   if (options?.exclude?.length) {
     deps = deps.filter((k) => !options.exclude?.includes(k))
   }
@@ -64,6 +72,37 @@ export function resolveComponent(target: { new (...args: []): any }) {
   }
   const compInstance = injector.get(target)
   // 处理一下providers中的未创建实例的服务
-  if (options?.providers?.length) resolveProviders.forEach((k) => injector.get(k.key.token))
+  resolveProviders.forEach((k) => injector.get(k.key.token))
   return compInstance
+}
+
+export function resolveDependencies(inputs: Provider[]) {
+  const deps = new Set<Provider>()
+
+  function resolver(klass: Provider) {
+    if (deps.has(klass)) return
+    deps.add(klass)
+    const resolves = ReflectiveInjector.resolve([klass])
+    for (const item of resolves) {
+      for (const fact of item.resolvedFactories) {
+        for (const dep of fact.dependencies) {
+          if (
+            dep.optional ||
+            dep.visibility instanceof SkipSelf ||
+            dep.key.token instanceof InjectionToken ||
+            typeof dep.key.token !== 'function'
+          ) {
+            continue
+          }
+          resolver(dep.key.token as unknown as ClassProvider)
+        }
+      }
+    }
+  }
+
+  for (const input of inputs) {
+    resolver(input)
+  }
+
+  return Array.from(deps)
 }
