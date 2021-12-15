@@ -1,4 +1,12 @@
-import { ClassProvider, Injectable, InjectionToken, Provider, ReflectiveInjector, SkipSelf } from 'injection-js'
+import {
+  ClassProvider,
+  Injectable,
+  InjectionToken,
+  Provider,
+  ReflectiveInjector,
+  SkipSelf,
+  TypeProvider,
+} from 'injection-js'
 import { getCurrentInstance, inject, InjectionKey, provide } from 'vue'
 
 export const InjectorKey: InjectionKey<ReflectiveInjector> = Symbol('ReflectiveInjector')
@@ -43,7 +51,6 @@ export function resolveComponent(target: { new (...args: []): any }) {
   if (!Reflect.getMetadata('annotations', target)) return new target()
   const parent = inject(InjectorKey, undefined)
   const options: ComponentOptions | undefined = Reflect.getOwnMetadata(MetadataKey, target)
-
   // 依赖
   let deps: Provider[] = [target]
   if (options?.providers?.length) {
@@ -63,7 +70,7 @@ export function resolveComponent(target: { new (...args: []): any }) {
     // 如果作为全局的服务，则注入到根上面
     const current = getCurrentInstance()!
     const app = current.appContext.app
-    // todo 此处需判断重复
+
     app.provide(InjectorKey, injector)
     app.getStore = () => injector
     app.getService = (token) => injector.get(token)
@@ -77,10 +84,19 @@ export function resolveComponent(target: { new (...args: []): any }) {
 }
 
 export function resolveDependencies(inputs: Provider[]) {
+  // 处理抽象类
+  const noConstructor: Exclude<Provider, TypeProvider | any[]>[] = []
+
+  for (const input of inputs) {
+    if (!(input instanceof Function) && !Array.isArray(input)) {
+      noConstructor.push(input)
+    }
+  }
+
   const deps = new Set<Provider>()
 
   function resolver(klass: Provider) {
-    if (deps.has(klass)) return
+    if (deps.has(klass) || noConstructor.find((k) => k !== klass && k.provide === klass)) return
     deps.add(klass)
     const resolves = ReflectiveInjector.resolve([klass])
     for (const item of resolves) {
@@ -100,9 +116,7 @@ export function resolveDependencies(inputs: Provider[]) {
     }
   }
 
-  for (const input of inputs) {
-    resolver(input)
-  }
+  for (const input of inputs) resolver(input)
 
   return Array.from(deps)
 }

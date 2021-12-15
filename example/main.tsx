@@ -16,13 +16,20 @@ class CountService extends VueService {
   }
 }
 
+abstract class A {
+  name = 1
+}
+
 @Component({
-  providers: [{ provide: TOKEN1, useValue: 1 }],
+  providers: [
+    { provide: TOKEN1, useValue: 1 },
+    { provide: A, useValue: { age: 19 } },
+  ],
 })
 class Home extends VueComponent {
-  constructor(@Inject(TOKEN1) private a: any, private c: CountService) {
+  constructor(@Inject(TOKEN1) private a: any, private c: CountService, private d: A) {
     super()
-    console.log(a, c)
+    console.log(a, c, d)
   }
 
   render() {
