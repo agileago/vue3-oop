@@ -1,6 +1,6 @@
 {
   "name": "vue3-oop",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "dist/vue3-oop.cjs.js",
   "module": "dist/vue3-oop.es.js",
   "types": "types/index.d.ts",
