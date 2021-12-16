@@ -1,16 +1,18 @@
 import '@abraham/reflection'
-import { Component, Ref, VueComponent, VueService } from '@/index'
+import { Component, Link, Ref, VueComponent, VueService } from 'vue3-oop'
 import { Inject, Injectable, InjectionToken, SkipSelf } from 'injection-js'
 import { createApp } from 'vue'
+import './theme/app.css'
 
 const TOKEN1 = new InjectionToken('TOken')
 
 @Injectable()
 class CountService extends VueService {
-  @Ref() count = 1
+  @Ref() count = 2
   add() {
     this.count++
   }
+  @Link() a?: InstanceType<any>
   remove() {
     this.count--
   }
@@ -35,7 +37,7 @@ class Home extends VueComponent {
   render() {
     return (
       <div>
-        1111
+        111122222
         <HomeChild></HomeChild>
       </div>
     )
@@ -55,7 +57,7 @@ class HomeChild extends VueComponent {
   }
 
   render() {
-    return <div>1111</div>
+    return <div>2222</div>
   }
 }
 

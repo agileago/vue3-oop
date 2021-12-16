@@ -1,14 +1,25 @@
 import { defineConfig } from 'vite'
 import vueJsx from '@vue3-oop/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
+import typescript from 'rollup-plugin-typescript2'
 
 export default defineConfig(({ command, mode }) => {
   return {
-    plugins: [vue(), vueJsx()],
+    esbuild: false, // 不支持装饰器
+    plugins: [
+      typescript({
+        check: false,
+        tsconfigOverride: {
+          compilerOptions: { sourceMap: false },
+        },
+      }),
+      vueJsx(),
+    ],
     resolve: {
       alias: [
         { find: /^~/, replacement: '' },
         { find: '@/', replacement: '/src/' },
+        { find: 'vue3-oop', replacement: '/src/' },
       ],
     },
     server: {

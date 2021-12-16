@@ -16,8 +16,6 @@
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
     "importHelpers": true,
-    "declaration": true,
-    "declarationDir": "types",
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
