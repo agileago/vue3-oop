@@ -1,5 +1,8 @@
 name: 发布到github pages
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
