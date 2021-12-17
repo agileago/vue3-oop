@@ -1,22 +1,12 @@
 import '@abraham/reflection'
-import { Component, Link, Ref, VueComponent, VueService } from 'vue3-oop'
-import { Inject, Injectable, InjectionToken, SkipSelf } from 'injection-js'
+import { Component, VueComponent } from 'vue3-oop'
+import { Inject, InjectionToken, SkipSelf } from 'injection-js'
 import { createApp } from 'vue'
 import './theme/app.css'
+import { focusDirective } from './focus.directive'
+import { CountService } from './count.service'
 
 const TOKEN1 = new InjectionToken('TOken')
-
-@Injectable()
-class CountService extends VueService {
-  @Ref() count = 2
-  add() {
-    this.count++
-  }
-  @Link() a?: InstanceType<any>
-  remove() {
-    this.count--
-  }
-}
 
 abstract class A {
   name = 1
@@ -26,18 +16,28 @@ abstract class A {
   providers: [
     { provide: TOKEN1, useValue: 1 },
     { provide: A, useValue: { age: 19 } },
+    { provide: 'aa', useValue: 1, multi: true },
+    { provide: 'aa', useValue: 2, multi: true },
   ],
 })
 class Home extends VueComponent {
-  constructor(@Inject(TOKEN1) private a: any, private c: CountService, private d: A) {
+  static directives = {
+    focus: focusDirective,
+  }
+  constructor(
+    @Inject(TOKEN1) private a: any,
+    private c: CountService,
+    private d: A,
+    @Inject('aa') private e: number[],
+  ) {
     super()
-    console.log(a, c, d)
+    console.log(a, c, d, e)
   }
 
   render() {
     return (
       <div>
-        111122222
+        111122222ccc
         <HomeChild></HomeChild>
       </div>
     )

@@ -6,15 +6,7 @@ import typescript from 'rollup-plugin-typescript2'
 export default defineConfig(({ command, mode }) => {
   return {
     esbuild: false, // 不支持装饰器
-    plugins: [
-      typescript({
-        check: false,
-        tsconfigOverride: {
-          compilerOptions: { sourceMap: false },
-        },
-      }),
-      vueJsx(),
-    ],
+    plugins: [typescript({ check: false }), vueJsx()],
     resolve: {
       alias: [
         { find: /^~/, replacement: '' },

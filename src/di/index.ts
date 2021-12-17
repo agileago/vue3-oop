@@ -40,7 +40,6 @@ export interface ComponentOptions {
 
 export function Component(options?: ComponentOptions): ClassDecorator {
   return function (target: any) {
-    if (!target.resolveComponent) target.resolveComponent = resolveComponent
     Reflect.defineMetadata(MetadataKey, options, target)
     return Injectable()(target)
   }
