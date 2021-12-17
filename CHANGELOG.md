@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/agileago/vue3-oop/compare/v0.1.2...v0.1.3) (2021-12-17)
+
+
+### Bug Fixes
+
+* 删除测试依赖 ([c283891](https://github.com/agileago/vue3-oop/commit/c2838911f12dcf7500dfd2052352a8145bc51f91))
+
 ### [0.1.2](https://github.com/agileago/vue3-oop/compare/v0.1.1...v0.1.2) (2021-12-17)
 
 ### [0.1.1](https://github.com/agileago/vue3-oop/compare/v0.1.0...v0.1.1) (2021-12-15)
