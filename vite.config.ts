@@ -2,10 +2,13 @@ import { defineConfig } from 'vite'
 import vueJsx from '@vue3-oop/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
 import typescript from 'rollup-plugin-typescript2'
+// import typescript from '@rollup/plugin-typescript'
 
 export default defineConfig(({ command, mode }) => {
   return {
-    esbuild: false, // 不支持装饰器
+    esbuild: {
+      exclude: /\.tsx?$/,
+    }, // 不支持装饰器
     plugins: [typescript({ check: false }), vueJsx()],
     resolve: {
       alias: [
