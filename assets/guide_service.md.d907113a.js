@@ -1,0 +1,47 @@
+import{_ as n,c as s,o as a,a as t}from"./app.29e92ea7.js";const f='{"title":"\u5B9A\u4E49","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u5B9A\u4E49","slug":"\u5B9A\u4E49"}],"relativePath":"guide/service.md","lastUpdated":1639803768459}',p={},o=t(`<h2 id="\u5B9A\u4E49" tabindex="-1">\u5B9A\u4E49 <a class="header-anchor" href="#\u5B9A\u4E49" aria-hidden="true">#</a></h2><p>\u670D\u52A1\u7B49\u4EF7\u4E8Evue3\u4E2D<code>composition-api</code>\uFF0Ccpa\u672C\u8D28\u4E0A\u662F\u7528\u95ED\u5305\u628A\u51FD\u6570\u548C\u53D8\u91CF\u5305\u5728\u4E00\u8D77\uFF0C\u5F62\u6210\u4E00\u4E2A\u9694\u79BB\u533A\u57DF\uFF0C\u7136\u540E \u518D\u5BFC\u51FA\u6765\u7ED9\u5916\u754C\u4F7F\u7528\uFF0C\u4F46\u8FD9\u6837\u5BF9\u7C7B\u578B\u4E0D\u592A\u53CB\u597D\uFF0C\u6240\u4EE5js\u63D0\u51FA\u4E86\u65B0\u7684<code>class</code>\u5199\u6CD5\u53BB\u66FF\u4EE3\u8FD9\u79CD\u65B9\u5F0F</p><div class="language-typescript"><pre><code><span class="token keyword">import</span> <span class="token punctuation">{</span> onBeforeUnmount<span class="token punctuation">,</span> ref <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;vue&#39;</span>
+
+<span class="token keyword">function</span> <span class="token function">usePosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> x <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> y <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">function</span> <span class="token function">change</span><span class="token punctuation">(</span>e<span class="token operator">:</span> MouseEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    x<span class="token punctuation">.</span>value <span class="token operator">=</span> e<span class="token punctuation">.</span>clientX
+    y<span class="token punctuation">.</span>value <span class="token operator">=</span> e<span class="token punctuation">.</span>clientY
+  <span class="token punctuation">}</span>
+
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&#39;mousemove&#39;</span><span class="token punctuation">,</span> change<span class="token punctuation">)</span>
+  <span class="token function">onBeforeUnmount</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> document<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">&#39;mousemove&#39;</span><span class="token punctuation">,</span> change<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    x<span class="token punctuation">,</span>
+    y
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>\u800C\u4F7F\u7528\u670D\u52A1\u540C\u6837\u80FD\u8FBE\u5230\u540C\u6837\u7684\u6548\u679C</p><div class="language-typescript"><pre><code><span class="token keyword">import</span> <span class="token punctuation">{</span> VueService<span class="token punctuation">,</span> Autobind<span class="token punctuation">,</span> VueComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;vue3-oop&#39;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> onBeforeUnmount <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;vue&#39;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">PositionService</span> <span class="token keyword">extends</span> <span class="token class-name">VueService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&#39;mousemove&#39;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>change<span class="token punctuation">)</span>
+    <span class="token function">onBeforeUnmount</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> window<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">&#39;mousemove&#39;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>change<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Ref</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> x <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Ref</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> y <span class="token operator">=</span> <span class="token number">0</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Autobind</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">private</span> <span class="token function">change</span><span class="token punctuation">(</span>e<span class="token operator">:</span> MouseEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> e<span class="token punctuation">.</span>clientX
+    <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> e<span class="token punctuation">.</span>clientY
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token keyword">extends</span> <span class="token class-name">VueComponent</span> <span class="token punctuation">{</span>
+  postionService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PositionService</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>postionService<span class="token punctuation">.</span>x <span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>\u800C\u53CC\u65B9\u7684\u533A\u522B\u53EA\u662F\u521D\u59CB\u5316\u7684\u4E0D\u4E00\u6837\uFF0C \u4F46\u7C7B\u5929\u751F\u81EA\u5E26\u7C7B\u578B\uFF0C\u6240\u4EE5\u5BF9\u7C7B\u578B\u975E\u5E38\u53CB\u597D\uFF0C\u5E76\u4E14\u628A <code>.value</code>\u7684\u95EE\u9898\u89E3\u51B3\u6389, \u670D\u52A1\u4E0E\u7EC4\u4EF6\u7684\u533A\u522B\uFF1A</p><ul><li>\u7EE7\u627F\u7684\u7C7B\u4E0D\u4E00\u6837</li><li>\u5C11\u4E86\u51E0\u4E2A\u7EC4\u4EF6\u7279\u6709\u7684\u5C5E\u6027\u6BD4\u5982 <code>props</code>, <code>context</code>, \u4EE5\u53CA <code>render</code> \u51FD\u6570\uFF0C \u5176\u4ED6\u90FD\u4E00\u6837\uFF0C</li></ul><p>\u4F46\u5047\u5982\u4F60\u60F3\u5728\u670D\u52A1\u4E2D\u83B7\u53D6\u5C5E\u6027\u548C\u4E0A\u4E0B\u6587\u53EF\u4EE5\u4F7F\u7528 <code>useProps</code> \u548C <code>useCtx</code>, \u4EE5\u53CA\u83B7\u53D6\u5F53\u524D\u5E94\u7528\u7684\u5B9E\u4F8B <code>getCurrentApp</code></p>`,8),e=[o];function c(u,l,k,i,r,d){return a(),s("div",null,e)}var v=n(p,[["render",c]]);export{f as __pageData,v as default};

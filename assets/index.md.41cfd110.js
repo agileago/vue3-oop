@@ -1,47 +1,31 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>VUE3-OOP</title>
-    <meta name="description" content="vue3 oop是vue3开发进入面向对象阶段">
-    <link rel="stylesheet" href="/vue3-oop/assets/style.57c2921a.css">
-    <link rel="modulepreload" href="/vue3-oop/assets/Home.a5d3120e.js">
-    <link rel="modulepreload" href="/vue3-oop/assets/app.29e92ea7.js">
-    <link rel="modulepreload" href="/vue3-oop/assets/index.md.41cfd110.lean.js">
-    
-    <meta name="twitter:title" content="VUE3-OOP">
-    <meta property="og:title" content="VUE3-OOP">
-  </head>
-  <body>
-    <div id="app"><!--[--><div class="no-sidebar theme"><header class="nav-bar" data-v-ee7e0c6a><div class="sidebar-button" data-v-ee7e0c6a><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/vue3-oop/" aria-label="VUE3-OOP, back to home" data-v-ee7e0c6a data-v-03534b6b><!----> VUE3-OOP</a><div class="flex-grow" data-v-ee7e0c6a></div><div class="nav" data-v-ee7e0c6a><nav class="nav-links" data-v-ee7e0c6a data-v-7578cdcb><!--[--><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item" href="/vue3-oop/guide/" data-v-be5fe7a0>指南 <!----></a></div></div><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item isExternal" href="https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx" target="_blank" rel="noopener noreferrer" data-v-be5fe7a0>DEMO <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-be5fe7a0><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item isExternal" href="https://github.com/agileago/vue3-oop" target="_blank" rel="noopener noreferrer" data-v-be5fe7a0>Github <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-be5fe7a0><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-779d347c><nav class="nav-links nav" data-v-779d347c data-v-7578cdcb><!--[--><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item" href="/vue3-oop/guide/" data-v-be5fe7a0>指南 <!----></a></div></div><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item isExternal" href="https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx" target="_blank" rel="noopener noreferrer" data-v-be5fe7a0>DEMO <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-be5fe7a0><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><div class="item" data-v-7578cdcb><div class="nav-link" data-v-7578cdcb data-v-be5fe7a0><a class="item isExternal" href="https://github.com/agileago/vue3-oop" target="_blank" rel="noopener noreferrer" data-v-be5fe7a0>Github <svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" data-v-be5fe7a0><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><!----><!--[--><!--]--></aside><div class="sidebar-mask"></div><!--[--><main class="home" aria-labelledby="main-title" data-v-0154c401><header class="home-hero" data-v-0154c401 data-v-6c4bf18a><!----><h1 id="main-title" class="title" data-v-6c4bf18a>VUE3面向对象编程</h1><p class="tagline" data-v-6c4bf18a>极致优秀的编码体验</p><div class="nav-link action" data-v-6c4bf18a data-v-be5fe7a0><a class="item" href="/vue3-oop/guide/" data-v-be5fe7a0>开始使用 <!----></a></div><!----></header><!--[--><!--]--><div class="home-features" data-v-0154c401 data-v-8d08cd4c><div class="wrapper" data-v-8d08cd4c><div class="container" data-v-8d08cd4c><div class="features" data-v-8d08cd4c><!--[--><section class="feature" data-v-8d08cd4c><h2 class="title" data-v-8d08cd4c>类组件</h2><p class="details" data-v-8d08cd4c>功能与类型融为一体，无需多次声明类型，独立的属性类型声明，各种HOC组合轻而易举</p></section><section class="feature" data-v-8d08cd4c><h2 class="title" data-v-8d08cd4c>自动的依赖注入</h2><p class="details" data-v-8d08cd4c>基于动态解析的 injection-js 依赖注入，让使用服务丝般自然</p></section><section class="feature" data-v-8d08cd4c><h2 class="title" data-v-8d08cd4c>vue3无ref编程</h2><p class="details" data-v-8d08cd4c>无需关注ref及其value，正常声明变量，编程体验更自然</p></section><!--]--></div></div></div></div><div class="home-content" data-v-0154c401><div style="position:relative;" data-v-0154c401><div><div class="language-tsx"><pre><code><span class="token keyword">interface</span> <span class="token class-name">Foo_Props</span> <span class="token punctuation">{</span>
+import{_ as n,c as s,o as a,a as t}from"./app.29e92ea7.js";const m='{"title":"Home","description":"","frontmatter":{"home":true,"heroText":"VUE3\u9762\u5411\u5BF9\u8C61\u7F16\u7A0B","tagline":"\u6781\u81F4\u4F18\u79C0\u7684\u7F16\u7801\u4F53\u9A8C","actionText":"\u5F00\u59CB\u4F7F\u7528","actionLink":"/guide/","features":[{"title":"\u7C7B\u7EC4\u4EF6","details":"\u529F\u80FD\u4E0E\u7C7B\u578B\u878D\u4E3A\u4E00\u4F53\uFF0C\u65E0\u9700\u591A\u6B21\u58F0\u660E\u7C7B\u578B\uFF0C\u72EC\u7ACB\u7684\u5C5E\u6027\u7C7B\u578B\u58F0\u660E\uFF0C\u5404\u79CDHOC\u7EC4\u5408\u8F7B\u800C\u6613\u4E3E"},{"title":"\u81EA\u52A8\u7684\u4F9D\u8D56\u6CE8\u5165","details":"\u57FA\u4E8E\u52A8\u6001\u89E3\u6790\u7684 injection-js \u4F9D\u8D56\u6CE8\u5165\uFF0C\u8BA9\u4F7F\u7528\u670D\u52A1\u4E1D\u822C\u81EA\u7136"},{"title":"vue3\u65E0ref\u7F16\u7A0B","details":"\u65E0\u9700\u5173\u6CE8ref\u53CA\u5176value\uFF0C\u6B63\u5E38\u58F0\u660E\u53D8\u91CF\uFF0C\u7F16\u7A0B\u4F53\u9A8C\u66F4\u81EA\u7136"}]},"relativePath":"index.md","lastUpdated":1639803768459}',p={},o=t(`<div class="language-tsx"><pre><code><span class="token keyword">interface</span> <span class="token class-name">Foo_Props</span> <span class="token punctuation">{</span>
   size<span class="token operator">:</span> <span class="token string">&#39;small&#39;</span> <span class="token operator">|</span> <span class="token string">&#39;large&#39;</span>
   modelValue<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span>
   <span class="token string">&#39;onUpdate:modelValue&#39;</span><span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">val<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span>
-  <span class="token comment">// 组件的slots</span>
+  <span class="token comment">// \u7EC4\u4EF6\u7684slots</span>
   slots<span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">item</span><span class="token punctuation">(</span>name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> VNodeChild
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token keyword">extends</span> <span class="token class-name">VueComponent<span class="token operator">&lt;</span>Foo_Props<span class="token operator">&gt;</span></span> <span class="token punctuation">{</span>
-  <span class="token comment">// vue需要的运行时属性检查</span>
+  <span class="token comment">// vue\u9700\u8981\u7684\u8FD0\u884C\u65F6\u5C5E\u6027\u68C0\u67E5</span>
   <span class="token keyword">static</span> defaultProps<span class="token operator">:</span> ComponentProps<span class="token operator">&lt;</span>Foo_Props<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&#39;size&#39;</span><span class="token punctuation">,</span> <span class="token string">&#39;modelValue&#39;</span><span class="token punctuation">,</span> <span class="token string">&#39;onUpdate:modelValue&#39;</span><span class="token punctuation">]</span>
 
-  <span class="token comment">// 组件需要的局部指令</span>
+  <span class="token comment">// \u7EC4\u4EF6\u9700\u8981\u7684\u5C40\u90E8\u6307\u4EE4</span>
   <span class="token keyword">static</span> directives<span class="token operator">:</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> Directive<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
     focus<span class="token operator">:</span> focusDirective<span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment">// watch在构造函数中初始化</span>
+    <span class="token comment">// watch\u5728\u6784\u9020\u51FD\u6570\u4E2D\u521D\u59CB\u5316</span>
     <span class="token function">watch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 
-  <span class="token comment">// 组件自身状态</span>
+  <span class="token comment">// \u7EC4\u4EF6\u81EA\u8EAB\u72B6\u6001</span>
   @<span class="token function">Ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span> count <span class="token operator">=</span> <span class="token number">1</span>
   
-  <span class="token comment">// 计算属性</span>
+  <span class="token comment">// \u8BA1\u7B97\u5C5E\u6027</span>
   @<span class="token function">Computed</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token keyword">get</span> <span class="token function">doubleCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">*</span> <span class="token number">2</span>
@@ -51,19 +35,19 @@
     <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">++</span>
   <span class="token punctuation">}</span>
   
-  <span class="token comment">// 自动绑定this</span>
+  <span class="token comment">// \u81EA\u52A8\u7ED1\u5B9Athis</span>
   @<span class="token function">Autobind</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">--</span>
   <span class="token punctuation">}</span>
 
-  <span class="token comment">// 生命周期</span>
+  <span class="token comment">// \u751F\u547D\u5468\u671F</span>
   @<span class="token function">Hook</span><span class="token punctuation">(</span><span class="token string">&#39;Mounted&#39;</span><span class="token punctuation">)</span>
   <span class="token function">mount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&#39;mounted&#39;</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 
-  <span class="token comment">// 对元素或组件的引用</span>
+  <span class="token comment">// \u5BF9\u5143\u7D20\u6216\u7EC4\u4EF6\u7684\u5F15\u7528</span>
   @<span class="token function">Link</span><span class="token punctuation">(</span><span class="token punctuation">)</span> element<span class="token operator">?</span><span class="token operator">:</span> HTMLDivElement
 
   <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -80,9 +64,4 @@
     <span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></div></div></div></div><!--[--><!--]--><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"guide_api.md\":\"20efc649\",\"guide_component.md\":\"050eec39\",\"guide_di.md\":\"955f6882\",\"guide_index.md\":\"0be16c19\",\"guide_service.md\":\"d907113a\",\"index.md\":\"41cfd110\"}")</script>
-    <script type="module" async src="/vue3-oop/assets/app.29e92ea7.js"></script>
-    
-  </body>
-</html>
+</code></pre></div>`,1),c=[o];function e(l,u,k,i,r,g){return a(),s("div",null,c)}var f=n(p,[["render",e]]);export{m as __pageData,f as default};
