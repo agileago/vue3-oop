@@ -1,6 +1,7 @@
 import type { UserConfig } from 'vitepress'
 // @ts-ignore
 import codetabs from 'markdown-it-codetabs'
+import type MarkdownIt from 'markdown-it'
 
 const config: UserConfig = {
   base: '/vue3-oop/',
@@ -8,7 +9,7 @@ const config: UserConfig = {
   description: 'vue3 oop是vue3开发进入面向对象阶段',
   markdown: {
     lineNumbers: false,
-    config(md) {
+    config(md: MarkdownIt) {
       md.use(codetabs)
     },
   },
@@ -32,7 +33,6 @@ const config: UserConfig = {
             { text: '使用指南', link: '/guide/' },
             { text: '组件', link: '/guide/component' },
             { text: '服务', link: '/guide/service' },
-            { text: '装饰器', link: '/guide/decorators' },
           ],
         },
         {
@@ -40,8 +40,8 @@ const config: UserConfig = {
           children: [{ text: '服务注入', link: '/guide/di' }],
         },
         {
-          text: '类型',
-          children: [{ text: '类型帮助', link: '/guide/type' }],
+          text: 'API',
+          link: '/guide/api',
         },
       ],
     },

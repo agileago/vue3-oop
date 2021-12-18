@@ -1,77 +1,27 @@
-import { Autobind, ComponentProps, Computed, Hook, Link, Ref, VueComponent } from '@/index'
-import { Directive, VNodeChild, watch } from 'vue'
+import { Autobind, Ref, VueComponent, VueService } from 'vue3-oop'
+import { onBeforeUnmount } from 'vue'
 
-const focusDirective: Directive = {
-  mounted(el: HTMLInputElement) {
-    el.focus()
-  },
-}
-
-interface Foo_Props {
-  size: 'small' | 'large'
-  modelValue?: string
-  'onUpdate:modelValue'?: (val: string) => void
-  // 组件的slots
-  slots: {
-    item(name: string): VNodeChild
-  }
-}
-
-export class Foo extends VueComponent<Foo_Props> {
-  // vue需要的运行时属性检查
-  static defaultProps: ComponentProps<Foo_Props> = ['size', 'modelValue', 'onUpdate:modelValue']
-
-  // 组件需要的局部指令
-  static directives: Record<string, Directive> = {
-    focus: focusDirective,
-  }
+class PositionService extends VueService {
   constructor() {
     super()
-    // watch在构造函数中初始化
-    watch(
-      () => this.count,
-      () => {
-        console.log(this.count)
-      },
-    )
+    window.addEventListener('mousemove', this.change)
+    onBeforeUnmount(() => window.removeEventListener('mousemove', this.change))
   }
 
-  // 组件自身状态
-  @Ref() count = 1
-  // 计算属性
-  @Computed()
-  get doubleCount() {
-    return this.count * 2
-  }
-  add() {
-    this.count++
-  }
-  // 自动绑定this
+  @Ref() x = 0
+  @Ref() y = 0
+
   @Autobind()
-  remove() {
-    this.count--
+  private change(e: MouseEvent) {
+    this.x = e.clientX
+    this.y = e.clientY
   }
+}
 
-  // 生命周期
-  @Hook('Mounted')
-  mount() {
-    console.log('mounted')
-  }
-
-  // 对元素或组件的引用
-  @Link() element?: HTMLDivElement
+class Foo extends VueComponent {
+  postionService = new PositionService()
 
   render() {
-    return (
-      <div ref="element">
-        <span>{this.props.size}</span>
-        <button onClick={() => this.add()}>+</button>
-        <span>{this.count}</span>
-        <button onClick={this.remove}>-</button>
-        <div>{this.context.slots.item?.('aaa')}</div>
-        <label>11111</label>
-        <input type="text" v-focus />
-      </div>
-    )
+    return <div>{this.postionService.x}</div>
   }
 }

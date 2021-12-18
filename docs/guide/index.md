@@ -33,17 +33,31 @@ yarn add injection-js vue3-oop
 }
 ```
 
-4. 如果使用 `vite` 的话，由于vite使用`esbuild`编译`ts`,不支持 `metadata` , 需要把 `@vitejs/plugin-vue-jsx` 这个插件换成`vite-plugin-ts`这个插件
+4. Vite设置
+
+由于vite内部使用esbuild编译ts, esbuild不支持元数据 `metadata`, 所以需要使用tsc编译ts 
 
 ```shell
-yarn add vite-plugin-ts
+pnpm add rollup-plugin-typescript2 -D
 ```
 
 vite 插件配置
 ```typescript
-import vueJsx from 'vite-plugin-ts'
+import typescript from 'rollup-plugin-typescript2'
 export default {
-  plugins: [vueJsx()]
+  esbuild: {
+    exclude: /\.tsx?$/
+  },
+  plugins: [typescript({ check: false })]
 }
 ```
+## 装饰器
+
+有关装饰器的知识请阅读 https://www.typescriptlang.org/docs/handbook/decorators.html#decorators
+
+## 模板
+
+vite: [https://github.com/agileago/fe-template](https://github.com/agileago/fe-template)
+
+webpack: [https://github.com/agileago/fe-vue3-template](https://github.com/agileago/fe-vue3-template)
 
