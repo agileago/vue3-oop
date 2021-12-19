@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/agileago/vue3-oop/compare/v0.1.3...v0.2.0) (2021-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Ref因与vue的Ref重名，故改名为Track
+
+### Features
+
+* Ref重命名Track ([455739a](https://github.com/agileago/vue3-oop/commit/455739a4127a53b9c7bfc74f89260ebc9fa3405c))
+
 ### [0.1.3](https://github.com/agileago/vue3-oop/compare/v0.1.2...v0.1.3) (2021-12-17)
 
 
