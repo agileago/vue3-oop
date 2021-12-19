@@ -38,8 +38,8 @@ class PositionService extends VueService {
     onBeforeUnmount(() => window.removeEventListener('mousemove', this.change))
   }
 
-  @Ref() x = 0
-  @Ref() y = 0
+  @Track() x = 0
+  @Track() y = 0
 
   @Autobind()
   private change(e: MouseEvent) {

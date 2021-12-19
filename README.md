@@ -36,12 +36,12 @@ pnpm add vue3-oop
 
 ### vite配置
 
-因为esbuild不支持装饰器的metadata属性，所以需要安装 [vite-plugin-ts](https://github.com/CarterLi/vite/tree/main/packages/plugin-vue-jsx#readme) 插件使用原始ts编译
+因为esbuild不支持装饰器的metadata属性，所以需要安装 [rollup-plugin-typescript2](https://github.com/ezolenko/rollup-plugin-typescript2) 插件使用原始ts编译
 
 ### 定义组件
 
 ```typescript jsx
-import { Autobind, ComponentProps, Computed, Hook, Link, Ref, VueComponent } from 'vue3-oop'
+import { Autobind, ComponentProps, Computed, Hook, Link, Track, VueComponent } from 'vue3-oop'
 import { Directive, VNodeChild, watch } from 'vue'
 
 const focusDirective: Directive = {
@@ -78,7 +78,7 @@ class Foo extends VueComponent<Foo_Props> {
   }
 
   // 组件自身状态
-  @Ref() count = 1
+  @Track() count = 1
 
   // 计算属性
   @Computed()
@@ -127,7 +127,7 @@ class Foo extends VueComponent<Foo_Props> {
 
 ```typescript
 class CountService extends VueService {
-  @Ref() count = 1
+  @Track() count = 1
   add() {
     this.count++
   }

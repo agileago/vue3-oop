@@ -1,6 +1,6 @@
 export { VueComponent, GlobalStoreKey } from './extends/component'
 export { VueService, ProviderKey } from './extends/service'
-export { Ref } from './decorators/ref'
+export { Ref, Track } from './decorators/track'
 export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'
 export { Hook } from './decorators/hook'

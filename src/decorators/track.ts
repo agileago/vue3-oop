@@ -2,8 +2,9 @@ import { ref } from 'vue'
 import { Hanlder } from '../type'
 import { getProtoMetadata } from '../helper'
 
-const MetadataKey = Symbol('Ref')
-export function Ref(): PropertyDecorator {
+const MetadataKey = Symbol('Track')
+
+export function Track(): PropertyDecorator {
   return function (target: any, key: string | symbol) {
     let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
     list = list.slice()
@@ -31,7 +32,14 @@ function handler(targetThis: Record<any, any>) {
   }
 }
 
-export const RefHandler: Hanlder = {
-  key: 'Ref',
+export const TrackHandler: Hanlder = {
+  key: 'Track',
   handler,
+}
+
+/**
+ * @deprecated 因与vue的ref冲突，故改名为 Track
+ */
+export function Ref() {
+  return Track()
 }

@@ -1,7 +1,7 @@
-import { Autobind, Ref, VueService } from '@/index'
+import { Autobind, Track, VueService } from '@/index'
 
 export class CountService extends VueService {
-  @Ref() count = 0
+  @Track() count = 1
 
   @Autobind()
   add() {

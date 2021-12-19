@@ -71,12 +71,12 @@ class Foo extends VueComponent {
 
 ## 响应式变量
 
-响应式变量使用装饰器注解一下，主要有2个 `Ref` 和 `Computed`,此时忘记 `.value` 的事情，
+响应式变量使用装饰器注解一下，主要有2个 `Track` 和 `Computed`,此时忘记 `.value` 的事情，
 就是正常普通的变量定义，加上装饰器就是告诉框架当此变量变化的时候我要刷新视图
 
 ```tsx
 class Foo extends VueComponent {
-  @Ref() count = 1
+  @Track() count = 1
 
   @Computed()
   get doubleCount() {
@@ -123,7 +123,7 @@ class Foo extends VueComponent {
     watch(() => this.count, (n, o) => console.log('change', n, o))
   }
 
-  @Ref() count = 1
+  @Track() count = 1
 
   render() {
     return <span onClick={() => this.count++}>{this.count}</span>

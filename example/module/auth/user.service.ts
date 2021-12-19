@@ -1,4 +1,4 @@
-import { Hook, Ref, VueService } from '@/index'
+import { Hook, Track, VueService } from '@/index'
 import { Inject, Injectable } from 'injection-js'
 import { RouterService } from '../../router/router.service'
 import { AxiosInstance } from 'axios'
@@ -11,7 +11,7 @@ export class UserService extends VueService {
     this.guardHttp()
     this.guardRouter()
   }
-  @Ref() token = ''
+  @Track() token = ''
 
   private _requestGuard: number
 

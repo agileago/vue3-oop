@@ -16,7 +16,7 @@ import { Injectable } from 'injection-js'
 // 定义服务 加上此装饰器表明我有需要其他服务，如果不需要，可以不加
 @Injectable()
 class CountService extends VueService {
-  @Ref() count = 1
+  @Track() count = 1
 
   add() {
     this.count++
@@ -46,7 +46,7 @@ import { VueComponent } from './component'
 import { SkipSelf } from 'injection-js'
 
 class CountService extends VueService {
-  @Ref() count = 1
+  @Track() count = 1
 
   add() {
     this.count++

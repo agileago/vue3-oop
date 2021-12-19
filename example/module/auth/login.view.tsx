@@ -1,7 +1,7 @@
 import { Component, VueComponent } from '@/index'
 import { UserService } from './user.service'
 import { Button, Col, Form, Input, Row } from 'ant-design-vue'
-import { Ref } from '@/decorators/ref'
+import { Track } from '@/decorators/track'
 import { CatchLoading } from '../../common/decorators/catch.decorator'
 import { Autobind } from '@/helper'
 import { CountService } from '../../count.service'
@@ -19,8 +19,8 @@ export default class LoginView extends VueComponent {
   ) {
     super()
   }
-  @Ref() loading = false
-  @Ref() model = {
+  @Track() loading = false
+  @Track() model = {
     name: '',
     pwd: '',
   }

@@ -12,14 +12,14 @@
 
 # 装饰器
 
-## Ref
+## Track
 - Type: 属性装饰器
 
 声明变量为响应式
 
 ```tsx
 class Foo extends VueComponent {
-  @Ref() count = 1
+  @Track() count = 1
 }
 ```
 
@@ -30,7 +30,7 @@ class Foo extends VueComponent {
 
 ```tsx
 class Foo extends VueComponent {
-  @Ref() count = 1
+  @Track() count = 1
 
   @Computed()
   get doubleCount() {

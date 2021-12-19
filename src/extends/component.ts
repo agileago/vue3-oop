@@ -1,7 +1,7 @@
 import { ComponentPublicInstance, getCurrentInstance, InjectionKey, provide, VNodeChild, VNodeProps } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
-import { RefHandler } from '../decorators/ref'
+import { TrackHandler } from '../decorators/track'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
 import { LinkHandler } from '../decorators/link'
@@ -19,7 +19,7 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 热更新使用 */
   static __hmrId?: string
   /** 装饰器处理 */
-  static handler: Hanlder[] = [RefHandler, ComputedHandler, LinkHandler, HookHandler]
+  static handler: Hanlder[] = [TrackHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
   static __vccOpts__value?: any
