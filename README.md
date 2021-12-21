@@ -41,7 +41,7 @@ pnpm add vue3-oop
 ### 定义组件
 
 ```typescript jsx
-import { Autobind, ComponentProps, Computed, Hook, Link, Track, VueComponent } from 'vue3-oop'
+import { Autobind, ComponentProps, Computed, Hook, Link, Mut, VueComponent } from 'vue3-oop'
 import { Directive, VNodeChild, watch } from 'vue'
 
 const focusDirective: Directive = {
@@ -78,7 +78,7 @@ class Foo extends VueComponent<Foo_Props> {
   }
 
   // 组件自身状态
-  @Track() count = 1
+  @Mut() count = 1
 
   // 计算属性
   @Computed()
@@ -127,7 +127,7 @@ class Foo extends VueComponent<Foo_Props> {
 
 ```typescript
 class CountService extends VueService {
-  @Track() count = 1
+  @Mut() count = 1
   add() {
     this.count++
   }
