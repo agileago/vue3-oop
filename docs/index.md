@@ -39,7 +39,7 @@ class Foo extends VueComponent<Foo_Props> {
   }
 
   // 组件自身状态
-  @Track() count = 1
+  @Mut() count = 1
   
   // 计算属性
   @Computed()

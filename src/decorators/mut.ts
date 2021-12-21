@@ -2,9 +2,9 @@ import { ref } from 'vue'
 import { Hanlder } from '../type'
 import { getProtoMetadata } from '../helper'
 
-const MetadataKey = Symbol('Track')
+const MetadataKey = Symbol('Mut')
 
-export function Track(): PropertyDecorator {
+export function Mut(): PropertyDecorator {
   return function (target: any, key: string | symbol) {
     let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
     list = list.slice()
@@ -32,14 +32,14 @@ function handler(targetThis: Record<any, any>) {
   }
 }
 
-export const TrackHandler: Hanlder = {
-  key: 'Track',
+export const MutHandler: Hanlder = {
+  key: 'Mut',
   handler,
 }
 
 /**
- * @deprecated 因与vue的ref冲突，故改名为 Track
+ * @deprecated 因与vue的ref冲突，故改名为 Mut
  */
 export function Ref() {
-  return Track()
+  return Mut()
 }

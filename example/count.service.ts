@@ -1,7 +1,7 @@
-import { Autobind, Track, VueService } from '@/index'
+import { Autobind, Mut, VueService } from '@/index'
 
 export class CountService extends VueService {
-  @Track() count = 1
+  @Mut() count = 1
 
   @Autobind()
   add() {

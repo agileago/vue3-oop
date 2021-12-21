@@ -1,4 +1,4 @@
-import { Hook, Track, VueService } from 'vue3-oop'
+import { Hook, Mut, VueService } from 'vue3-oop'
 import { ref, watchEffect } from 'vue'
 import { debounce } from 'lodash-es'
 
@@ -21,8 +21,8 @@ export class SizeService extends VueService {
       this.debounceSet(entry.target.clientWidth, entry.target.clientHeight)
     }
   })
-  @Track() x = 0
-  @Track() y = 0
+  @Mut() x = 0
+  @Mut() y = 0
 
   debounceSet = debounce((x: number, y: number) => {
     this.x = x
