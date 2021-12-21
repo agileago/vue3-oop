@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/agileago/vue3-oop/compare/v0.2.0...v0.2.1) (2021-12-21)
+
+
+### Features
+
+* Ref重命名Mut ([f13d1ef](https://github.com/agileago/vue3-oop/commit/f13d1efbc9ec45c765a60906c560cbcd054c87a1))
+
 ## [0.2.0](https://github.com/agileago/vue3-oop/compare/v0.1.3...v0.2.0) (2021-12-19)
 
 
