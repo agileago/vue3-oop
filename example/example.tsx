@@ -1,4 +1,4 @@
-import { Autobind, Mut, VueComponent, VueService } from 'vue3-oop'
+import { Autobind, ComponentProps, Mut, VueComponent, VueService } from 'vue3-oop'
 import { onBeforeUnmount } from 'vue'
 
 class PositionService extends VueService {
@@ -18,7 +18,13 @@ class PositionService extends VueService {
   }
 }
 
-class Foo extends VueComponent {
+interface Foo_Props {
+  name?: string
+  size?: number
+}
+
+class Foo extends VueComponent<Foo_Props> {
+  static defaultProps: ComponentProps<Foo_Props> = ['size', 'name']
   postionService = new PositionService()
 
   render() {

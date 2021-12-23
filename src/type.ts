@@ -60,7 +60,7 @@ export type TransformModelValue<T extends {}> = 'v-model:modelValue' extends key
   ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
   : T
 
-export type ComponentProps<T extends {}> = ComponentPropsArray<T> | ComponentPropsObject<T>
+export type ComponentProps<T extends {}> = ComponentPropsObject<T> | Array<keyof Omit<T, 'slots'>>
 
 export type ComponentPropsObject<T extends {}> = {
   [U in keyof Omit<T, 'slots'>]-?: Prop<any>
