@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/agileago/vue3-oop/compare/v0.2.1...v0.2.2) (2021-12-23)
+
+
+### Features
+
+* 更新组件属性类型 ([72048a2](https://github.com/agileago/vue3-oop/commit/72048a23cdb7d7ef43d8176ce64544236898d2c7))
+
 ### [0.2.1](https://github.com/agileago/vue3-oop/compare/v0.2.0...v0.2.1) (2021-12-21)
 
 
