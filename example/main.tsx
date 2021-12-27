@@ -1,15 +1,19 @@
 import '@abraham/reflection'
-import { Component, VueComponent } from 'vue3-oop'
+import { Component, Mut, VueComponent } from 'vue3-oop'
 import { createApp } from 'vue'
 import './theme/app.css'
 import { CountService } from './count.service'
 import { SizeService } from './size.service'
+import { Foo } from './example'
+import { type Hanlder } from '@/type'
 
 @Component()
 class Home extends VueComponent {
   constructor(private countService: CountService, private sizeService: SizeService) {
     super()
   }
+
+  @Mut() a: Hanlder
 
   render() {
     return (
@@ -30,6 +34,7 @@ class Home extends VueComponent {
             overflow: 'scroll',
           }}
         ></div>
+        <Foo></Foo>
       </div>
     )
   }

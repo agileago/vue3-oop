@@ -8,6 +8,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "lib": ["esnext", "dom", "ES5"],
     "types": ["vite/client", "@abraham/reflection"],
     "experimentalDecorators": true,

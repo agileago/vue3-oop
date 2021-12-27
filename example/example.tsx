@@ -23,7 +23,7 @@ interface Foo_Props {
   size?: number
 }
 
-class Foo extends VueComponent<Foo_Props> {
+export class Foo extends VueComponent<Foo_Props> {
   static defaultProps: ComponentProps<Foo_Props> = ['size', 'name']
   postionService = new PositionService()
 
