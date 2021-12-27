@@ -36,7 +36,7 @@ pnpm add vue3-oop
 
 ### vite配置
 
-因为esbuild不支持装饰器的metadata属性，所以需要安装 [rollup-plugin-typescript2](https://github.com/ezolenko/rollup-plugin-typescript2) 插件使用原始ts编译
+因为esbuild不支持装饰器的metadata属性，所以需要安装 `@vue3-oop/plugin-vue-jsx` 插件使用原始ts编译
 
 ### 定义组件
 
