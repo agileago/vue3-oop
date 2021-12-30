@@ -38,17 +38,14 @@ yarn add injection-js vue3-oop
 由于vite内部使用esbuild编译ts, esbuild不支持元数据 `metadata`, 所以需要使用tsc编译ts 
 
 ```shell
-pnpm add rollup-plugin-typescript2 -D
+pnpm add @vue3-oop/plugin-vue-jsx -D
 ```
 
 vite 插件配置
 ```typescript
-import typescript from 'rollup-plugin-typescript2'
+import vueJsx from '@vue3-oop/plugin-vue-jsx'
 export default {
-  esbuild: {
-    exclude: /\.tsx?$/
-  },
-  plugins: [typescript({ check: false })]
+  plugins: [vueJsx()]
 }
 ```
 ## 装饰器
