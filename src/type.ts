@@ -1,7 +1,9 @@
 import { InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
+import { ComponentOptions, ComponentPublicInstance } from '@vue/runtime-core'
 
 export interface VueComponentStaticContructor {
-  new (...args: any[]): any
+  new (...args: any[]): ComponentPublicInstance<any, any, any, any, any>
+  __vccOpts: ComponentOptions
   /** 组件显示名称 */
   displayName?: string
   /** 组件属性vue描述 */

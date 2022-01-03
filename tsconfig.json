@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "lib": ["esnext", "dom", "ES5"],
-    "types": ["vite/client", "@abraham/reflection"],
+    "types": ["vite/client", "@abraham/reflection", "vitest", "vitest/global"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,
@@ -31,6 +31,8 @@
     "src/**/*.vue",
     "vite.config.ts",
     "example/**/*.ts",
-    "example/**/*.tsx"
+    "example/**/*.tsx",
+    "test/**/*.ts",
+    "test/**/*.tsx"
   ]
 }

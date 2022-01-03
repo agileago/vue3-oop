@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import vueJsx from '@vue3-oop/plugin-vue-jsx'
 
@@ -26,6 +27,10 @@ export default defineConfig(({ command, mode }) => {
         external: ['vue', 'injection-js'],
       },
       minify: false,
+    },
+    test: {
+      global: true,
+      environment: 'happy-dom',
     },
   }
 })

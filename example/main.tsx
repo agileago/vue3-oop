@@ -1,9 +1,15 @@
 import '@abraham/reflection'
-import { Component, Computed, Mut, VueComponent } from 'vue3-oop'
+import { Component, Computed, Hook, Link, Mut, VueComponent } from 'vue3-oop'
 import { createApp, watchSyncEffect } from 'vue'
 import './theme/app.css'
 import { CountService } from './count.service'
 import { SizeService } from './size.service'
+
+class Child extends VueComponent {
+  render() {
+    return <div>111</div>
+  }
+}
 
 @Component()
 class Home extends VueComponent {
@@ -18,10 +24,21 @@ class Home extends VueComponent {
   get double() {
     return this.count * 2
   }
+  list = new Array(10).fill(1)
+
+  @Link() aaa: Child[]
+
+  @Hook('Mounted')
+  mounted() {
+    console.log(this.aaa)
+  }
 
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
+        {this.list.map((k, i) => (
+          <Child ref={'aaa'} ref_for={true} ref_key={i.toString()}></Child>
+        ))}
         <h2>count: {this.countService.count}</h2>
         <button onClick={() => this.countService.add()}>+</button>
         <button onClick={() => this.countService.remove()}>-</button>
