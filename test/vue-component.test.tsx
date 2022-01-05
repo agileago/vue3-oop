@@ -3,18 +3,27 @@ import { expect, test } from 'vitest'
 import { Mut, VueComponent } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
 
-class CountComponent extends VueComponent {
-  @Mut() count = 1
-
-  render() {
-    return <div onClick={() => this.count++}>{this.count}</div>
+test('class component render', async () => {
+  class CountComponent extends VueComponent {
+    render() {
+      return <p>hello world</p>
+    }
   }
-}
+  // @ts-ignore
+  const wrapper = mount(CountComponent)
+  expect(wrapper.text()).toContain('hello')
+})
 
-test('class component init', async () => {
+test('Mut decorator', async () => {
+  class CountComponent extends VueComponent {
+    @Mut() count = 1
+    render() {
+      return <p onClick={() => this.count++}>{this.count}</p>
+    }
+  }
   // @ts-ignore
   const wrapper = mount(CountComponent)
   expect(wrapper.text()).toContain('1')
-  await wrapper.get('div').trigger('click')
+  await wrapper.get('p').trigger('click')
   expect(wrapper.text()).toContain('2')
 })

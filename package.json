@@ -62,7 +62,7 @@
     "@types/prettier": "^2.4.2",
     "@types/swagger-schema-official": "^2.0.22",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
-    "@typescript-eslint/parser": "^5.8.1",
+    "@typescript-eslint/parser": "^5.9.0",
     "@vitejs/plugin-vue": "^2.0.1",
     "@vue/runtime-core": "^3.2.26",
     "@vue/test-utils": "^2.0.0-rc.18",
@@ -92,7 +92,7 @@
     "typescript": "^4.5.4",
     "vite": "^2.7.10",
     "vitepress": "^0.20.10",
-    "vitest": "^0.0.129",
+    "vitest": "^0.0.134",
     "vue": "^3.2.26",
     "vue-router": "^4.0.12"
   },
@@ -117,5 +117,25 @@
     "@abraham/reflection": "^0.8.0",
     "injection-js": "^2.4.0",
     "vue": "^3.2.20"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "@docsearch/react": {
+        "peerDepndenciesMeta": {
+          "react": {
+            "optional": true
+          },
+          "react-dom": {
+            "optional": true
+          },
+          "@types/react": {
+            "optional": true
+          },
+          "@algolia/autocomplete-preset-algolia": {
+            "optional": true
+          }
+        }
+      }
+    }
   }
 }

@@ -13,12 +13,12 @@ export function Autobind() {
 
 export function useProps<T>() {
   const instance = getCurrentInstance()
-  return instance!.props as T
+  return instance?.props as T
 }
 export function useCtx(): SetupContext {
   const instance = getCurrentInstance()
   // @ts-ignore
-  return instance.setupContext
+  return instance?.setupContext
 }
 export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app
@@ -66,7 +66,6 @@ export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) 
 
 /**
  * 注入服务
- * @param service
  */
 export function injectService<
   T extends {
@@ -74,5 +73,6 @@ export function injectService<
     ProviderKey: InjectionKey<InstanceType<T>>
   },
 >(service: T, defaultService?: InstanceType<T>): InstanceType<T> {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return inject(service.ProviderKey, defaultService)!
 }

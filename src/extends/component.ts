@@ -31,7 +31,7 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
   static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
-  static resolveComponent = resolveComponent
+  private static resolveComponent = resolveComponent
   private static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static get __vccOpts(): ComponentOptions {

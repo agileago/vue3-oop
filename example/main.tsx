@@ -36,9 +36,6 @@ class Home extends VueComponent {
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
-        {this.list.map((k, i) => (
-          <Child ref={'aaa'} ref_for={true} ref_key={i.toString()}></Child>
-        ))}
         <h2>count: {this.countService.count}</h2>
         <button onClick={() => this.countService.add()}>+</button>
         <button onClick={() => this.countService.remove()}>-</button>

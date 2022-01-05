@@ -5,3 +5,5 @@ coverage
 public
 *.d.ts
 scripts
+coverage
+.github

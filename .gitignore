@@ -6,3 +6,4 @@ dist-ssr
 .idea
 .vscode
 types
+coverage
