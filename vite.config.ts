@@ -3,7 +3,7 @@ import vueJsx from '@vue3-oop/plugin-vue-jsx'
 
 export default defineConfig(({ command, mode }) => {
   return {
-    plugins: command === 'build' ? undefined : [vueJsx()],
+    plugins: command === 'build' ? undefined : [vueJsx({ enableObjectSlots: false, slotStable: true })],
     resolve: {
       alias: [
         { find: /^~/, replacement: '' },

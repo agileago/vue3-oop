@@ -7,7 +7,13 @@ import { SizeService } from './size.service'
 
 class Child extends VueComponent {
   render() {
-    return <div>111</div>
+    console.log('render')
+    return (
+      <div>
+        111
+        <div>{this.context.slots.default?.()}</div>
+      </div>
+    )
   }
 }
 
@@ -36,6 +42,9 @@ class Home extends VueComponent {
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
+        <Child>
+          <div>11111</div>
+        </Child>
         <h2>count: {this.countService.count}</h2>
         <button onClick={() => this.countService.add()}>+</button>
         <button onClick={() => this.countService.remove()}>-</button>
