@@ -31,28 +31,10 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
   static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
-  private static resolveComponent = resolveComponent
+  static resolveComponent = resolveComponent
   private static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
-  static get __vccOpts(): ComponentOptions {
-    if (this.__vccOpts__value) return this.__vccOpts__value
-    const CompConstructor = this as unknown as VueComponentStaticContructor
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { displayName, defaultProps, emits, ProviderKey, globalStore, ...left } = CompConstructor
-
-    return (this.__vccOpts__value = {
-      ...left,
-      name: displayName || CompConstructor.name,
-      props: defaultProps || {},
-      // 放到emits的on函数会自动缓存
-      emits: (emits || []).concat(getEmitsFromProps(CompConstructor.defaultProps || {})),
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setup: (props: any, ctx: any) => {
-        const instance = VueComponent.resolveComponent(CompConstructor)
-        return instance.render.bind(instance)
-      },
-    })
-  }
+  static __vccOpts: ComponentOptions
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
   static globalStore?: boolean
   /** 是否把自己当做服务provide出去，以便子组件可注入 */
@@ -93,3 +75,27 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 渲染函数 */
   abstract render(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
+
+Object.defineProperty(VueComponent, '__vccOpts', {
+  enumerable: true,
+  configurable: true,
+  get() {
+    if (this.__vccOpts__value) return this.__vccOpts__value
+    const CompConstructor = this as unknown as VueComponentStaticContructor
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { displayName, defaultProps, emits, ProviderKey, globalStore, ...left } = CompConstructor
+
+    return (this.__vccOpts__value = {
+      ...left,
+      name: displayName || CompConstructor.name,
+      props: defaultProps || {},
+      // 放到emits的on函数会自动缓存
+      emits: (emits || []).concat(getEmitsFromProps(CompConstructor.defaultProps || {})),
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      setup: (props: any, ctx: any) => {
+        const instance = VueComponent.resolveComponent(CompConstructor)
+        return instance.render.bind(instance)
+      },
+    })
+  },
+})

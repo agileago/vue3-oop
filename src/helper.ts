@@ -3,9 +3,6 @@ import autobind from 'autobind-decorator'
 
 /**
  * 自动绑定this !!!此装饰器必须放在最上面
- * @example
- * \@Autobind()
- * \@Abc()
  */
 export function Autobind() {
   return autobind
@@ -23,35 +20,6 @@ export function useCtx(): SetupContext {
 export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app
 }
-export function getProtoMetadata(target: any, key: symbol, returnDesc = false): any[] {
-  if (!target) return []
-  const proto = Reflect.getPrototypeOf(target)
-  if (!proto) return []
-  let res: any[] = Reflect.getMetadata(key, proto) || []
-  if (returnDesc) {
-    res = res.map((k) => {
-      if (typeof k === 'string') {
-        return {
-          key: k,
-          desc: getDeepOwnDescriptor(proto, k),
-        }
-      }
-      if (typeof k === 'object') {
-        return {
-          key: k,
-          desc: getDeepOwnDescriptor(proto, k.key),
-        }
-      }
-    })
-  }
-  return res
-}
-export function getDeepOwnDescriptor(proto: any, key: string): PropertyDescriptor | null {
-  if (!proto) return null
-  const desc = Reflect.getOwnPropertyDescriptor(proto, key)
-  if (desc) return desc
-  return getDeepOwnDescriptor(Reflect.getPrototypeOf(proto), key)
-}
 export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) {
   const keys = Array.isArray(defaultProps) ? defaultProps : Object.keys(defaultProps)
   const emits: string[] = []
@@ -62,6 +30,9 @@ export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) 
     emits.push(key[0].toLowerCase() + key.slice(1))
   }
   return emits
+}
+export function createSymbol(name: string) {
+  return typeof Symbol === 'undefined' ? name : Symbol(name)
 }
 
 /**

@@ -1,70 +1,73 @@
 import '@abraham/reflection'
-import { Component, Computed, Hook, Link, Mut, VueComponent } from 'vue3-oop'
-import { createApp, watchSyncEffect } from 'vue'
-import './theme/app.css'
-import { CountService } from './count.service'
-import { SizeService } from './size.service'
+import { Component, Computed, Hook, Mut, VueComponent, VueService } from 'vue3-oop'
+import { createApp } from 'vue'
 
-class Child extends VueComponent {
+const debounce = (delay: number) => {
+  let timeout: number | undefined
+  return (track: any, trigger: any) => {
+    let value: any
+    return {
+      get() {
+        track()
+        return value
+      },
+      set(newValue: any) {
+        clearTimeout(timeout)
+        timeout = window.setTimeout(() => {
+          value = newValue
+          trigger()
+        }, delay)
+      },
+    }
+  }
+}
+
+class CountService extends VueService {
+  @Mut() count = 1
+}
+
+class Home extends VueComponent {
+  @Mut(debounce(1000)) _count = ''
+
+  @Mut() obj = { name: 123 }
+
+  @Computed()
+  get double() {
+    return this._count
+  }
+  set double(val: string) {
+    this._count = val.toUpperCase()
+  }
+
+  @Hook('Mounted')
+  mounted() {
+    console.log('mounted')
+  }
+
   render() {
+    console.log(this.obj)
     console.log('render')
-    return (
-      <div>
-        111
-        <div>{this.context.slots.default?.()}</div>
-      </div>
-    )
+    return <input type="text" v-model={this.double} />
   }
 }
 
 @Component()
-class Home extends VueComponent {
-  constructor(private countService: CountService, private sizeService: SizeService) {
+class Home1 extends Home {
+  constructor(private cs: CountService) {
     super()
-    watchSyncEffect(() => this.count > 2)
+    console.log(cs)
   }
-
-  @Mut() count = 1
-
-  @Computed()
-  get double() {
-    return this.count * 2
-  }
-  list = new Array(10).fill(1)
-
-  @Link() aaa: Child[]
-
-  @Hook('Mounted')
-  mounted() {
-    console.log(this.aaa)
-  }
-
+  @Mut() count1 = 111
   render() {
     return (
-      <div style={{ textAlign: 'center' }}>
-        <Child>
-          <div>11111</div>
-        </Child>
-        <h2>count: {this.countService.count}</h2>
-        <button onClick={() => this.countService.add()}>+</button>
-        <button onClick={() => this.countService.remove()}>-</button>
-        <p>
-          矩形大小： 宽度： {this.sizeService.x} 长度: {this.sizeService.y}
-        </p>
-        <div
-          ref={this.sizeService.target}
-          style={{
-            width: '100px',
-            height: '100px',
-            resize: 'both',
-            border: '1px solid #ccc',
-            overflow: 'scroll',
-          }}
-        ></div>
+      <div>
+        <h5 onClick={() => this.cs.count++}>{this.cs.count}</h5>
+        <h2 onClick={() => this.count1++}>1111{this.count1}</h2>
+        {super.render()}
       </div>
     )
   }
 }
 
-const app = createApp(Home)
+const app = createApp(Home1)
 app.mount('#app')

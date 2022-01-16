@@ -8,9 +8,11 @@ import {
   TypeProvider,
 } from 'injection-js'
 import { getCurrentInstance, inject, InjectionKey, provide } from 'vue'
+import { createSymbol } from '../helper'
 
-export const InjectorKey: InjectionKey<ReflectiveInjector> = Symbol('ReflectiveInjector')
-const MetadataKey = Symbol('Component')
+export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol('VUE3-OOP_ReflectiveInjector') as symbol
+
+const MetadataKey = createSymbol('VUE3-OOP_Component')
 
 declare module 'vue' {
   interface App {
@@ -67,6 +69,7 @@ export function resolveComponent(target: { new (...args: []): any }) {
   const injector = ReflectiveInjector.fromResolvedProviders(resolveProviders, parent)
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const current = getCurrentInstance()!
     const app = current.appContext.app
 

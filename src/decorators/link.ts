@@ -1,28 +1,24 @@
 import { getCurrentInstance } from 'vue'
 import { Hanlder } from '../type'
-import { getProtoMetadata } from '../helper'
+import { createDecorator, getProtoMetadata } from './util'
 
-const MetadataKey = Symbol('Link')
-export function Link(): PropertyDecorator {
-  return function (target: any, key: string | symbol) {
-    let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
-    list = list.slice()
-    const hasItem = list.find((k) => k === key)
-    if (!hasItem) list.push(key)
-    Reflect.defineMetadata(MetadataKey, list, target)
-  }
+export const Link: LinkDecorator = createDecorator('Link')
+export interface LinkDecorator {
+  (refName?: string): PropertyDecorator
+  MetadataKey: symbol | string
 }
 
 function handler(targetThis: Record<any, any>) {
-  const list: (string | symbol)[] = getProtoMetadata(targetThis, MetadataKey)
+  const list = getProtoMetadata<string | undefined>(targetThis, Link.MetadataKey)
   if (!list || !list.length) return
   for (const item of list) {
+    const { key, options } = item
     const instance = getCurrentInstance()
-    Object.defineProperty(targetThis, item, {
+    Object.defineProperty(targetThis, key, {
       enumerable: true,
       configurable: true,
       get() {
-        return instance?.refs[item as string]
+        return instance?.refs?.[(options || key) as string]
       },
     })
   }

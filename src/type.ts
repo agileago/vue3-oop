@@ -1,5 +1,4 @@
-import { InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
-import { ComponentOptions, ComponentPublicInstance } from '@vue/runtime-core'
+import { ComponentOptions, ComponentPublicInstance, InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
 
 export interface VueComponentStaticContructor {
   new (...args: any[]): ComponentPublicInstance<any, any, any, any, any>

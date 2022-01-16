@@ -1,28 +1,23 @@
 import { computed } from 'vue'
 import { Hanlder } from '../type'
-import { getProtoMetadata } from '../helper'
+import { createDecorator, getProtoMetadata } from './util'
 
-interface ComputedItem {
-  key: string | symbol
-  desc: PropertyDescriptor
-}
+export const Computed: ComputedDecorator = createDecorator('Computed')
 
-const MetadataKey = Symbol('Computed')
-export function Computed(): MethodDecorator {
-  return function (target: any, key: string | symbol) {
-    let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
-    list = list.slice()
-    const hasItem = list.find((k) => k === key)
-    if (!hasItem) list.push(key)
-    Reflect.defineMetadata(MetadataKey, list, target)
-  }
+export interface ComputedDecorator {
+  (): MethodDecorator
+  /**
+   * @param shallow 是否是浅层响应式
+   */
+  MetadataKey: string | symbol
 }
 
 function handler(targetThis: Record<any, any>) {
-  const list: ComputedItem[] = getProtoMetadata(targetThis, MetadataKey, true)
+  const list = getProtoMetadata(targetThis, Computed.MetadataKey, true)
   if (!list || !list.length) return
   for (const item of list) {
     const desc = item.desc
+    if (!desc) continue
     const keyVal = computed({
       get: () => desc.get?.call(targetThis),
       set: (v: any) => desc.set?.call(targetThis, v),

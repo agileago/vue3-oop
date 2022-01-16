@@ -1,25 +1,39 @@
-import { ref } from 'vue'
+import { customRef, Ref, ref, shallowRef } from 'vue'
 import { Hanlder } from '../type'
-import { getProtoMetadata } from '../helper'
+import { createDecorator, getProtoMetadata } from './util'
 
-const MetadataKey = Symbol('Mut')
+export const Mut: MutDecorator = createDecorator<MutOptions>('Mut')
 
-export function Mut(): PropertyDecorator {
-  return function (target: any, key: string | symbol) {
-    let list: (string | symbol)[] = Reflect.getMetadata(MetadataKey, target) || []
-    list = list.slice()
-    const hasItem = list.find((k) => k === key)
-    if (!hasItem) list.push(key)
-    Reflect.defineMetadata(MetadataKey, list, target)
-  }
+type MutOptions = void | true | Parameters<typeof customRef>[0]
+type RefFactory = Parameters<typeof customRef>[0]
+export interface MutDecorator {
+  (): PropertyDecorator
+  /**
+   * @param shallow 是否是浅层响应式
+   */
+  (shallow: true): PropertyDecorator
+  /**
+   * 自定义ref 的实现
+   * @param refFactory
+   */
+  (refFactory: RefFactory): PropertyDecorator
+  MetadataKey: string | symbol
 }
 
-function handler(targetThis: Record<any, any>) {
-  const list: (string | symbol)[] = getProtoMetadata(targetThis, MetadataKey)
+function handler(targetThis: Record<string | symbol, any>) {
+  const list = getProtoMetadata<MutOptions>(targetThis, Mut.MetadataKey)
   if (!list || !list.length) return
   for (const item of list) {
-    const keyVal = ref()
-    Object.defineProperty(targetThis, item, {
+    const { options, key } = item
+    let keyVal: Ref
+    if (options === true) {
+      keyVal = shallowRef()
+    } else if (typeof options === 'function') {
+      keyVal = customRef(options)
+    } else {
+      keyVal = ref()
+    }
+    Object.defineProperty(targetThis, key, {
       enumerable: true,
       configurable: true,
       get() {
@@ -35,11 +49,4 @@ function handler(targetThis: Record<any, any>) {
 export const MutHandler: Hanlder = {
   key: 'Mut',
   handler,
-}
-
-/**
- * @deprecated 因与vue的ref冲突，故改名为 Mut
- */
-export function Ref() {
-  return Mut()
 }

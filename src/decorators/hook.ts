@@ -13,12 +13,7 @@ import {
   onUpdated,
 } from 'vue'
 import { Hanlder } from '../type'
-import { getProtoMetadata } from '../helper'
-
-interface HookItem {
-  key: string | symbol
-  lifecycle: Lifecycle
-}
+import { createDecorator, getProtoMetadata } from './util'
 
 type Lifecycle =
   | 'BeforeMount'
@@ -34,24 +29,19 @@ type Lifecycle =
   | 'RenderTriggered'
   | 'ServerPrefetch'
 
-const MetadataKey = Symbol('Hook')
+export const Hook: HookDecorator = createDecorator('Hook')
 
-export function Hook(lifecycle: Lifecycle): MethodDecorator {
-  return function (target: any, key: string | symbol) {
-    let list: HookItem[] = Reflect.getMetadata(MetadataKey, target) || []
-    list = list.slice()
-    const hasItem = list.find((k) => k.key === key && k.lifecycle === lifecycle)
-    if (!hasItem) list.push({ key, lifecycle })
-    Reflect.defineMetadata(MetadataKey, list, target)
-  }
+export interface HookDecorator {
+  (lifecycle: Lifecycle): MethodDecorator
+  MetadataKey: string | symbol
 }
 
 function handler(targetThis: any) {
-  const list: HookItem[] = getProtoMetadata(targetThis, MetadataKey)
+  const list = getProtoMetadata<Lifecycle>(targetThis, Hook.MetadataKey)
   if (!list || !list.length) return
   for (const item of list) {
     let vueFn: any
-    switch (item.lifecycle) {
+    switch (item.options) {
       case 'BeforeMount':
         vueFn = onBeforeMount
         break
