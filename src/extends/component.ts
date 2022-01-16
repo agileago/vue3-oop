@@ -1,5 +1,6 @@
 import {
   AllowedComponentProps,
+  ComponentOptions,
   ComponentPublicInstance,
   getCurrentInstance,
   InjectionKey,
@@ -14,7 +15,6 @@ import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
 import { LinkHandler } from '../decorators/link'
 import { resolveComponent } from '../di'
-import { ComponentOptions } from '@vue/runtime-core'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 

@@ -64,8 +64,6 @@
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "@vitejs/plugin-vue": "^2.0.1",
-    "@vue/reactivity": "^3.2.26",
-    "@vue/runtime-core": "^3.2.26",
     "@vue/test-utils": "^2.0.0-rc.18",
     "@vue3-oop/plugin-vue-jsx": "^1.4.0",
     "ant-design-vue": "^3.0.0-alpha.11",
