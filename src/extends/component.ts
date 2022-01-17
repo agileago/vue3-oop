@@ -44,13 +44,13 @@ export abstract class VueComponent<T extends {} = {}> {
     return this.props
   }
   /** 组件属性 */
-  public props: VueComponentProps<T>
+  public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
-  public context: WithSlotTypes<T>
+  public context = useCtx() as WithSlotTypes<T>
+  /** 组件实例 */
+  public $ = getCurrentInstance()
 
   constructor() {
-    this.props = useProps<VueComponentProps<T>>()
-    this.context = useCtx() as WithSlotTypes<T>
     this.context.expose(this)
     const ThisConstructor = this.constructor as VueComponentStaticContructor
     if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)

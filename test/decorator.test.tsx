@@ -3,17 +3,6 @@ import { expect, test } from 'vitest'
 import { Mut, VueComponent } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
 
-test('class component render', async () => {
-  class CountComponent extends VueComponent {
-    render() {
-      return <p>hello world</p>
-    }
-  }
-  // @ts-ignore
-  const wrapper = mount(CountComponent)
-  expect(wrapper.text()).toContain('hello')
-})
-
 test('Mut decorator', async () => {
   class CountComponent extends VueComponent {
     @Mut() count = 1
