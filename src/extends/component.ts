@@ -47,8 +47,8 @@ export abstract class VueComponent<T extends {} = {}> {
   public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
   public context = useCtx() as WithSlotTypes<T>
-  /** 组件实例 */
-  public $ = getCurrentInstance()
+  /** 组件内部实例，如果使用组件实例请 this.$.proxy */
+  public $ = getCurrentInstance()!
 
   constructor() {
     this.context.expose(this)
@@ -75,7 +75,7 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 渲染函数 */
   abstract render(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
-
+// 为了支持es5浏览器
 Object.defineProperty(VueComponent, '__vccOpts', {
   enumerable: true,
   configurable: true,
@@ -83,10 +83,10 @@ Object.defineProperty(VueComponent, '__vccOpts', {
     if (this.__vccOpts__value) return this.__vccOpts__value
     const CompConstructor = this as unknown as VueComponentStaticContructor
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { displayName, defaultProps, emits, ProviderKey, globalStore, ...left } = CompConstructor
+    const { displayName, defaultProps, emits, ProviderKey, globalStore, ...rest } = CompConstructor
 
     return (this.__vccOpts__value = {
-      ...left,
+      ...rest,
       name: displayName || CompConstructor.name,
       props: defaultProps || {},
       // 放到emits的on函数会自动缓存
