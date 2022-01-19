@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/agileago/vue3-oop/compare/v0.2.3...v0.2.4) (2022-01-19)
+
+
+### Features
+
+* expose $ alias getCurrentInstance ([f869120](https://github.com/agileago/vue3-oop/commit/f8691206805ebd24e08b1781446d837567291bfc))
+
 ### [0.2.3](https://github.com/agileago/vue3-oop/compare/v0.2.2...v0.2.3) (2022-01-16)
 
 
