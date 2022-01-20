@@ -14,6 +14,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.9.1
   '@typescript-eslint/parser': ^5.9.1
   '@vitejs/plugin-vue': ^2.0.1
+  '@vitest/ui': ^0.1.19
   '@vue/test-utils': ^2.0.0-rc.18
   '@vue3-oop/plugin-vue-jsx': ^1.4.0
   ant-design-vue: ^3.0.0-alpha.11
@@ -56,6 +57,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.9.1_bbe74534e31a8c21f1b3522447c55341
   '@typescript-eslint/parser': 5.9.1_eslint@8.7.0+typescript@4.5.4
   '@vitejs/plugin-vue': 2.0.1_vite@2.7.12+vue@3.2.26
+  '@vitest/ui': 0.1.19
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.26
   '@vue3-oop/plugin-vue-jsx': 1.4.0_typescript@4.5.4
   ant-design-vue: 3.0.0-alpha.14_vue@3.2.26
@@ -82,7 +84,7 @@ devDependencies:
   typescript: 4.5.4
   vite: 2.7.12_sass@1.48.0
   vitepress: 0.21.5_sass@1.48.0
-  vitest: 0.1.18_6385a6dc872cf54928889045b2a24481
+  vitest: 0.1.18_e5f58afaf7b1ba6e3fdd1deca1386537
   vue: 3.2.26
   vue-router: 4.0.12_vue@3.2.26
 
@@ -817,6 +819,10 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@polka/url/1.0.0-next.21:
+    resolution: {integrity: sha1-XeWiOFo1MJQn9gEZkrVEUU1VmqE=, tarball: '@polka/url/download/@polka/url-1.0.0-next.21.tgz'}
+    dev: true
+
   /@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==, tarball: '@rollup/pluginutils/download/@rollup/pluginutils-4.1.2.tgz'}
     engines: {node: '>= 8.0.0'}
@@ -1094,6 +1100,12 @@ packages:
     dependencies:
       vite: 2.7.12_sass@1.48.0
       vue: 3.2.27
+    dev: true
+
+  /@vitest/ui/0.1.19:
+    resolution: {integrity: sha512-ALFyaXbZ3hUwgfDc0NQMxXh0SygLpm67KwgkG93yPT0CeBm48GQHNrVQD7yihERytpxV/k6JCvv362/vM11Akg==, tarball: '@vitest/ui/download/@vitest/ui-0.1.19.tgz'}
+    dependencies:
+      sirv: 2.0.2
     dev: true
 
   /@vue/babel-helper-vue-transform-on/1.0.2:
@@ -3874,7 +3886,7 @@ packages:
   /jsonfile/4.0.0:
     resolution: {integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=, tarball: jsonfile/download/jsonfile-4.0.0.tgz}
     optionalDependencies:
-      graceful-fs: 4.2.8
+      graceful-fs: 4.2.9
     dev: true
 
   /jsonfile/6.1.0:
@@ -4306,6 +4318,11 @@ packages:
   /modify-values/1.0.1:
     resolution: {integrity: sha1-s5OfpgVUZHTj4+PGPWS9Q7TuYCI=, tarball: modify-values/download/modify-values-1.0.1.tgz}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /mrmime/1.0.0:
+    resolution: {integrity: sha1-FNOH8FhaUjPSkbq6M5sGN1KiOYs=, tarball: mrmime/download/mrmime-1.0.0.tgz}
+    engines: {node: '>=10'}
     dev: true
 
   /ms/2.1.2:
@@ -5166,6 +5183,15 @@ packages:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==, tarball: signal-exit/download/signal-exit-3.0.6.tgz}
     dev: true
 
+  /sirv/2.0.2:
+    resolution: {integrity: sha512-4Qog6aE29nIjAOKe/wowFTxOdmbEZKb+3tsLljaBRzJwtqto0BChD2zzH0LhgCSXiI+V7X+Y45v14wBZQ1TK3w==, tarball: sirv/download/sirv-2.0.2.tgz}
+    engines: {node: '>= 10'}
+    dependencies:
+      '@polka/url': 1.0.0-next.21
+      mrmime: 1.0.0
+      totalist: 3.0.0
+    dev: true
+
   /slash/3.0.0:
     resolution: {integrity: sha1-ZTm+hwwWWtvVJAIg2+Nh8bxNRjQ=, tarball: slash/download/slash-3.0.0.tgz}
     engines: {node: '>=8'}
@@ -5594,6 +5620,11 @@ packages:
       is-number: 7.0.0
     dev: true
 
+  /totalist/3.0.0:
+    resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==, tarball: totalist/download/totalist-3.0.0.tgz}
+    engines: {node: '>=6'}
+    dev: true
+
   /tr46/0.0.3:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=, tarball: tr46/download/tr46-0.0.3.tgz}
     dev: true
@@ -5835,7 +5866,7 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.1.18_6385a6dc872cf54928889045b2a24481:
+  /vitest/0.1.18_e5f58afaf7b1ba6e3fdd1deca1386537:
     resolution: {integrity: sha512-wq/MOasJQAjetXgN2amuJzmaSkc2OBw5bq2zk8nUwjWRKwvFlYnIeQxKmBUhT16Tq6zV7RgNJqzhRJ5T4BNQLw==, tarball: vitest/download/vitest-0.1.18.tgz}
     engines: {node: '>=14.14.0'}
     hasBin: true
@@ -5856,6 +5887,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
+      '@vitest/ui': 0.1.19
       c8: 7.11.0
       chai: 4.3.4
       happy-dom: 2.25.2

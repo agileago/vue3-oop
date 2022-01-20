@@ -69,5 +69,17 @@ class Home1 extends Home {
   }
 }
 
-const app = createApp(Home1)
+class App extends VueComponent {
+  render() {
+    return (
+      <>
+        <Home1></Home1>
+        <Home1></Home1>
+        <Home1></Home1>
+      </>
+    )
+  }
+}
+
+const app = createApp(App)
 app.mount('#app')
