@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/agileago/vue3-oop/compare/v0.2.3...v0.2.5) (2022-01-21)
+
+
+### Features
+
+* expose $ alias getCurrentInstance ([7438234](https://github.com/agileago/vue3-oop/commit/743823473a4f7603d907a611f132014b4c0fc8ca))
+* 依赖进行缓存，提高性能 ([fcf9969](https://github.com/agileago/vue3-oop/commit/fcf99693aec79cfc346eaec5466d4579d61ad030))
+
 ### [0.2.4](https://github.com/agileago/vue3-oop/compare/v0.2.3...v0.2.4) (2022-01-19)
 
 
