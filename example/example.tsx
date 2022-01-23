@@ -1,4 +1,5 @@
-import { Autobind, ComponentProps, Mut, VueComponent, VueService } from 'vue3-oop'
+import type { ComponentProps } from 'vue3-oop'
+import { Autobind, Mut, VueComponent, VueService } from 'vue3-oop'
 import { onBeforeUnmount } from 'vue'
 
 class PositionService extends VueService {

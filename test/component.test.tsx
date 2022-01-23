@@ -1,6 +1,7 @@
 import '@abraham/reflection'
 import { expect, test } from 'vitest'
-import { ComponentProps, VueComponent } from 'vue3-oop'
+import type { ComponentProps } from 'vue3-oop'
+import { VueComponent } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 

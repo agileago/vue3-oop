@@ -1,15 +1,14 @@
-import {
+import type {
   AllowedComponentProps,
   ComponentOptions,
   ComponentPublicInstance,
-  getCurrentInstance,
   InjectionKey,
-  provide,
   VNodeChild,
   VNodeProps,
 } from 'vue'
+import { getCurrentInstance, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
-import { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
+import type { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
 import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
@@ -32,7 +31,7 @@ export abstract class VueComponent<T extends {} = {}> {
   static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
-  private static __vccOpts__value?: ComponentOptions
+  static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */

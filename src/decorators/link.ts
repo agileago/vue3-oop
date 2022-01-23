@@ -1,5 +1,5 @@
 import { getCurrentInstance } from 'vue'
-import { Hanlder } from '../type'
+import type { Hanlder } from '../type'
 import { createDecorator, getProtoMetadata } from './util'
 
 export const Link: LinkDecorator = createDecorator('Link')

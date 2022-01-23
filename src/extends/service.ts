@@ -2,7 +2,7 @@ import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
 import { provide } from 'vue'
-import { Hanlder, VueComponentStaticContructor } from '../type'
+import type { Hanlder, VueComponentStaticContructor } from '../type'
 import { LinkHandler } from '../decorators/link'
 
 export const ProviderKey = 'ProviderKey' as const

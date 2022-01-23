@@ -7,3 +7,7 @@ public
 scripts
 coverage
 .github
+.eslintrc.js
+commitlint.config.js
+.cz-config.js
+.prettierrc.js

@@ -1,14 +1,7 @@
-import {
-  ClassProvider,
-  Injectable,
-  InjectionToken,
-  Provider,
-  ReflectiveInjector,
-  ResolvedReflectiveProvider,
-  SkipSelf,
-  TypeProvider,
-} from 'injection-js'
-import { getCurrentInstance, inject, InjectionKey, provide } from 'vue'
+import type { ClassProvider, Provider, ResolvedReflectiveProvider, TypeProvider } from 'injection-js'
+import { Injectable, InjectionToken, ReflectiveInjector, SkipSelf } from 'injection-js'
+import type { InjectionKey } from 'vue'
+import { getCurrentInstance, inject, provide } from 'vue'
 import { createSymbol } from '../helper'
 
 export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol('VUE3-OOP_ReflectiveInjector') as symbol

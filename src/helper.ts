@@ -1,4 +1,5 @@
-import { getCurrentInstance, inject, InjectionKey, SetupContext } from 'vue'
+import type { InjectionKey, SetupContext } from 'vue'
+import { getCurrentInstance, inject } from 'vue'
 import autobind from 'autobind-decorator'
 
 /**
@@ -12,10 +13,10 @@ export function useProps<T>() {
   const instance = getCurrentInstance()
   return instance?.props as T
 }
-export function useCtx(): SetupContext {
+export function useCtx() {
   const instance = getCurrentInstance()
   // @ts-ignore
-  return instance?.setupContext
+  return instance?.setupContext as SetupContext
 }
 export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app

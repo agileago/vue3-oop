@@ -1,4 +1,4 @@
-import { ComponentOptions, ComponentPublicInstance, InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
+import type { ComponentOptions, ComponentPublicInstance, InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
 
 export interface VueComponentStaticContructor {
   new (...args: any[]): ComponentPublicInstance<any, any, any, any, any>

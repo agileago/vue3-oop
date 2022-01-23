@@ -1,5 +1,6 @@
-import { customRef, Ref, ref, shallowRef } from 'vue'
-import { Hanlder } from '../type'
+import type { Ref } from 'vue'
+import { customRef, ref, shallowRef } from 'vue'
+import type { Hanlder } from '../type'
 import { createDecorator, getProtoMetadata } from './util'
 
 export const Mut: MutDecorator = createDecorator<MutOptions>('Mut')
