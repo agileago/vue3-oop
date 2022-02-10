@@ -19,9 +19,8 @@
     "lint": "eslint --fix .",
     "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
     "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
-    "release": "standard-version",
+    "release": "pnpm build && release-it",
     "github:release": "conventional-github-releaser -p angular",
-    "prepublishOnly": "run-s build release",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -54,17 +53,17 @@
   "license": "MIT",
   "devDependencies": {
     "@abraham/reflection": "^0.8.0",
-    "@commitlint/cli": "^16.0.2",
+    "@commitlint/cli": "^16.1.0",
     "@nexhome/yorkie": "^2.0.8",
-    "@types/lodash-es": "^4.17.5",
+    "@release-it/conventional-changelog": "^4.1.0",
+    "@types/lodash-es": "^4.17.6",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.6",
-    "@types/prettier": "^2.4.3",
-    "@types/swagger-schema-official": "^2.0.22",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "@vitejs/plugin-vue": "^2.0.1",
-    "@vitest/ui": "^0.1.19",
+    "@types/prettier": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "@vitest/ui": "^0.3.1",
     "@vue/test-utils": "^2.0.0-rc.18",
     "@vue3-oop/plugin-vue-jsx": "^1.4.0",
     "ant-design-vue": "^3.0.0-beta.8",
@@ -74,25 +73,26 @@
     "commitlint-config-cz": "^0.13.3",
     "conventional-github-releaser": "^3.1.5",
     "cz-customizable": "^6.3.0",
-    "eslint": "^8.7.0",
+    "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "happy-dom": "^2.25.2",
+    "happy-dom": "^2.31.1",
     "injection-js": "^2.4.0",
-    "lint-staged": "^12.1.7",
+    "lint-staged": "^12.3.3",
     "lodash-es": "^4.17.21",
     "markdown-it-codetabs": "^1.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
+    "release-it": "^14.12.4",
     "rimraf": "^3.0.2",
-    "sass": "^1.48.0",
+    "sass": "^1.49.7",
     "standard-version": "^9.3.2",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.4",
-    "vite": "^2.7.12",
-    "vitepress": "^0.21.5",
-    "vitest": "^0.1.18",
-    "vue": "^3.2.26",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.0",
+    "vitepress": "^0.21.6",
+    "vitest": "^0.3.1",
+    "vue": "^3.2.30",
     "vue-router": "^4.0.12"
   },
   "gitHooks": {
@@ -117,23 +117,16 @@
     "injection-js": "^2.4.0",
     "vue": "^3.2.20"
   },
-  "pnpm": {
-    "packageExtensions": {
-      "@docsearch/react": {
-        "peerDepndenciesMeta": {
-          "react": {
-            "optional": true
-          },
-          "react-dom": {
-            "optional": true
-          },
-          "@types/react": {
-            "optional": true
-          },
-          "@algolia/autocomplete-preset-algolia": {
-            "optional": true
-          }
-        }
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): ${version}",
+      "tagName": "v${version}"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md",
+        "ignoreRecommendedBump": true
       }
     }
   }
