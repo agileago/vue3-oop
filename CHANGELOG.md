@@ -1,3 +1,10 @@
+## [0.2.8](https://github.com/agileago/vue3-oop/compare/v0.2.7...v0.2.8) (2022-02-25)
+
+
+### Features
+
+* computed增加eager，支持立即计算出值 ([508b1c0](https://github.com/agileago/vue3-oop/commit/508b1c096315cc66ab9f935a9030d346e0e14257))
+
 ## [0.2.7](https://github.com/agileago/vue3-oop/compare/v0.2.5...v0.2.7) (2022-02-25)
 
 
