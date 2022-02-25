@@ -1,3 +1,11 @@
+## [0.2.7](https://github.com/agileago/vue3-oop/compare/v0.2.5...v0.2.7) (2022-02-25)
+
+
+### Features
+
+* 增加getCurrentInjector,在外部服务中获取注射器 ([e601189](https://github.com/agileago/vue3-oop/commit/e60118962c205c484fdfe3625892b2cff9d60eb3))
+* 更新版本以及类型 ([c00d67c](https://github.com/agileago/vue3-oop/commit/c00d67c23d7c8efefefe95283fcd6afdb7c7d743))
+
 # Changelog
 
 ### [0.2.5](https://github.com/agileago/vue3-oop/compare/v0.2.3...v0.2.5) (2022-01-21)
