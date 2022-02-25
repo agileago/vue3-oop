@@ -107,7 +107,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@abraham/reflection": "^0.8.0",
+    "@abraham/reflection": "*",
     "injection-js": "^2.4.0",
     "vue": "^3.2.20"
   },

@@ -1,7 +1,14 @@
 import '@abraham/reflection'
 import { expect, test } from 'vitest'
-import { Component, Mut, VueComponent } from 'vue3-oop'
+import {
+  Component,
+  getCurrentInjector,
+  Mut,
+  VueComponent,
+  VueService,
+} from 'vue3-oop'
 import { mount } from '@vue/test-utils'
+import { Injector } from 'injection-js'
 
 test('di should work', () => {
   class CountService {
@@ -23,4 +30,25 @@ test('di should work', () => {
   // @ts-ignore
   const wrapper = mount(CountComponent)
   expect(wrapper.text()).toContain('1')
+})
+
+test('外部服务应该可以获取到注射器', () => {
+  class OutSideService extends VueService {
+    injector = getCurrentInjector()
+  }
+
+  @Component()
+  class Foo extends VueComponent {
+    constructor(public injector: Injector) {
+      super()
+    }
+    outSideService = new OutSideService()
+    render() {
+      return <div>1111</div>
+    }
+  }
+  // @ts-ignore
+  const wrapper = mount(Foo)
+  const vm = wrapper.vm as unknown as Foo
+  expect(vm.injector).toStrictEqual(vm.outSideService.injector)
 })

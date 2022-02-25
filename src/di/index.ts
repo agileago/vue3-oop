@@ -1,10 +1,22 @@
-import type { ClassProvider, Provider, ResolvedReflectiveProvider, TypeProvider } from 'injection-js'
-import { Injectable, InjectionToken, ReflectiveInjector, SkipSelf } from 'injection-js'
+import type {
+  ClassProvider,
+  Provider,
+  ResolvedReflectiveProvider,
+  TypeProvider,
+} from 'injection-js'
+import {
+  Injectable,
+  InjectionToken,
+  ReflectiveInjector,
+  SkipSelf,
+} from 'injection-js'
 import type { InjectionKey } from 'vue'
 import { getCurrentInstance, inject, provide } from 'vue'
 import { createSymbol } from '../helper'
 
-export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol('VUE3-OOP_ReflectiveInjector') as symbol
+export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol(
+  'VUE3-OOP_ReflectiveInjector'
+) as symbol
 
 const MetadataKey = createSymbol('VUE3-OOP_Component')
 const MetadataProviderKey = createSymbol('VUE3-OOP_ResolveProviders')
@@ -51,8 +63,14 @@ export function resolveComponent(target: { new (...args: []): any }) {
   // 如果没有使用 injection-js 则不创建注入器
   if (!Reflect.getMetadata('annotations', target)) return new target()
   const parent = inject(InjectorKey, undefined)
-  let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(MetadataProviderKey, target)
-  const options: ComponentOptions | undefined = Reflect.getOwnMetadata(MetadataKey, target)
+  let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(
+    MetadataProviderKey,
+    target
+  )
+  const options: ComponentOptions | undefined = Reflect.getOwnMetadata(
+    MetadataKey,
+    target
+  )
   if (!resolveProviders || options?.stable === false) {
     // 依赖
     let deps: Provider[] = [target]
@@ -71,7 +89,10 @@ export function resolveComponent(target: { new (...args: []): any }) {
     // 缓存解析过的依赖, 提高性能
     Reflect.defineMetadata(MetadataProviderKey, resolveProviders, target)
   }
-  const injector = ReflectiveInjector.fromResolvedProviders(resolveProviders, parent)
+  const injector = ReflectiveInjector.fromResolvedProviders(
+    resolveProviders,
+    parent
+  )
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -103,7 +124,11 @@ export function resolveDependencies(inputs: Provider[]) {
   const deps = new Set<Provider>()
 
   function resolver(klass: Provider) {
-    if (deps.has(klass) || noConstructor.find((k) => k !== klass && k.provide === klass)) return
+    if (
+      deps.has(klass) ||
+      noConstructor.find((k) => k !== klass && k.provide === klass)
+    )
+      return
     deps.add(klass)
     const resolves = ReflectiveInjector.resolve([klass])
     for (const item of resolves) {
@@ -126,4 +151,13 @@ export function resolveDependencies(inputs: Provider[]) {
   for (const input of inputs) resolver(input)
 
   return Array.from(deps)
+}
+
+/**
+ * 获取当前的注射器，可用于外部使用
+ */
+export function getCurrentInjector(): ReflectiveInjector {
+  const instance = getCurrentInstance()
+  // @ts-ignore
+  return instance.provides[InjectorKey] || inject(InjectorKey)
 }

@@ -1,4 +1,11 @@
-import type { ComponentOptions, ComponentPublicInstance, InjectionKey, Prop, SetupContext, VNodeChild } from 'vue'
+import type {
+  ComponentOptions,
+  ComponentPublicInstance,
+  InjectionKey,
+  Prop,
+  SetupContext,
+  VNodeChild,
+} from 'vue'
 
 export interface VueComponentStaticContructor {
   new (...args: any[]): ComponentPublicInstance<any, any, any, any, any>
@@ -32,7 +39,9 @@ type DefaultSlots = {
   default(): VNodeChild
 }
 
-type MixDefaultSlots<T extends {}> = 'default' extends keyof T ? {} : DefaultSlots
+type MixDefaultSlots<T extends {}> = 'default' extends keyof T
+  ? {}
+  : DefaultSlots
 
 // 处理tsx slots 类型问题
 export type WithVSlots<T extends {}> = {
@@ -49,24 +58,36 @@ export type WithSlotTypes<T extends {}> = Omit<SetupContext, 'slots'> & {
 
 type ModelProps<T extends {}> = Exclude<
   {
-    [Prop in keyof T]: T extends { [k in Prop as `onUpdate:${k & string}`]?: any } ? Prop : never
+    [Prop in keyof T]: T extends {
+      [k in Prop as `onUpdate:${k & string}`]?: any
+    }
+      ? Prop
+      : never
   }[keyof T],
   undefined
 >
 
-export type WithVModel<T extends {}, U extends keyof T = ModelProps<T>> = TransformModelValue<{
+export type WithVModel<
+  T extends {},
+  U extends keyof T = ModelProps<T>
+> = TransformModelValue<{
   [k in U as `v-model:${k & string}`]?: T[k] | [T[k], string[]]
 }>
-export type TransformModelValue<T extends {}> = 'v-model:modelValue' extends keyof T
-  ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
-  : T
+export type TransformModelValue<T extends {}> =
+  'v-model:modelValue' extends keyof T
+    ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
+    : T
 
-export type ComponentProps<T extends {}> = ComponentPropsObject<T> | Array<keyof Omit<T, 'slots'>>
+export type ComponentProps<T extends {}> =
+  | ComponentPropsObject<T>
+  | Array<keyof Omit<T, 'slots'>>
 
 export type ComponentPropsObject<T extends {}> = {
   [U in keyof Omit<T, 'slots'>]-?: Prop<any>
 }
-export type ComponentPropsArray<T extends {}> = UnionToTuple<keyof Omit<T, 'slots'>>
+export type ComponentPropsArray<T extends {}> = UnionToTuple<
+  keyof Omit<T, 'slots'>
+>
 
 export type ComponentSlots<T extends { props: any }> = T['props']['v-slots']
 

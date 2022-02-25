@@ -8,7 +8,13 @@ import type {
 } from 'vue'
 import { getCurrentInstance, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
-import type { Hanlder, VueComponentStaticContructor, WithSlotTypes, WithVModel, WithVSlots } from '../type'
+import type {
+  Hanlder,
+  VueComponentStaticContructor,
+  WithSlotTypes,
+  WithVModel,
+  WithVSlots,
+} from '../type'
 import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
@@ -28,7 +34,12 @@ export abstract class VueComponent<T extends {} = {}> {
   /** 热更新使用 */
   static __hmrId?: string
   /** 装饰器处理 */
-  static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
+  static handler: Hanlder[] = [
+    MutHandler,
+    ComputedHandler,
+    LinkHandler,
+    HookHandler,
+  ]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
   static __vccOpts__value?: ComponentOptions
@@ -61,7 +72,10 @@ export abstract class VueComponent<T extends {} = {}> {
       app.provide(GlobalStoreKey, this)
       app.getStore = () => this
       app.getService = (token) => {
-        if ((typeof token === 'function' || typeof token === 'object') && 'ProviderKey' in token) {
+        if (
+          (typeof token === 'function' || typeof token === 'object') &&
+          'ProviderKey' in token
+        ) {
           token = token.ProviderKey
         }
         // @ts-ignore
@@ -82,14 +96,23 @@ Object.defineProperty(VueComponent, '__vccOpts', {
     if (this.__vccOpts__value) return this.__vccOpts__value
     const CompConstructor = this as unknown as VueComponentStaticContructor
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { displayName, defaultProps, emits, ProviderKey, globalStore, ...rest } = CompConstructor
+    const {
+      displayName,
+      defaultProps,
+      emits,
+      ProviderKey,
+      globalStore,
+      ...rest
+    } = CompConstructor
 
     return (this.__vccOpts__value = {
       ...rest,
       name: displayName || CompConstructor.name,
       props: defaultProps || {},
       // 放到emits的on函数会自动缓存
-      emits: (emits || []).concat(getEmitsFromProps(CompConstructor.defaultProps || {})),
+      emits: (emits || []).concat(
+        getEmitsFromProps(CompConstructor.defaultProps || {})
+      ),
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       setup: (props: any, ctx: any) => {
         const instance = VueComponent.resolveComponent(CompConstructor)

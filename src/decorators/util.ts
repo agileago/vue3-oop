@@ -15,7 +15,8 @@ export function createDecorator<T = void>(name: string) {
   const MetadataKey = createSymbol(metaName)
   const decoratorFn: DecoratorFn<T> = function (options: T) {
     return function (target: any, key: string | symbol) {
-      let list: MetadataStore<T>[] = Reflect.getMetadata(MetadataKey, target) || []
+      let list: MetadataStore<T>[] =
+        Reflect.getMetadata(MetadataKey, target) || []
       list = list.slice()
       const hasItem = list.find((k) => k.key === key)
       if (!hasItem) list.push({ key, options })
@@ -31,7 +32,11 @@ export function createDecorator<T = void>(name: string) {
   })
   return decoratorFn
 }
-export function getProtoMetadata<T = void>(target: any, key: symbol | string, withDesc = false): MetadataStore<T>[] {
+export function getProtoMetadata<T = void>(
+  target: any,
+  key: symbol | string,
+  withDesc = false
+): MetadataStore<T>[] {
   const proto = Object.getPrototypeOf(target)
   if (!proto) return []
   const res: MetadataStore<any>[] = Reflect.getMetadata(key, proto) || []
@@ -40,7 +45,10 @@ export function getProtoMetadata<T = void>(target: any, key: symbol | string, wi
   }
   return res
 }
-export function getDeepOwnDescriptor(proto: any, key: string | symbol): PropertyDescriptor | null {
+export function getDeepOwnDescriptor(
+  proto: any,
+  key: string | symbol
+): PropertyDescriptor | null {
   if (!proto) return null
   const desc = Object.getOwnPropertyDescriptor(proto, key)
   if (desc) return desc

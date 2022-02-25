@@ -21,8 +21,12 @@ export function useCtx() {
 export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app
 }
-export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) {
-  const keys = Array.isArray(defaultProps) ? defaultProps : Object.keys(defaultProps)
+export function getEmitsFromProps(
+  defaultProps: Record<string, any> | string[]
+) {
+  const keys = Array.isArray(defaultProps)
+    ? defaultProps
+    : Object.keys(defaultProps)
   const emits: string[] = []
 
   for (let key of keys) {
@@ -43,7 +47,7 @@ export function injectService<
   T extends {
     new (...args: any[]): InstanceType<T>
     ProviderKey: InjectionKey<InstanceType<T>>
-  },
+  }
 >(service: T, defaultService?: InstanceType<T>): InstanceType<T> {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return inject(service.ProviderKey, defaultService)!

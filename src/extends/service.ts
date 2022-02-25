@@ -8,7 +8,12 @@ import { LinkHandler } from '../decorators/link'
 export const ProviderKey = 'ProviderKey' as const
 
 export abstract class VueService {
-  static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
+  static handler: Hanlder[] = [
+    MutHandler,
+    ComputedHandler,
+    LinkHandler,
+    HookHandler,
+  ]
   public constructor() {
     const ThisConstructor = this.constructor as VueComponentStaticContructor
     if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)

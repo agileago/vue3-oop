@@ -103,6 +103,11 @@ class Foo extends VueComponent {
 
 获取当前的应用app
 
+## getCurrentInjector
+
+在外部服务中获取当前的最近一级的注射器
+
+
 # 类型
 
 ## ComponentProps
@@ -119,6 +124,16 @@ class Foo extends VueComponent<FooProps> {
   render() {
     return <div>{this.props.size}</div>
   }
+}
+```
+
+## ComponentSlots
+
+在render函数中定义slots的时候用到
+
+```tsx
+const a: ComponentSlots<Foo> = {
+  
 }
 ```
 
