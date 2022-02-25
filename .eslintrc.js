@@ -35,5 +35,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
+    'no-empty': 'warn',
   },
 }

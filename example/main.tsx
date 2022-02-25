@@ -1,8 +1,9 @@
 import '@abraham/reflection'
 import {
   Component,
+  Computed,
   getCurrentInjector,
-  Hook,
+  Mut,
   VueComponent,
   VueService,
 } from 'vue3-oop'
@@ -26,20 +27,17 @@ class App extends VueComponent {
 
   outService = new OutService()
 
-  @Hook('Mounted')
-  mount() {
-    console.log(
-      this.injector,
-      this.outService.injector,
-      this.injector === this.outService.injector
-    )
-  }
+  @Mut() count = 1
 
+  @Computed('pre')
+  get abc() {
+    return this.count > 10
+  }
   render() {
     return (
       <div>
         <div>
-          指令：
+          指令：abc大于20：{String(this.abc)}
           <input type="text" v-focus />
         </div>
       </div>
