@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2021",
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
@@ -8,7 +8,6 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-
     "lib": ["esnext", "dom"],
     "types": ["vite/client", "@abraham/reflection", "vitest"],
     "experimentalDecorators": true,

@@ -1,46 +1,46 @@
 import '@abraham/reflection'
-import {
-  Component,
-  Computed,
-  getCurrentInjector,
-  Mut,
-  VueComponent,
-  VueService,
-} from 'vue3-oop'
-import type { Directive } from 'vue'
+import { Component, Mut, VueComponent } from 'vue3-oop'
 import { createApp } from 'vue'
-import { focusDirective } from './focus.directive'
-import { Injector } from 'injection-js'
+import 'ant-design-vue/dist/antd.css'
+import { Layout, Menu } from 'ant-design-vue'
+import { RouterLink, RouterView } from 'vue-router'
+import { RouterStartService } from './router'
+import { routes } from './router/routes'
 
-class OutService extends VueService {
-  injector = getCurrentInjector()
-}
-
-@Component()
+@Component({ providers: [RouterStartService] })
 class App extends VueComponent {
-  static directives: Record<string, Directive> = {
-    focus: focusDirective,
-  }
-  constructor(private injector: Injector) {
-    super()
-  }
-
-  outService = new OutService()
-
-  @Mut() count = 1
-
-  @Computed('pre')
-  get abc() {
-    return this.count > 10
-  }
+  @Mut() collapsed = false
   render() {
     return (
-      <div>
-        <div>
-          指令：abc大于20：{String(this.abc)}
-          <input type="text" v-focus />
-        </div>
-      </div>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Layout.Sider v-model:collapsed={this.collapsed} collapsible>
+          <h2
+            style={{ color: '#fff', textAlign: 'center', lineHeight: '40px' }}
+          >
+            VUE EXAMPLE
+          </h2>
+          <Menu theme={'dark'} mode={'inline'}>
+            {routes.map((r) => {
+              return (
+                <Menu.SubMenu title={r.meta?.title} key={r.path}>
+                  {r.children?.map((i) => {
+                    return (
+                      <Menu.Item key={i.path}>
+                        <RouterLink to={i.path} style={{ display: 'block' }}>
+                          {i.meta?.title}
+                        </RouterLink>
+                      </Menu.Item>
+                    )
+                  })}
+                </Menu.SubMenu>
+              )
+            })}
+          </Menu>
+        </Layout.Sider>
+        <Layout.Content>
+          <RouterView></RouterView>
+        </Layout.Content>
+      </Layout>
     )
   }
 }
