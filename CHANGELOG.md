@@ -1,4 +1,11 @@
-## [0.2.8](https://github.com/agileago/vue3-oop/compare/v0.2.7...v0.2.8) (2022-02-25)
+undefined
+
+## [0.2.9](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.2.9) (2022-03-11)
+
+
+### Features
+
+* 支持模板 ([9076d9c](https://github.com/agileago/vue3-oop/commit/9076d9ce92401bdc47e0bbbc6ed99c18e2ee0ebb))## [0.2.8](https://github.com/agileago/vue3-oop/compare/v0.2.7...v0.2.8) (2022-02-25)
 
 
 ### Features
