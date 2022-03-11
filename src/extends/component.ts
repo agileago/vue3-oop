@@ -86,7 +86,7 @@ export abstract class VueComponent<T extends {} = {}> {
   }
 
   /** 渲染函数 */
-  abstract render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
+  render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
 // 为了支持es5浏览器
 Object.defineProperty(VueComponent, '__vccOpts', {
