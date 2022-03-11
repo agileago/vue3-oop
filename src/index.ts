@@ -5,7 +5,12 @@ export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'
 export { Hook } from './decorators/hook'
 export * from './helper'
-export { Component, InjectorKey, getCurrentInjector } from './di'
+export {
+  Component,
+  InjectorKey,
+  getCurrentInjector,
+  createCurrentInjector,
+} from './di'
 export type { ComponentOptions } from './di'
 export type {
   ComponentProps,

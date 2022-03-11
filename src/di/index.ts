@@ -63,6 +63,7 @@ export function resolveComponent(target: { new (...args: []): any }) {
   // 如果没有使用 injection-js 则不创建注入器
   if (!Reflect.getMetadata('annotations', target)) return new target()
   const parent = inject(InjectorKey, undefined)
+  // 从缓存中拿到解析过得依赖
   let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(
     MetadataProviderKey,
     target
@@ -160,4 +161,24 @@ export function getCurrentInjector(): ReflectiveInjector {
   const instance = getCurrentInstance()
   // @ts-ignore
   return instance.provides[InjectorKey] || inject(InjectorKey)
+}
+/** 手动创建当前注射器, 只能用在 setup 中 */
+export function createCurrentInjector(
+  providers: Provider[],
+  exclude?: Provider[]
+): ReflectiveInjector {
+  let deps = resolveDependencies(providers)
+  if (exclude?.length) {
+    deps = deps.filter((k) => exclude?.includes(k))
+  }
+  const resolveProviders = ReflectiveInjector.resolve(deps)
+  const parent = inject(InjectorKey, undefined)
+  const injector = ReflectiveInjector.fromResolvedProviders(
+    resolveProviders,
+    parent
+  )
+  provide(InjectorKey, injector)
+  // 实例化
+  resolveProviders.forEach((k) => injector.get(k.key.token))
+  return injector
 }

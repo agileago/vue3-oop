@@ -6,7 +6,7 @@ import type {
   VNodeChild,
   VNodeProps,
 } from 'vue'
-import { getCurrentInstance, provide } from 'vue'
+import { getCurrentInstance, markRaw, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import type {
   Hanlder,
@@ -86,7 +86,7 @@ export abstract class VueComponent<T extends {} = {}> {
   }
 
   /** 渲染函数 */
-  abstract render(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
+  abstract render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
 // 为了支持es5浏览器
 Object.defineProperty(VueComponent, '__vccOpts', {
@@ -116,6 +116,8 @@ Object.defineProperty(VueComponent, '__vccOpts', {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       setup: (props: any, ctx: any) => {
         const instance = VueComponent.resolveComponent(CompConstructor)
+        // 支持模板
+        if (CompConstructor.__vccOpts__value.render) return markRaw(instance)
         return instance.render.bind(instance)
       },
     })
