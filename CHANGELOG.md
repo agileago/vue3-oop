@@ -1,5 +1,17 @@
 undefined
 
+# [0.3.0](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.3.0) (2022-03-11)
+
+
+### Bug Fixes
+
+* vuecomponent类型错误 ([c6199ed](https://github.com/agileago/vue3-oop/commit/c6199ed9145ef3062ef58d6959fce61c037e9981))
+
+
+### Features
+
+* 支持模板 ([9076d9c](https://github.com/agileago/vue3-oop/commit/9076d9ce92401bdc47e0bbbc6ed99c18e2ee0ebb))undefined
+
 ## [0.2.9](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.2.9) (2022-03-11)
 
 
