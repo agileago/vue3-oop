@@ -29,57 +29,70 @@ type Lifecycle =
   | 'RenderTriggered'
   | 'ServerPrefetch'
 
-export const Hook: HookDecorator = createDecorator('Hook')
+export const Hook: HookDecorator = createDecorator('Hook', true)
 
 export interface HookDecorator {
-  (lifecycle: Lifecycle): MethodDecorator
+  (lifecycle: Lifecycle | Lifecycle[]): MethodDecorator
   MetadataKey: string | symbol
 }
 
 function handler(targetThis: any) {
-  const list = getProtoMetadata<Lifecycle>(targetThis, Hook.MetadataKey)
-  if (!list || !list.length) return
+  const list = getProtoMetadata<(Lifecycle | Lifecycle[])[]>(
+    targetThis,
+    Hook.MetadataKey
+  )
+  if (!list?.length) return
   for (const item of list) {
     let vueFn: any
-    switch (item.options) {
-      case 'BeforeMount':
-        vueFn = onBeforeMount
-        break
-      case 'Mounted':
-        vueFn = onMounted
-        break
-      case 'BeforeUpdate':
-        vueFn = onBeforeUpdate
-        break
-      case 'Updated':
-        vueFn = onUpdated
-        break
-      case 'BeforeUnmount':
-        vueFn = onBeforeUnmount
-        break
-      case 'Unmounted':
-        vueFn = onUnmounted
-        break
-      case 'Activated':
-        vueFn = onActivated
-        break
-      case 'Deactivated':
-        vueFn = onDeactivated
-        break
-      case 'ErrorCaptured':
-        vueFn = onErrorCaptured
-        break
-      case 'RenderTracked':
-        vueFn = onRenderTracked
-        break
-      case 'RenderTriggered':
-        vueFn = onRenderTriggered
-        break
-      case 'ServerPrefetch':
-        vueFn = onServerPrefetch
-        break
+    const doneLife: Record<string, true> = {}
+    const options = item.options.slice()
+    for (const option of options) {
+      if (Array.isArray(option)) {
+        options.push(...option)
+        continue
+      }
+      if (doneLife[option]) continue
+      switch (option) {
+        case 'BeforeMount':
+          vueFn = onBeforeMount
+          break
+        case 'Mounted':
+          vueFn = onMounted
+          break
+        case 'BeforeUpdate':
+          vueFn = onBeforeUpdate
+          break
+        case 'Updated':
+          vueFn = onUpdated
+          break
+        case 'BeforeUnmount':
+          vueFn = onBeforeUnmount
+          break
+        case 'Unmounted':
+          vueFn = onUnmounted
+          break
+        case 'Activated':
+          vueFn = onActivated
+          break
+        case 'Deactivated':
+          vueFn = onDeactivated
+          break
+        case 'ErrorCaptured':
+          vueFn = onErrorCaptured
+          break
+        case 'RenderTracked':
+          vueFn = onRenderTracked
+          break
+        case 'RenderTriggered':
+          vueFn = onRenderTriggered
+          break
+        case 'ServerPrefetch':
+          vueFn = onServerPrefetch
+          break
+      }
+      doneLife[option] = true
+      vueFn(() => targetThis[item.key]())
     }
-    vueFn(() => targetThis[item.key]())
   }
 }
 

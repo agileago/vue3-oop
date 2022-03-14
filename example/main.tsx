@@ -1,5 +1,5 @@
 import '@abraham/reflection'
-import { createCurrentInjector, Mut, VueComponent } from 'vue3-oop'
+import { createCurrentInjector, Hook, Mut, VueComponent } from 'vue3-oop'
 import { createApp } from 'vue'
 import 'ant-design-vue/dist/antd.css'
 import { Layout, Menu } from 'ant-design-vue'
@@ -10,6 +10,16 @@ import { routes } from './router/routes'
 class App extends VueComponent {
   injector = createCurrentInjector([RouterStartService])
   @Mut() collapsed = false
+
+  @Hook('BeforeMount')
+  before() {
+    console.log(222)
+  }
+
+  @Hook(['Mounted', 'BeforeMount'])
+  mounted() {
+    console.log(111)
+  }
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>

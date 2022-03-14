@@ -10,17 +10,21 @@ export interface MetadataStore<T> {
   desc?: PropertyDescriptor | null
 }
 
-export function createDecorator<T = void>(name: string) {
+export function createDecorator<T = void>(name: string, allowRepeat = false) {
   const metaName = `VUE3-OOP_${name.toUpperCase()}`
   const MetadataKey = createSymbol(metaName)
   const decoratorFn: DecoratorFn<T> = function (options: T) {
     return function (target: any, key: string | symbol) {
-      let list: MetadataStore<T>[] =
+      let list: MetadataStore<T | T[]>[] =
         Reflect.getMetadata(MetadataKey, target) || []
       list = list.slice()
       const hasItem = list.find((k) => k.key === key)
-      if (!hasItem) list.push({ key, options })
-      else hasItem.options = options
+      if (!hasItem) {
+        list.push({ key, options: allowRepeat ? [options] : options })
+      } else {
+        if (!allowRepeat) hasItem.options = options
+        else if (Array.isArray(hasItem.options)) hasItem.options.push(options)
+      }
       Reflect.defineMetadata(MetadataKey, list, target)
     }
   }
