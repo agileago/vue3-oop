@@ -4,6 +4,7 @@ export { Mut } from './decorators/mut'
 export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'
 export { Hook } from './decorators/hook'
+export { createDecorator, getProtoMetadata } from './decorators/util'
 export * from './helper'
 export {
   Component,
@@ -19,4 +20,5 @@ export type {
   WithVModel,
   ComponentPropsArray,
   ComponentPropsObject,
+  Hanlder,
 } from './type'
