@@ -1,5 +1,12 @@
 undefined
 
+## [0.3.2](https://github.com/agileago/vue3-oop/compare/v0.3.1...v0.3.2) (2022-03-14)
+
+
+### Features
+
+* 导出创建装饰器的函数 ([90f2ad1](https://github.com/agileago/vue3-oop/commit/90f2ad19f7c89f27791ecd02bfbcb1d3c5533c65))undefined
+
 ## [0.3.1](https://github.com/agileago/vue3-oop/compare/v0.3.0...v0.3.1) (2022-03-14)
 
 
