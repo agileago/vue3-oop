@@ -1,5 +1,12 @@
 undefined
 
+## [0.3.1](https://github.com/agileago/vue3-oop/compare/v0.3.0...v0.3.1) (2022-03-14)
+
+
+### Features
+
+* hook支持绑定多个 ([c9699dc](https://github.com/agileago/vue3-oop/commit/c9699dc86e673e1e06625a5289e106faafc80a5d))undefined
+
 # [0.3.0](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.3.0) (2022-03-11)
 
 
