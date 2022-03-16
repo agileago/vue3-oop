@@ -1,5 +1,12 @@
 undefined
 
+# [0.5.0](https://github.com/agileago/vue3-oop/compare/v0.3.1...v0.5.0) (2022-03-16)
+
+
+### Features
+
+* 增加useForwardRef ([8a3c963](https://github.com/agileago/vue3-oop/commit/8a3c9634d584070f43b60a945e027806dcbb6417))undefined
+
 ## [0.3.1](https://github.com/agileago/vue3-oop/compare/v0.3.0...v0.3.1) (2022-03-14)
 
 
