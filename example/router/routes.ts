@@ -12,7 +12,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/basic/hello-world',
-        component: () => import('../module/basic/hello-world/hello.vue'),
+        component: () => import('../module/basic/hello-world/hello-world.view'),
         meta: {
           title: 'Hello Wolrd',
         },

@@ -1,4 +1,8 @@
-export { VueComponent, GlobalStoreKey } from './extends/component'
+export {
+  VueComponent,
+  GlobalStoreKey,
+  useForwardRef,
+} from './extends/component'
 export { VueService, ProviderKey } from './extends/service'
 export { Mut } from './decorators/mut'
 export { Computed } from './decorators/computed'
