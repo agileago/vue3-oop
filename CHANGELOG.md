@@ -1,32 +1,30 @@
-undefined
-
 ## [0.5.1](https://github.com/agileago/vue3-oop/compare/v0.3.2...v0.5.1) (2022-03-16)
 
 
 ### Features
 
-* 增加useForwardRef ([13cafd4](https://github.com/agileago/vue3-oop/commit/13cafd4c47dcb937919375d2631a53c840f77c9a))undefined
+* 增加useForwardRef ([13cafd4](https://github.com/agileago/vue3-oop/commit/13cafd4c47dcb937919375d2631a53c840f77c9a))
 
 # [0.5.0](https://github.com/agileago/vue3-oop/compare/v0.3.1...v0.5.0) (2022-03-16)
 
 
 ### Features
 
-* 增加useForwardRef ([8a3c963](https://github.com/agileago/vue3-oop/commit/8a3c9634d584070f43b60a945e027806dcbb6417))undefined
+* 增加useForwardRef ([8a3c963](https://github.com/agileago/vue3-oop/commit/8a3c9634d584070f43b60a945e027806dcbb6417))
 
 ## [0.3.2](https://github.com/agileago/vue3-oop/compare/v0.3.1...v0.3.2) (2022-03-14)
 
 
 ### Features
 
-* 导出创建装饰器的函数 ([90f2ad1](https://github.com/agileago/vue3-oop/commit/90f2ad19f7c89f27791ecd02bfbcb1d3c5533c65))undefined
+* 导出创建装饰器的函数 ([90f2ad1](https://github.com/agileago/vue3-oop/commit/90f2ad19f7c89f27791ecd02bfbcb1d3c5533c65))
 
 ## [0.3.1](https://github.com/agileago/vue3-oop/compare/v0.3.0...v0.3.1) (2022-03-14)
 
 
 ### Features
 
-* hook支持绑定多个 ([c9699dc](https://github.com/agileago/vue3-oop/commit/c9699dc86e673e1e06625a5289e106faafc80a5d))undefined
+* hook支持绑定多个 ([c9699dc](https://github.com/agileago/vue3-oop/commit/c9699dc86e673e1e06625a5289e106faafc80a5d))
 
 # [0.3.0](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.3.0) (2022-03-11)
 
@@ -38,7 +36,7 @@ undefined
 
 ### Features
 
-* 支持模板 ([9076d9c](https://github.com/agileago/vue3-oop/commit/9076d9ce92401bdc47e0bbbc6ed99c18e2ee0ebb))undefined
+* 支持模板 ([9076d9c](https://github.com/agileago/vue3-oop/commit/9076d9ce92401bdc47e0bbbc6ed99c18e2ee0ebb))
 
 ## [0.2.9](https://github.com/agileago/vue3-oop/compare/v0.2.8...v0.2.9) (2022-03-11)
 
