@@ -30,6 +30,7 @@ type VueComponentProps<T extends {}> = Omit<T, 'slots'> &
   AllowedComponentProps &
   Record<string, unknown>
 
+// @ts-ignore
 export abstract class VueComponent<T extends {} = {}> {
   /** 热更新使用 */
   static __hmrId?: string
@@ -49,25 +50,54 @@ export abstract class VueComponent<T extends {} = {}> {
   static globalStore?: boolean
   /** 是否把自己当做服务provide出去，以便子组件可注入 */
   static ProviderKey?: string | symbol | number | InjectionKey<any>
-  /** 主要给jsx提示用 */
-  get $props() {
-    return this.props
-  }
   /** 组件属性 */
   public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
   public context = useCtx() as WithSlotTypes<T>
   /** 组件内部实例，如果使用组件实例请 this.$.proxy */
   public $ = getCurrentInstance()!
+  /** 主要给jsx提示用 */
+  get $props() {
+    return this.props
+  }
+  get $el() {
+    return this.$.proxy?.$el
+  }
+  get $refs() {
+    return this.$.proxy?.$refs
+  }
+  get $parent() {
+    return this.$.proxy?.$parent
+  }
+  get $root() {
+    return this.$.proxy?.$root
+  }
+  get $emit() {
+    return this.$.proxy?.$emit
+  }
+  get $forceUpdate() {
+    return this.$.proxy?.$forceUpdate
+  }
+  get $nextTick() {
+    return this.$.proxy?.$nextTick
+  }
+  get $watch() {
+    return this.$.proxy?.$watch
+  }
 
   constructor() {
-    this.context.expose(this)
+    markRaw(this)
+    // 处理ref
+    const current = this.$
+    // 由于vue会包装一层，会自动代理ref,导致类型错误, 还导致不能修改变量
+    current.exposed = this
+    current.exposeProxy = this
+
+    // 处理依赖注入
     const ThisConstructor = this.constructor as VueComponentStaticContructor
     if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)
     if (ThisConstructor.globalStore) {
       // 如果作为全局的服务，则注入到根上面
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const current = getCurrentInstance()!
       const app = current.appContext.app
       app.provide(GlobalStoreKey, this)
       app.getStore = () => this
@@ -82,13 +112,14 @@ export abstract class VueComponent<T extends {} = {}> {
         return current?.provides[token]
       }
     }
+
     VueComponent.handler.forEach((handler) => handler.handler(this))
   }
 
   /** 渲染函数 */
   render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 }
-// 为了支持es5浏览器
+// 某些浏览器不支持 static get
 Object.defineProperty(VueComponent, '__vccOpts', {
   enumerable: true,
   configurable: true,
@@ -123,3 +154,13 @@ Object.defineProperty(VueComponent, '__vccOpts', {
     })
   },
 })
+
+// 处理forwardref
+export function useForwardRef() {
+  const instance = getCurrentInstance()!
+  function forwardRef(ref: any) {
+    instance.exposed = ref
+    instance.exposeProxy = ref
+  }
+  return forwardRef
+}
