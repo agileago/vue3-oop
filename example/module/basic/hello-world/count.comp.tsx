@@ -6,8 +6,7 @@ interface CountCompProps {
 
 export class CountComp extends VueComponent<CountCompProps> {
   static defaultProps: ComponentProps<CountCompProps> = ['size']
-
   render() {
-    return <div>{this.props.size}</div>
+    return <div>111</div>
   }
 }

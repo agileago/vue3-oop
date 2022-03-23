@@ -22,7 +22,6 @@ export type {
   ComponentSlots,
   ClassType,
   WithVModel,
-  ComponentPropsArray,
   ComponentPropsObject,
   Hanlder,
 } from './type'

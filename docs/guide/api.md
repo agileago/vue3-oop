@@ -107,6 +107,10 @@ class Foo extends VueComponent {
 
 在外部服务中获取当前的最近一级的注射器
 
+## useForwardRef
+
+在HOC组件中使用这个方法可以转发真正的ref
+
 
 # 类型
 

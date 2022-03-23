@@ -8,13 +8,7 @@ import type {
 } from 'vue'
 import { getCurrentInstance, markRaw, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
-import type {
-  Hanlder,
-  VueComponentStaticContructor,
-  WithSlotTypes,
-  WithVModel,
-  WithVSlots,
-} from '../type'
+import type { Hanlder, WithSlotTypes, WithVModel, WithVSlots } from '../type'
 import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
@@ -30,10 +24,7 @@ type VueComponentProps<T extends {}> = Omit<T, 'slots'> &
   AllowedComponentProps &
   Record<string, unknown>
 
-// @ts-ignore
-export abstract class VueComponent<T extends {} = {}> {
-  /** 热更新使用 */
-  static __hmrId?: string
+export class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
   static handler: Hanlder[] = [
     MutHandler,
@@ -43,6 +34,15 @@ export abstract class VueComponent<T extends {} = {}> {
   ]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
+
+  /** 热更新使用 */
+  static __hmrId?: string
+  /** 组件显示名字 */
+  static displayName?: string
+  /** 组件的属性定义 */
+  static defaultProps?: any
+  /** vue options emits */
+  static emits?: string[]
   static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
@@ -54,6 +54,8 @@ export abstract class VueComponent<T extends {} = {}> {
   public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
   public context = useCtx() as WithSlotTypes<T>
+
+  // 公开的一些属性 publicPropertiesMap
   /** 组件内部实例，如果使用组件实例请 this.$.proxy */
   public $ = getCurrentInstance()!
   /** 主要给jsx提示用 */
@@ -61,28 +63,40 @@ export abstract class VueComponent<T extends {} = {}> {
     return this.props
   }
   get $el() {
-    return this.$.proxy?.$el
+    return this.$.proxy!.$el
+  }
+  get $data() {
+    return this.$.proxy!.$data
+  }
+  get $attrs() {
+    return this.$.proxy!.$attrs
+  }
+  get $slots() {
+    return this.$.proxy!.$slots
+  }
+  get $options() {
+    return this.$.proxy!.$options
   }
   get $refs() {
-    return this.$.proxy?.$refs
+    return this.$.proxy!.$refs
   }
   get $parent() {
-    return this.$.proxy?.$parent
+    return this.$.proxy!.$parent
   }
   get $root() {
-    return this.$.proxy?.$root
+    return this.$.proxy!.$root
   }
   get $emit() {
-    return this.$.proxy?.$emit
+    return this.$.proxy!.$emit
   }
   get $forceUpdate() {
-    return this.$.proxy?.$forceUpdate
+    return this.$.proxy!.$forceUpdate
   }
   get $nextTick() {
-    return this.$.proxy?.$nextTick
+    return this.$.proxy!.$nextTick
   }
   get $watch() {
-    return this.$.proxy?.$watch
+    return this.$.proxy!.$watch
   }
 
   constructor() {
@@ -94,7 +108,7 @@ export abstract class VueComponent<T extends {} = {}> {
     current.exposeProxy = this
 
     // 处理依赖注入
-    const ThisConstructor = this.constructor as VueComponentStaticContructor
+    const ThisConstructor = this.constructor as typeof VueComponent
     if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)
     if (ThisConstructor.globalStore) {
       // 如果作为全局的服务，则注入到根上面
@@ -125,7 +139,7 @@ Object.defineProperty(VueComponent, '__vccOpts', {
   configurable: true,
   get() {
     if (this.__vccOpts__value) return this.__vccOpts__value
-    const CompConstructor = this as unknown as VueComponentStaticContructor
+    const CompConstructor = this as typeof VueComponent
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
       displayName,
@@ -148,7 +162,7 @@ Object.defineProperty(VueComponent, '__vccOpts', {
       setup: (props: any, ctx: any) => {
         const instance = VueComponent.resolveComponent(CompConstructor)
         // 支持模板
-        if (CompConstructor.__vccOpts__value.render) return markRaw(instance)
+        if (CompConstructor.__vccOpts__value!.render) return instance
         return instance.render.bind(instance)
       },
     })
