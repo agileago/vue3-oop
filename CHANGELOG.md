@@ -1,4 +1,11 @@
-## [0.5.1](https://github.com/agileago/vue3-oop/compare/v0.3.2...v0.5.1) (2022-03-16)
+
+
+## [0.5.2](https://github.com/agileago/vue3-oop/compare/v0.5.1...v0.5.2) (2022-03-23)
+
+
+### Features
+
+* 增加vue实例的方法 ([aeb9ad9](https://github.com/agileago/vue3-oop/commit/aeb9ad9a82d090e2568c6db564d33c69246f7723))## [0.5.1](https://github.com/agileago/vue3-oop/compare/v0.3.2...v0.5.1) (2022-03-16)
 
 
 ### Features
