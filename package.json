@@ -62,10 +62,10 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@vitejs/plugin-vue": "^2.2.4",
-    "@vitest/ui": "^0.7.7",
+    "@vitest/ui": "^0.7.10",
     "@vue/test-utils": "^2.0.0-rc.18",
     "@vue3-oop/plugin-vue-jsx": "^1.4.0",
-    "ant-design-vue": "^3.0.0-beta.8",
+    "ant-design-vue": "^3.1.0-rc.2",
     "autobind-decorator": "^2.4.0",
     "c8": "^7.11.0",
     "commitizen": "^4.2.4",
@@ -86,7 +86,7 @@
     "typescript": "^4.6.2",
     "vite": "^2.8.6",
     "vitepress": "^0.22.3",
-    "vitest": "^0.7.7",
+    "vitest": "^0.7.10",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
@@ -95,11 +95,11 @@
     "commit-msg": "commitlint -E GIT_PARAMS"
   },
   "lint-staged": {
-    "*.{ts,tsx,vue,js}": [
+    "*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{css,scss,html,json}": [
+    "*.{css,scss,html,json,js}": [
       "prettier --write"
     ]
   },
@@ -108,7 +108,6 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@abraham/reflection": "*",
     "injection-js": "^2.4.0",
     "vue": "^3.2.20"
   },

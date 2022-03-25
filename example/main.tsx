@@ -1,59 +1,55 @@
 import '@abraham/reflection'
-import { createCurrentInjector, Hook, Mut, VueComponent } from 'vue3-oop'
+import { Component, Mut, VueComponent } from 'vue3-oop'
 import { createApp } from 'vue'
 import 'ant-design-vue/dist/antd.css'
-import { Layout, Menu } from 'ant-design-vue'
+import { ConfigProvider, Layout, Menu } from 'ant-design-vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { RouterStartService } from './router'
 import { routes } from './router/routes'
+import zhCN from 'ant-design-vue/lib/locale/zh_CN'
+import { setup } from './setup'
 
+@Component({ providers: [RouterStartService] })
 class App extends VueComponent {
-  injector = createCurrentInjector([RouterStartService])
   @Mut() collapsed = false
 
-  @Hook('BeforeMount')
-  before() {
-    console.log(222)
-  }
-
-  @Hook(['Mounted', 'BeforeMount'])
-  mounted() {
-    console.log(111)
-  }
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Layout.Sider v-model:collapsed={this.collapsed} collapsible>
-          <h2
-            style={{ color: '#fff', textAlign: 'center', lineHeight: '40px' }}
-          >
-            VUE EXAMPLE
-          </h2>
-          <Menu theme={'dark'} mode={'inline'}>
-            {routes.map((r) => {
-              return (
-                <Menu.SubMenu title={r.meta?.title} key={r.path}>
-                  {r.children?.map((i) => {
-                    return (
-                      <Menu.Item key={i.path}>
-                        <RouterLink to={i.path} style={{ display: 'block' }}>
-                          {i.meta?.title}
-                        </RouterLink>
-                      </Menu.Item>
-                    )
-                  })}
-                </Menu.SubMenu>
-              )
-            })}
-          </Menu>
-        </Layout.Sider>
-        <Layout.Content>
-          <RouterView></RouterView>
-        </Layout.Content>
-      </Layout>
+      <ConfigProvider locale={zhCN}>
+        <Layout style={{ minHeight: '100vh' }}>
+          <Layout.Sider v-model:collapsed={this.collapsed} collapsible>
+            <h2
+              style={{ color: '#fff', textAlign: 'center', lineHeight: '40px' }}
+            >
+              VUE 示例
+            </h2>
+            <Menu theme={'dark'} mode={'inline'}>
+              {routes.map((r) => {
+                return (
+                  <Menu.SubMenu title={r.meta?.title} key={r.path}>
+                    {r.children?.map((i) => {
+                      return (
+                        <Menu.Item key={i.path}>
+                          <RouterLink to={i.path} style={{ display: 'block' }}>
+                            {i.meta?.title}
+                          </RouterLink>
+                        </Menu.Item>
+                      )
+                    })}
+                  </Menu.SubMenu>
+                )
+              })}
+            </Menu>
+          </Layout.Sider>
+          <Layout.Content>
+            <RouterView></RouterView>
+          </Layout.Content>
+        </Layout>
+      </ConfigProvider>
     )
   }
 }
 
 const app = createApp(App)
+setup(app)
 app.mount('#app')

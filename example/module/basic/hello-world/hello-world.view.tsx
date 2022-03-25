@@ -1,52 +1,23 @@
-import { Hook, Link, Mut, useForwardRef, VueComponent } from 'vue3-oop'
-import { Input, type InputProps } from 'ant-design-vue'
-
-function createBigSizeInput(size: 'small' | 'middle' | 'large') {
-  class BigInput extends VueComponent<Omit<InputProps, 'size'>> {
-    forwardRef = useForwardRef()
-
-    render() {
-      return (
-        <Input
-          {...this.context.attrs}
-          ref={this.forwardRef}
-          size={size}
-        ></Input>
-      )
-    }
-  }
-  return BigInput
-}
-
-const BigInput = createBigSizeInput('large')
-
-class Abc extends VueComponent {
-  @Mut() a = 0
-
-  render() {
-    return <div onClick={() => this.a++}>{this.a}</div>
-  }
-}
+import { Mut, VueComponent } from 'vue3-oop'
+import { Button, Card, Input } from 'ant-design-vue'
 
 export default class HelloWorldView extends VueComponent {
-  @Link() abc: Abc[]
+  @Mut() count = 1
 
-  @Link() input: any
-
-  @Hook('Mounted')
-  mounted() {
-    console.log(this.abc)
-    console.log(this.input)
-  }
   render() {
     return (
-      <div>
-        <button onClick={() => this.abc}>+</button>
-        <Abc ref_for ref_key={'abc'} ref={'abc'}></Abc>
-        <Abc ref_for ref_key={'abc'} ref={'abc'}></Abc>
-        <Abc ref_for ref_key={'abc'} ref={'abc'}></Abc>
-        <BigInput ref={'input'}></BigInput>
-      </div>
+      <Card title={'加减组件'}>
+        <Button type={'primary'} onClick={() => this.count++}>
+          +
+        </Button>
+        <Input
+          v-model:value={this.count}
+          style={{ width: '100px', textAlign: 'center' }}
+        ></Input>
+        <Button type={'primary'} onClick={() => this.count--}>
+          -
+        </Button>
+      </Card>
     )
   }
 }
