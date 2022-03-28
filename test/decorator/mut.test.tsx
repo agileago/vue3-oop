@@ -28,38 +28,43 @@ const debounceRef: CustomRefFactory<any> = (track, trigger) => {
 const delay = (timeout: number) =>
   new Promise((resolve) => setTimeout(resolve, timeout))
 
-test('Mut decorator', async () => {
-  class CountComponent extends VueComponent {
-    @Mut() count = 1
-    // shallow ref
-    @Mut(true) obj = { count: 1 }
-    // custom ref
-    @Mut(debounceRef) count1 = 1
+class CountComponent extends VueComponent {
+  @Mut() count = 1
+  // shallow ref
+  @Mut(true) obj = { count: 1 }
+  // custom ref
+  @Mut(debounceRef) count1 = 1
 
-    render() {
-      return (
-        <div>
-          <p onClick={() => this.count++}>{this.count}</p>
-          <div id="shallow" onClick={() => this.obj.count++}>
-            {this.obj.count}
-          </div>
-          <div id="custom" onClick={() => this.count1++}>
-            {this.count1}
-          </div>
+  render() {
+    return (
+      <div>
+        <p onClick={() => this.count++}>{this.count}</p>
+        <div id="shallow" onClick={() => this.obj.count++}>
+          {this.obj.count}
         </div>
-      )
-    }
+        <div id="custom" onClick={() => this.count1++}>
+          {this.count1}
+        </div>
+      </div>
+    )
   }
+}
+
+test('Mut decorator should work', async () => {
   // @ts-ignore
   const wrapper = mount(CountComponent)
-  const vm = wrapper.vm as unknown as CountComponent
 
   const p = wrapper.get('p')
   expect(p.text()).toContain('1')
   await p.trigger('click')
   expect(p.text()).toContain('2')
+})
 
-  // shallow ref
+test('mut: shallow ref', async () => {
+  // @ts-ignore
+  const wrapper = mount(CountComponent)
+  const vm = wrapper.vm as unknown as CountComponent
+
   const shallow = wrapper.get('#shallow')
   expect(shallow.text()).toContain('1')
   await shallow.trigger('click')
@@ -69,7 +74,11 @@ test('Mut decorator', async () => {
   await vm.$nextTick()
   console.log(shallow.text())
   expect(shallow.text()).toContain('2')
+})
 
+test('mut: custom ref', async () => {
+  // @ts-ignore
+  const wrapper = mount(CountComponent)
   // custom ref
   const custom = wrapper.get('#custom')
   expect(custom.text()).toContain('1')
