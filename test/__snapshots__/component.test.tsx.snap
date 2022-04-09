@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`class component render 1`] = `"<p>hello world 1</p>"`;
+
+exports[`class component render 2`] = `"<p>hello world 2</p>"`;

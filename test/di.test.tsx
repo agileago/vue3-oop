@@ -27,7 +27,6 @@ test('di should work', () => {
     }
   }
 
-  // @ts-ignore
   const wrapper = mount(CountComponent)
   expect(wrapper.text()).toContain('1')
 })
@@ -47,8 +46,8 @@ test('外部服务应该可以获取到注射器', () => {
       return <div>1111</div>
     }
   }
-  // @ts-ignore
+
   const wrapper = mount(Foo)
-  const vm = wrapper.vm as unknown as Foo
+  const vm = wrapper.vm
   expect(vm.injector).toStrictEqual(vm.outSideService.injector)
 })

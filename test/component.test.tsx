@@ -1,37 +1,67 @@
 import '@abraham/reflection'
 import { expect, test } from 'vitest'
-import type { ComponentProps } from 'vue3-oop'
-import { VueComponent } from 'vue3-oop'
+import {
+  type ComponentProps,
+  type ComponentSlots,
+  Mut,
+  VueComponent,
+} from 'vue3-oop'
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
+import { nextTick, type VNodeChild } from 'vue'
 
-test('class component render', () => {
+test('class component render', async () => {
   class CountComponent extends VueComponent {
+    @Mut() count = 1
     render() {
-      return <p>hello world</p>
+      return <p>hello world {this.count}</p>
     }
   }
-  // @ts-ignore
+
   const wrapper = mount(CountComponent)
-  expect(wrapper.text()).toContain('hello')
+  expect(wrapper.html()).toMatchSnapshot()
+  wrapper.vm.count++
+  await nextTick()
+  expect(wrapper.html()).toMatchSnapshot()
 })
 
-interface CountProps {
-  count: number
-}
-
 test('class with props', async () => {
+  interface CountProps {
+    count: number
+  }
   class CountComponent extends VueComponent<CountProps> {
     static defaultProps: ComponentProps<CountProps> = ['count']
     render() {
       return <div>{this.props.count}</div>
     }
   }
-  // @ts-ignore
+
   const wrapper = mount(CountComponent, { props: { count: 1 } })
   expect(wrapper.text()).toContain('1')
-  // @ts-ignore
+
   wrapper.vm.$props.count = 2
   await nextTick()
   expect(wrapper.text()).toContain('2')
+})
+
+test('带slots的组件', async () => {
+  interface CountProps {
+    slots: {
+      item(name: string): VNodeChild
+    }
+  }
+  class Count extends VueComponent<CountProps> {
+    render() {
+      return <div>{this.context.slots.item?.('aaa')}</div>
+    }
+  }
+
+  const slots: ComponentSlots<Count> = {
+    item(name: string): VNodeChild {
+      return name
+    },
+  }
+
+  // @ts-ignore
+  const wrapper = mount(Count, { slots })
+  expect(wrapper.text()).toContain('aaa')
 })

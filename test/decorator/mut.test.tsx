@@ -51,7 +51,6 @@ class CountComponent extends VueComponent {
 }
 
 test('Mut decorator should work', async () => {
-  // @ts-ignore
   const wrapper = mount(CountComponent)
 
   const p = wrapper.get('p')
@@ -61,7 +60,6 @@ test('Mut decorator should work', async () => {
 })
 
 test('mut: shallow ref', async () => {
-  // @ts-ignore
   const wrapper = mount(CountComponent)
   const vm = wrapper.vm as unknown as CountComponent
 
@@ -77,7 +75,6 @@ test('mut: shallow ref', async () => {
 })
 
 test('mut: custom ref', async () => {
-  // @ts-ignore
   const wrapper = mount(CountComponent)
   // custom ref
   const custom = wrapper.get('#custom')

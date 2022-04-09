@@ -6,7 +6,7 @@ export default class HelloWorldView extends VueComponent {
 
   render() {
     return (
-      <Card title={'加减组件'}>
+      <Card title={'加减功能'}>
         <Button type={'primary'} onClick={() => this.count++}>
           +
         </Button>

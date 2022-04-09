@@ -2,6 +2,7 @@ import '@abraham/reflection'
 import { expect, test } from 'vitest'
 import { Computed, Mut, VueComponent } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
 
 class CountComponent extends VueComponent {
   @Mut() count = 1
@@ -21,13 +22,12 @@ class CountComponent extends VueComponent {
 }
 
 test('Computed decorator should work', async () => {
-  // @ts-ignore
   const wrapper = mount(CountComponent)
-  const vm = wrapper.vm as unknown as CountComponent
+  const vm = wrapper.vm
 
   const p = wrapper.get('p')
   expect(p.text()).toContain('2')
   vm.count++
-  await vm.$nextTick()
+  await nextTick()
   expect(p.text()).toContain('4')
 })

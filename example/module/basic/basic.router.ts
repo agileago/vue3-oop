@@ -11,14 +11,14 @@ const routes: RouteRecordRaw = {
       path: '/basic/hello-world',
       component: () => import('./hello-world/hello-world.view'),
       meta: {
-        title: '全功能类组件',
+        title: '加减',
       },
     },
     {
       path: '/basic/user-input',
       component: () => import('./user-input/user-input.view'),
       meta: {
-        title: 'user input',
+        title: '增删改查',
       },
     },
   ],
