@@ -1,5 +1,12 @@
 
 
+## [0.5.3](https://github.com/agileago/vue3-oop/compare/v0.5.2...v0.5.3) (2022-04-15)
+
+
+### Bug Fixes
+
+* 修复联合类型错误提示 ([661acfe](https://github.com/agileago/vue3-oop/commit/661acfe1c1941f9023c9bfa8ebc03a2976d05ef4))
+
 ## [0.5.2](https://github.com/agileago/vue3-oop/compare/v0.5.1...v0.5.2) (2022-03-23)
 
 
