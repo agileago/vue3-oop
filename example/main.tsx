@@ -1,5 +1,5 @@
 import '@abraham/reflection'
-import { Component, Mut, VueComponent } from 'vue3-oop'
+import { Component, Hook, Mut, VueComponent } from 'vue3-oop'
 import { createApp } from 'vue'
 import 'ant-design-vue/dist/antd.css'
 import { ConfigProvider, Layout, Menu } from 'ant-design-vue'
@@ -13,12 +13,20 @@ import { setup } from './setup'
 class App extends VueComponent {
   @Mut() collapsed = false
 
+  @Hook('ErrorCaptured')
+  error(...args: any[]) {
+    console.log(args)
+  }
+
   render() {
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ minHeight: '100vh' }}>
           <Layout.Sider v-model:collapsed={this.collapsed} collapsible>
             <h2
+              onClick={() => {
+                throw new Error('hahaha')
+              }}
               style={{ color: '#fff', textAlign: 'center', lineHeight: '40px' }}
             >
               VUE 示例
