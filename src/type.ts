@@ -1,4 +1,4 @@
-import type { Prop, SetupContext, VNodeChild } from 'vue'
+import type { Prop, SetupContext, StyleValue, VNodeChild } from 'vue'
 
 /**
  * 装饰器处理
@@ -7,6 +7,8 @@ export interface Hanlder {
   key: string
   handler: (targetThis: any) => void
 }
+
+type KeysOfUnion<T> = T extends T ? keyof T : never
 
 type DefaultSlots = {
   default(): VNodeChild
@@ -24,9 +26,7 @@ export type WithVSlots<T extends {}> = {
 }
 
 export type WithSlotTypes<T extends {}> = Omit<SetupContext, 'slots'> & {
-  slots: 'slots' extends keyof T
-    ? Partial<T['slots'] & MixDefaultSlots<T['slots']>>
-    : Partial<{ default(): VNodeChild }>
+  slots: VueComponentProps<T>['v-slots']
 }
 
 type ModelProps<T extends {}> = Exclude<
@@ -53,13 +53,31 @@ export type TransformModelValue<T extends {}> =
 
 export type ComponentProps<T extends {}> =
   | ComponentPropsObject<T>
-  | Array<keyof Omit<T, 'slots'>>
+  | Array<KeysOfUnion<DistributiveOmit<T, 'slots'>>>
 
 export type ComponentPropsObject<T extends {}> = {
-  [U in keyof Omit<T, 'slots'>]-?: Prop<any>
+  [U in KeysOfUnion<DistributiveOmit<T, 'slots'>>]-?: Prop<any>
 }
 
 export type ComponentSlots<T extends { props: any }> = T['props']['v-slots']
 
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
 export type ClassType<T> = T
+
+export type AllowedComponentProps = {
+  class?: any
+  style?: StyleValue
+  [name: string]: any
+}
+
+export type DistributiveOmit<T, K extends keyof any> = T extends T
+  ? Omit<T, K>
+  : never
+
+type DistributiveVModel<T> = T extends T ? WithVModel<T> : never
+type DistributiveVSlots<T> = T extends T ? WithVSlots<T> : never
+
+export type VueComponentProps<T extends {}> = DistributiveOmit<T, 'slots'> &
+  DistributiveVModel<T> &
+  DistributiveVSlots<T> &
+  AllowedComponentProps

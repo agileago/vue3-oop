@@ -1,14 +1,12 @@
 import type {
-  AllowedComponentProps,
   ComponentOptions,
   ComponentPublicInstance,
   InjectionKey,
   VNodeChild,
-  VNodeProps,
 } from 'vue'
 import { getCurrentInstance, markRaw, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
-import type { Hanlder, WithSlotTypes, WithVModel, WithVSlots } from '../type'
+import type { Hanlder, VueComponentProps, WithSlotTypes } from '../type'
 import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
@@ -16,13 +14,6 @@ import { LinkHandler } from '../decorators/link'
 import { resolveComponent } from '../di'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
-
-type VueComponentProps<T extends {}> = Omit<T, 'slots'> &
-  WithVModel<T> &
-  WithVSlots<T> &
-  VNodeProps &
-  AllowedComponentProps &
-  Record<string, unknown>
 
 export class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
