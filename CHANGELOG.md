@@ -1,5 +1,12 @@
 
 
+## [0.5.5](https://github.com/agileago/vue3-oop/compare/v0.5.3...v0.5.5) (2022-04-15)
+
+
+### Bug Fixes
+
+* hook装饰器未传递参数 ([44f87a0](https://github.com/agileago/vue3-oop/commit/44f87a03019bd7eee36d83c233d6467265daa90b))
+
 ## [0.5.3](https://github.com/agileago/vue3-oop/compare/v0.5.2...v0.5.3) (2022-04-15)
 
 
