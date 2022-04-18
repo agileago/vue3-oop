@@ -1,5 +1,12 @@
 
 
+## [0.5.6](https://github.com/agileago/vue3-oop/compare/v0.5.5...v0.5.6) (2022-04-18)
+
+
+### Bug Fixes
+
+* 修复vuecomponent slots类型错误 ([047b4b9](https://github.com/agileago/vue3-oop/commit/047b4b95b266d45efa5bc8e916c92df6c6a6493d))
+
 ## [0.5.5](https://github.com/agileago/vue3-oop/compare/v0.5.3...v0.5.5) (2022-04-15)
 
 
