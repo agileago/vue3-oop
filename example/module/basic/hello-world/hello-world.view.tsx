@@ -1,6 +1,12 @@
 import { Mut, VueComponent } from 'vue3-oop'
 import { Button, Card, Input } from 'ant-design-vue'
 
+class A extends VueComponent {
+  render() {
+    return <div>111</div>
+  }
+}
+
 export default class HelloWorldView extends VueComponent {
   @Mut() count = 1
 

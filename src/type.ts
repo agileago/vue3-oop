@@ -26,7 +26,7 @@ export type WithVSlots<T extends {}> = {
 }
 
 export type WithSlotTypes<T extends {}> = Omit<SetupContext, 'slots'> & {
-  slots: VueComponentProps<T>['v-slots']
+  slots: NonNullable<VueComponentProps<T>['v-slots']>
 }
 
 type ModelProps<T extends {}> = Exclude<
@@ -59,7 +59,9 @@ export type ComponentPropsObject<T extends {}> = {
   [U in KeysOfUnion<DistributiveOmit<T, 'slots'>>]-?: Prop<any>
 }
 
-export type ComponentSlots<T extends { props: any }> = T['props']['v-slots']
+export type ComponentSlots<T extends { props: any }> = NonNullable<
+  T['props']['v-slots']
+>
 
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
 export type ClassType<T> = T
