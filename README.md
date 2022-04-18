@@ -2,6 +2,10 @@
 
 类组件+自动化的依赖注入(可选) = 极致的代码体验 [DEMO](https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx)
 
+### QQ交流群
+
+![qq](https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg)
+
 ### 前提条件
 
 需要**reflect-metadata** 的支持
