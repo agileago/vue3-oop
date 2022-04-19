@@ -7,7 +7,7 @@ export default defineConfig(({ command, mode }) => {
     plugins:
       command === 'build'
         ? undefined
-        : [vue(), vueJsx({ enableObjectSlots: false, slotStable: true })],
+        : [vue(), vueJsx({ enableObjectSlots: false })],
     resolve: {
       alias: [
         { find: /^~/, replacement: '' },
