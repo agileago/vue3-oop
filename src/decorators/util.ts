@@ -17,13 +17,20 @@ export function createDecorator<T = void>(name: string, allowRepeat = false) {
     return function (target: any, key: string | symbol) {
       let list: MetadataStore<T | T[]>[] =
         Reflect.getMetadata(MetadataKey, target) || []
+      // 处理继承
       list = list.slice()
-      const hasItem = list.find((k) => k.key === key)
-      if (!hasItem) {
+      const hasIndex = list.findIndex((k) => k.key === key)
+      if (hasIndex === -1) {
         list.push({ key, options: allowRepeat ? [options] : options })
       } else {
-        if (!allowRepeat) hasItem.options = options
-        else if (Array.isArray(hasItem.options)) hasItem.options.push(options)
+        // 处理继承
+        const item = Object.assign({}, list[hasIndex])
+        if (!allowRepeat) {
+          item.options = options
+        } else if (Array.isArray(item.options)) {
+          item.options = item.options.concat(options)
+        }
+        list[hasIndex] = item
       }
       Reflect.defineMetadata(MetadataKey, list, target)
     }

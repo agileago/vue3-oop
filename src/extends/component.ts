@@ -14,6 +14,8 @@ import { LinkHandler } from '../decorators/link'
 import { resolveComponent } from '../di'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
+const hasOwnProperty = Object.prototype.hasOwnProperty
+const hasOwn = (val: any, key: string) => hasOwnProperty.call(val, key)
 
 export class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
@@ -34,7 +36,7 @@ export class VueComponent<T extends {} = {}> {
   static defaultProps?: any
   /** vue options emits */
   static emits?: string[]
-  static __vccOpts__value?: ComponentOptions & { __vccOwner?: any }
+  static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
@@ -130,14 +132,14 @@ Object.defineProperty(VueComponent, '__vccOpts', {
   configurable: true,
   get() {
     const parentOpt = this.__vccOpts__value
-    if (parentOpt && this === parentOpt.__vccOwner) return parentOpt
+    if (parentOpt && hasOwn(this, '__vccOpts__value')) return parentOpt
     const CompConstructor = this as typeof VueComponent
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { displayName, defaultProps, emits, ...rest } = CompConstructor
 
     // 处理继承
     if (parentOpt) {
-      const mergeopt: ComponentOptions & { __vccOwner?: any } = {
+      const mergeopt: ComponentOptions = {
         ...parentOpt,
         ...rest,
         name: displayName || CompConstructor.name,
@@ -148,7 +150,6 @@ Object.defineProperty(VueComponent, '__vccOpts', {
           if (CompConstructor.__vccOpts__value!.render) return instance
           return instance.render.bind(instance)
         },
-        __vccOwner: this,
       }
       if (defaultProps) mergeopt.props = defaultProps
       if (emits) mergeopt.emits = emits
@@ -172,7 +173,6 @@ Object.defineProperty(VueComponent, '__vccOpts', {
         if (CompConstructor.__vccOpts__value!.render) return instance
         return instance.render.bind(instance)
       },
-      __vccOwner: this,
     }
     return this.__vccOpts__value
   },
