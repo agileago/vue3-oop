@@ -1,9 +1,11 @@
 import { Mut, VueComponent } from 'vue3-oop'
 import { Button, Card, Input } from 'ant-design-vue'
+import { A } from './a.comp'
 
-class A extends VueComponent {
-  render() {
-    return <div>111</div>
+export class B extends A {
+  placeholder = 'hello wolrd'
+  done() {
+    this.placeholder = Math.random().toString()
   }
 }
 
@@ -13,6 +15,7 @@ export default class HelloWorldView extends VueComponent {
   render() {
     return (
       <Card title={'加减功能'}>
+        <B></B>
         <Button type={'primary'} onClick={() => this.count++}>
           +
         </Button>

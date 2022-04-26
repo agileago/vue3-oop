@@ -34,7 +34,7 @@ export class VueComponent<T extends {} = {}> {
   static defaultProps?: any
   /** vue options emits */
   static emits?: string[]
-  static __vccOpts__value?: ComponentOptions
+  static __vccOpts__value?: ComponentOptions & { __vccOwner?: any }
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
@@ -129,19 +129,35 @@ Object.defineProperty(VueComponent, '__vccOpts', {
   enumerable: true,
   configurable: true,
   get() {
-    if (this.__vccOpts__value) return this.__vccOpts__value
+    const parentOpt = this.__vccOpts__value
+    if (parentOpt && this === parentOpt.__vccOwner) return parentOpt
     const CompConstructor = this as typeof VueComponent
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {
-      displayName,
-      defaultProps,
-      emits,
-      ProviderKey,
-      globalStore,
-      ...rest
-    } = CompConstructor
+    const { displayName, defaultProps, emits, ...rest } = CompConstructor
 
-    return (this.__vccOpts__value = {
+    // 处理继承
+    if (parentOpt) {
+      const mergeopt: ComponentOptions & { __vccOwner?: any } = {
+        ...parentOpt,
+        ...rest,
+        name: displayName || CompConstructor.name,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setup: (props: any, ctx: any) => {
+          const instance = VueComponent.resolveComponent(CompConstructor)
+          // 支持模板
+          if (CompConstructor.__vccOpts__value!.render) return instance
+          return instance.render.bind(instance)
+        },
+        __vccOwner: this,
+      }
+      if (defaultProps) mergeopt.props = defaultProps
+      if (emits) mergeopt.emits = emits
+
+      this.__vccOpts__value = mergeopt
+      return this.__vccOpts__value
+    }
+
+    this.__vccOpts__value = {
       ...rest,
       name: displayName || CompConstructor.name,
       props: defaultProps || {},
@@ -156,7 +172,9 @@ Object.defineProperty(VueComponent, '__vccOpts', {
         if (CompConstructor.__vccOpts__value!.render) return instance
         return instance.render.bind(instance)
       },
-    })
+      __vccOwner: this,
+    }
+    return this.__vccOpts__value
   },
 })
 

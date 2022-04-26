@@ -1,20 +1,16 @@
 import { defineConfig } from 'vite'
 import vueJsx from '@vue3-oop/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
+import { name } from './package.json'
+import dtsPlugin from 'vite-plugin-dts'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig(({ command, mode }) => {
   return {
     plugins:
       command === 'build'
-        ? undefined
-        : [vue(), vueJsx({ enableObjectSlots: false })],
-    resolve: {
-      alias: [
-        { find: /^~/, replacement: '' },
-        { find: '@/', replacement: '/src/' },
-        { find: 'vue3-oop', replacement: '/src/' },
-      ],
-    },
+        ? [dtsPlugin({ outputDir: 'types' })]
+        : [vue(), vueJsx({ enableObjectSlots: false }), tsconfigPaths()],
     server: {
       open: '/',
     },
@@ -23,8 +19,8 @@ export default defineConfig(({ command, mode }) => {
       sourcemap: true,
       lib: {
         entry: 'src/index.ts',
-        name: 'vue3-oop',
-        fileName: (format) => `vue3-oop.${format}.js`,
+        name,
+        fileName: name,
         formats: ['es', 'cjs'],
       },
       rollupOptions: {

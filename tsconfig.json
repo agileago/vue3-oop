@@ -26,15 +26,5 @@
       "vue3-oop": ["src/index.ts"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "vite.config.ts",
-    "example/**/*.ts",
-    "example/**/*.tsx",
-    "test/**/*.ts",
-    "test/**/*.tsx"
-  ]
+  "include": ["src", "test", "example", "vite.config.ts", "package.json"]
 }
