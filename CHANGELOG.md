@@ -1,5 +1,12 @@
 
 
+## [0.5.8](https://github.com/agileago/vue3-oop/compare/v0.5.7...v0.5.8) (2022-04-26)
+
+
+### Bug Fixes
+
+* 支持组件继承 ([3d927d1](https://github.com/agileago/vue3-oop/commit/3d927d155e6529fb7885834aff1d613398dca538))
+
 ## [0.5.7](https://github.com/agileago/vue3-oop/compare/v0.5.6...v0.5.7) (2022-04-26)
 
 
