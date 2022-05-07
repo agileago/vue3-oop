@@ -4,7 +4,7 @@
 
 ### QQ交流群
 
-![qq](https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg)
+<img src="https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg" style="max-width: 200px">
 
 ### 前提条件
 
