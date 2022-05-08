@@ -12,9 +12,6 @@ export interface ComputedDecorator {
    * @param eager 是否是急切的获取值
    */
   (eager?: EagerType): MethodDecorator
-  /**
-   * @param shallow 是否是浅层响应式
-   */
   MetadataKey: string | symbol
 }
 
