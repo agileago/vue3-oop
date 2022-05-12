@@ -1,4 +1,4 @@
-# vue3 oop
+# vue3 oop [文档](https://agileago.github.io/vue3-oop/)
 
 类组件+自动化的依赖注入(可选) = 极致的代码体验 [DEMO](https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx)
 
