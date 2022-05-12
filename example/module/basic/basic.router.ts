@@ -21,6 +21,13 @@ const routes: RouteRecordRaw = {
         title: '增删改查',
       },
     },
+    {
+      path: '/basic/hoc',
+      component: () => import('./hoc/hoc.view'),
+      meta: {
+        title: '高阶组件',
+      },
+    },
   ],
 }
 
