@@ -173,3 +173,7 @@ class BarService extends VueService {
   constructor(private countService: CountService) {super()}
 }
 ```
+
+### License
+
+[MIT](https://opensource.org/licenses/MIT)

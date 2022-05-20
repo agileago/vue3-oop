@@ -29,6 +29,15 @@ class Origin extends VueComponent<OriginProps> {
   }
 }
 
+class OriginWithData extends Origin {
+  @Mut() data?: number[]
+  render(...args: any[]) {
+    if (!this.data) return <div>loading...</div>
+
+    return super.render()
+  }
+}
+
 // 自带请求数据的组件
 function WithDataOrigin<T extends { new (...args: any[]): any }>(
   Comp: T,
@@ -78,10 +87,10 @@ const OriginData = WithDataOrigin(
 export default class HocView extends VueComponent {
   constructor() {
     super()
-    const num = setInterval(() => {
-      console.log(this.origin)
-      if (this.origin instanceof Origin) clearInterval(num)
-    }, 1000)
+    // const num = setInterval(() => {
+    //   console.log(this.origin)
+    //   if (this.origin instanceof Origin) clearInterval(num)
+    // }, 1000)
   }
 
   @Link() origin?: Origin
