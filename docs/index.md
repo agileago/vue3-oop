@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 开始使用
-      link: /guide/
+      link: /vue3-oop/guide/
 
 features:
   - title: 类组件
