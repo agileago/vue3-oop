@@ -14,7 +14,7 @@
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,
     "isolatedModules": true,
-    "preserveValueImports": true,
+    "preserveValueImports": false,
     "importsNotUsedAsValues": "error",
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,

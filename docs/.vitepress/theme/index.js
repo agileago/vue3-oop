@@ -1,5 +1,3 @@
-import Theme from 'vitepress/theme'
-import './theme.scss'
-import './codetabs.scss'
+import DefaultTheme from 'vitepress/theme'
 
-export default Theme
+export default DefaultTheme

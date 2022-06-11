@@ -17,13 +17,15 @@ interface OriginProps {
 class Origin extends VueComponent<OriginProps> {
   static defaultProps: ComponentProps<OriginProps> = ['size', 'data']
 
+  @Mut() count = 1
+
   render() {
+    console.log(this)
     const { props } = this
     return (
       <div>
-        {props.data?.map((k) => (
-          <li key={k}>{k}</li>
-        ))}
+        <h2 onClick={() => this.count++}>{this.count}</h2>
+        {props.data?.map((k) => <li key={k}>{k}</li>) || <div>nodata</div>}
       </div>
     )
   }
@@ -76,7 +78,29 @@ function WithDataOrigin<T extends { new (...args: any[]): any }>(
   return CompWithData as unknown as T
 }
 
-const OriginData = WithDataOrigin(
+// 自带请求数据的组件
+function WithDataOriginExtends<T extends { new (...args: any[]): any }>(
+  Comp: T,
+  request: (...args: any[]) => Promise<number[]>
+): T {
+  class CompWithData extends Comp {
+    @Mut() data?: number[]
+
+    @Hook('Mounted')
+    async mounted() {
+      this.data = await request()
+    }
+
+    render() {
+      if (!this.data) return <div>loading....</div>
+      return super.render()
+    }
+  }
+
+  return CompWithData
+}
+
+const OriginData = WithDataOriginExtends(
   Origin,
   () =>
     new Promise((resolve) => {

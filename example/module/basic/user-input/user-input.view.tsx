@@ -1,36 +1,38 @@
-import { Card } from 'ant-design-vue'
-import { VueComponent } from 'vue3-oop'
+import { Button, Card, Form, Input, Modal } from 'ant-design-vue'
+import { Autobind, Mut, VueComponent } from 'vue3-oop'
 
-type A = {
-  mode: 'selector'
-  range: string[]
-  slots: {
-    abc(name: string): void
-  }
-}
-type B = {
-  mode: 'normal'
-  list: number[]
-  slots: {
-    def(abc: number): void
-  }
-  value?: string
-  'onUpdate:value'?: (v: string) => void
+class FormModel {
+  name = ''
+  age?: number
 }
 
-type C = B
-
-class Union extends VueComponent<B> {
-  render() {
-    return <div>111</div>
-  }
-}
-
+@Autobind()
 export default class UserInputView extends VueComponent {
+  @Mut() showModal = false
+  @Mut() model = new FormModel()
+
+  add() {
+    this.showModal = true
+  }
+
   render() {
     return (
       <Card title={'增删改查'}>
-        <Union mode="normal" list={[1]} style={{ display: 'block' }}></Union>
+        <div>
+          <Button type={'primary'} onClick={this.add}>
+            增加
+          </Button>
+        </div>
+        <Modal v-model:visible={this.showModal} title={'新增'}>
+          <Form>
+            <Form.Item label={'姓名'}>
+              <Input v-model:value={this.model.name}></Input>
+            </Form.Item>
+            <Form.Item label={'年龄'}>
+              <Input v-model:value={this.model.age}></Input>
+            </Form.Item>
+          </Form>
+        </Modal>
       </Card>
     )
   }
