@@ -1,5 +1,12 @@
 
 
+## [0.5.9](https://github.com/agileago/vue3-oop/compare/v0.5.8...v0.5.9) (2022-06-16)
+
+
+### Features
+
+* 支持异步组件，组件内增加init初始化方法 ([ce14cd3](https://github.com/agileago/vue3-oop/commit/ce14cd383f0f07cbbaace1a6e3566e2fc7cd2ac8))
+
 ## [0.5.8](https://github.com/agileago/vue3-oop/compare/v0.5.7...v0.5.8) (2022-04-26)
 
 
