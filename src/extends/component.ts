@@ -125,6 +125,9 @@ export class VueComponent<T extends {} = {}> {
 
   /** 渲染函数 */
   render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
+
+  /* 组件初始化逻辑，如果返回promise则为异步组件, 需配合 suspense 组件使用 */
+  init?(): any
 }
 // 某些浏览器不支持 static get
 Object.defineProperty(VueComponent, '__vccOpts', {
@@ -148,6 +151,19 @@ Object.defineProperty(VueComponent, '__vccOpts', {
           const instance = VueComponent.resolveComponent(CompConstructor)
           // 支持模板
           if (CompConstructor.__vccOpts__value!.render) return instance
+          // 支持异步组件
+          if (typeof instance.init === 'function') {
+            console.log('init func')
+            const res = instance.init()
+            if (
+              res &&
+              typeof res === 'object' &&
+              typeof res.then === 'function'
+            ) {
+              return res.then(() => instance.render.bind(instance))
+            }
+          }
+
           return instance.render.bind(instance)
         },
       }
@@ -171,6 +187,19 @@ Object.defineProperty(VueComponent, '__vccOpts', {
         const instance = VueComponent.resolveComponent(CompConstructor)
         // 支持模板
         if (CompConstructor.__vccOpts__value!.render) return instance
+
+        // 支持异步组件
+        if (typeof instance.init === 'function') {
+          const res = instance.init()
+          if (
+            res &&
+            typeof res === 'object' &&
+            typeof res.then === 'function'
+          ) {
+            return res.then(() => instance.render.bind(instance))
+          }
+        }
+
         return instance.render.bind(instance)
       },
     }

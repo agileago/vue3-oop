@@ -4,6 +4,10 @@ import { Button, Card, Input } from 'ant-design-vue'
 export default class HelloWorldView extends VueComponent {
   @Mut() count = 1
 
+  async init() {
+    await new Promise((r) => setTimeout(r, 5000))
+  }
+
   render() {
     return (
       <Card title={'加减功能'}>
