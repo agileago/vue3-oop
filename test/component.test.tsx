@@ -65,3 +65,19 @@ test('带slots的组件', async () => {
   const wrapper = mount(Count, { slots })
   expect(wrapper.text()).toContain('aaa')
 })
+
+test('init 组件初始化调用', async () => {
+  class Count extends VueComponent {
+    @Mut() count = 0
+
+    init() {
+      this.count = 1
+    }
+
+    render() {
+      return <div>{this.count}</div>
+    }
+  }
+  const wrapper = mount(Count)
+  expect(wrapper.text()).toContain('1')
+})
