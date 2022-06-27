@@ -160,10 +160,12 @@ class Foo extends VueComponent<Foo_Props> {
 
 ## 异步组件
 
-异步组件需配合`vue`提供的`Suspense`组件使用，只需要组件内定义`init` 方法并且返回`promise`结果
+异步组件需配合`vue`提供的`Suspense`组件使用，需要标记组件的`async: true`, 并且组件内定义`init` 方法并且返回`promise`结果
 
 ```tsx
 class Foo extends VueComponent {
+  static async = true 
+    
   async init() {
     await new Promise(r => setTimeout(r, 5000))
   }

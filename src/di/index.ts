@@ -182,3 +182,18 @@ export function createCurrentInjector(
   resolveProviders.forEach((k) => injector.get(k.key.token))
   return injector
 }
+
+/**
+ * 从容器中获取服务, 主要用于父类注入服务
+ * @param token
+ * @param notFoundValue
+ */
+export function injectFromIoc<T>(
+  token: any,
+  notFoundValue?: any
+): T | undefined {
+  const currentInjector = getCurrentInjector()
+  if (!currentInjector) return
+
+  return currentInjector.get(token, notFoundValue)
+}

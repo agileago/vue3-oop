@@ -15,6 +15,7 @@ export {
   InjectorKey,
   getCurrentInjector,
   createCurrentInjector,
+  injectFromIoc,
 } from './di'
 export type { ComponentOptions } from './di'
 export type {

@@ -27,7 +27,6 @@ export class VueComponent<T extends {} = {}> {
   ]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
-
   /** 热更新使用 */
   static __hmrId?: string
   /** 组件显示名字 */
@@ -36,6 +35,11 @@ export class VueComponent<T extends {} = {}> {
   static defaultProps?: any
   /** vue options emits */
   static emits?: string[]
+  /**
+   * 是否继承多余的属性
+   */
+  static inheritAttrs?: boolean
+
   static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
@@ -126,84 +130,83 @@ export class VueComponent<T extends {} = {}> {
   /** 渲染函数 */
   render?(ctx: ComponentPublicInstance, cache: any[]): VNodeChild
 
-  /* 组件初始化逻辑，如果返回promise则为异步组件, 需配合 suspense 组件使用 */
+  /**
+   * 组件初始化逻辑
+   * 如果设置 static async = true,并且返回promise则为异步setup组件
+   * 需配合 suspense 组件使用
+   */
   init?(): any
+
+  /**
+   * 标记为异步初始化组件, 配合init使用
+   */
+  static async?: boolean
 }
 // 某些浏览器不支持 static get
 Object.defineProperty(VueComponent, '__vccOpts', {
   enumerable: true,
   configurable: true,
   get() {
-    const parentOpt = this.__vccOpts__value
-    if (parentOpt && hasOwn(this, '__vccOpts__value')) return parentOpt
+    if (this === VueComponent) {
+      console.warn('base VueComponent only to be extends')
+      return
+    }
+    if (hasOwn(this, '__vccOpts__value')) return this.__vccOpts__value
+
+    // 处理多重继承
+    const parent = Object.getPrototypeOf(this)
+    const parentOpt = parent === VueComponent ? null : parent.__vccOpts
     const CompConstructor = this as typeof VueComponent
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { displayName, defaultProps, emits, ...rest } = CompConstructor
 
+    let optValue: ComponentOptions
+
+    const setup = (props: any, ctx: any) => {
+      const instance = VueComponent.resolveComponent(CompConstructor)
+      // 支持模板
+      if (CompConstructor.__vccOpts__value!.render) return instance
+      const render = instance.render.bind(instance)
+      // 支持异步组件
+      if (typeof instance.init === 'function') {
+        const res = instance.init()
+        if (typeof res?.then === 'function' && CompConstructor.async) {
+          return res.then(() => render)
+        }
+      }
+      return render
+    }
+
     // 处理继承
     if (parentOpt) {
-      const mergeopt: ComponentOptions = {
+      optValue = {
         ...parentOpt,
         ...rest,
         name: displayName || CompConstructor.name,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        setup: (props: any, ctx: any) => {
-          const instance = VueComponent.resolveComponent(CompConstructor)
-          // 支持模板
-          if (CompConstructor.__vccOpts__value!.render) return instance
-          // 支持异步组件
-          if (typeof instance.init === 'function') {
-            console.log('init func')
-            const res = instance.init()
-            if (
-              res &&
-              typeof res === 'object' &&
-              typeof res.then === 'function'
-            ) {
-              return res.then(() => instance.render.bind(instance))
-            }
-          }
-
-          return instance.render.bind(instance)
-        },
+        setup,
       }
-      if (defaultProps) mergeopt.props = defaultProps
-      if (emits) mergeopt.emits = emits
-
-      this.__vccOpts__value = mergeopt
-      return this.__vccOpts__value
+      if (defaultProps) optValue.props = defaultProps
+      if (emits) optValue.emits = emits
+    } else {
+      optValue = {
+        ...rest,
+        name: displayName || CompConstructor.name,
+        props: defaultProps || {},
+        // 放到emits的on函数会自动缓存
+        emits: (emits || []).concat(
+          getEmitsFromProps(CompConstructor.defaultProps || {})
+        ),
+        setup,
+      }
     }
 
-    this.__vccOpts__value = {
-      ...rest,
-      name: displayName || CompConstructor.name,
-      props: defaultProps || {},
-      // 放到emits的on函数会自动缓存
-      emits: (emits || []).concat(
-        getEmitsFromProps(CompConstructor.defaultProps || {})
-      ),
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setup: (props: any, ctx: any) => {
-        const instance = VueComponent.resolveComponent(CompConstructor)
-        // 支持模板
-        if (CompConstructor.__vccOpts__value!.render) return instance
-
-        // 支持异步组件
-        if (typeof instance.init === 'function') {
-          const res = instance.init()
-          if (
-            res &&
-            typeof res === 'object' &&
-            typeof res.then === 'function'
-          ) {
-            return res.then(() => instance.render.bind(instance))
-          }
-        }
-
-        return instance.render.bind(instance)
-      },
-    }
-    return this.__vccOpts__value
+    Object.defineProperty(this, '__vccOpts__value', {
+      configurable: true,
+      enumerable: false,
+      value: optValue,
+      writable: true,
+    })
+    return optValue
   },
 })
 
