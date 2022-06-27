@@ -1,5 +1,12 @@
 
 
+# [0.6.0](https://github.com/agileago/vue3-oop/compare/v0.5.9...v0.6.0) (2022-06-27)
+
+
+### Features
+
+* 支持多重组件继承，修改异步组件的定义 ([9139b42](https://github.com/agileago/vue3-oop/commit/9139b428bb625a9fa77d5c1ba63f72c4e8172195))
+
 ## [0.5.9](https://github.com/agileago/vue3-oop/compare/v0.5.8...v0.5.9) (2022-06-16)
 
 
