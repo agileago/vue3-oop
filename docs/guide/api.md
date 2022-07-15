@@ -111,6 +111,26 @@ class Foo extends VueComponent {
 
 在HOC组件中使用这个方法可以转发真正的ref
 
+## mergeRefs
+
+支持多个不同类型的ref在同一个元素或组件上面
+
+```typescript jsx
+import { mergeRefs } from './component'
+
+class App extends VueComponent {
+  @Link() aa?: any
+  
+  cc = shallowRef()
+  
+  dd?: any
+  
+  render() {
+    return <div ref={mergeRefs('aa', this.cc, (v) => this.dd = v)}></div>
+  }
+}
+```
+
 
 # 类型
 

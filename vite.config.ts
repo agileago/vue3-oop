@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vueJsx from '@vue3-oop/plugin-vue-jsx'
-import vue from '@vitejs/plugin-vue'
 import { name } from './package.json'
 import dtsPlugin from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -10,7 +9,7 @@ export default defineConfig(({ command, mode }) => {
     plugins:
       command === 'build'
         ? [dtsPlugin({ outputDir: 'types' })]
-        : [vue(), vueJsx({ enableObjectSlots: false }), tsconfigPaths()],
+        : [vueJsx({ enableObjectSlots: false }), tsconfigPaths()],
     server: {
       open: '/',
     },

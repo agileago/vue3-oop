@@ -3,8 +3,9 @@ import type {
   ComponentPublicInstance,
   InjectionKey,
   VNodeChild,
+  VNodeRef,
 } from 'vue'
-import { getCurrentInstance, markRaw, provide } from 'vue'
+import { getCurrentInstance, isRef, markRaw, provide } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import type { Hanlder, VueComponentProps, WithSlotTypes } from '../type'
 import { MutHandler } from '../decorators/mut'
@@ -174,6 +175,8 @@ Object.defineProperty(VueComponent, '__vccOpts', {
           return res.then(() => render)
         }
       }
+      // 支持 devtool
+      getCurrentInstance()!.data = instance
       return render
     }
 
@@ -218,4 +221,22 @@ export function useForwardRef() {
     instance.exposeProxy = ref
   }
   return forwardRef
+}
+
+// 合并ref
+export function mergeRefs(...values: VNodeRef[]) {
+  return function (
+    ref: Element | ComponentPublicInstance | null,
+    refs: Record<string, any>
+  ) {
+    for (const r of values) {
+      if (typeof r === 'string') {
+        refs[r] = ref
+      } else if (typeof r === 'function') {
+        r(ref, refs)
+      } else if (isRef(r)) {
+        r.value = ref
+      }
+    }
+  }
 }

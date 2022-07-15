@@ -2,6 +2,7 @@ export {
   VueComponent,
   GlobalStoreKey,
   useForwardRef,
+  mergeRefs,
 } from './extends/component'
 export { VueService, ProviderKey } from './extends/service'
 export { Mut } from './decorators/mut'
