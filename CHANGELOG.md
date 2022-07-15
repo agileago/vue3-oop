@@ -1,5 +1,12 @@
 
 
+## [0.6.1](https://github.com/agileago/vue3-oop/compare/v0.6.0...v0.6.1) (2022-07-15)
+
+
+### Features
+
+* :fire: 支持devtool,增加工具函数 ([50ed2fb](https://github.com/agileago/vue3-oop/commit/50ed2fb95c1594a2d05534c1782d80a2090cbdf2))
+
 # [0.6.0](https://github.com/agileago/vue3-oop/compare/v0.5.9...v0.6.0) (2022-06-27)
 
 
