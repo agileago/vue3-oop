@@ -1,4 +1,11 @@
-import type { Prop, SetupContext, StyleValue, VNodeChild } from 'vue'
+import type {
+  ComponentCustomProps,
+  Prop,
+  SetupContext,
+  StyleValue,
+  VNodeChild,
+  VNodeProps,
+} from 'vue'
 
 /**
  * 装饰器处理
@@ -82,4 +89,6 @@ type DistributiveVSlots<T> = T extends T ? WithVSlots<T> : never
 export type VueComponentProps<T extends {}> = DistributiveOmit<T, 'slots'> &
   DistributiveVModel<T> &
   DistributiveVSlots<T> &
-  AllowedComponentProps
+  VNodeProps &
+  AllowedComponentProps &
+  ComponentCustomProps
