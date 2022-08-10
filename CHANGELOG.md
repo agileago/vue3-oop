@@ -1,5 +1,12 @@
 
 
+## [0.6.2](https://github.com/agileago/vue3-oop/compare/v0.6.1...v0.6.2) (2022-08-10)
+
+
+### Features
+
+* :fire: 增强组件类型 ([0544000](https://github.com/agileago/vue3-oop/commit/05440001a83bba43532c5e782e060a62b416c78e))
+
 ## [0.6.1](https://github.com/agileago/vue3-oop/compare/v0.6.0...v0.6.1) (2022-07-15)
 
 
