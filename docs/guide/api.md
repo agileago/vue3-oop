@@ -107,6 +107,14 @@ class Foo extends VueComponent {
 
 在外部服务中获取当前的最近一级的注射器
 
+## createCurrentInjector
+
+在当前组件手动创建注射器
+
+## injectService
+
+手动注入服务，存在注射器或父级注射器
+
 ## useForwardRef
 
 在HOC组件中使用这个方法可以转发真正的ref

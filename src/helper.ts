@@ -1,5 +1,5 @@
-import type { InjectionKey, SetupContext } from 'vue'
-import { getCurrentInstance, inject } from 'vue'
+import type { SetupContext } from 'vue'
+import { getCurrentInstance } from 'vue'
 import autobind from 'autobind-decorator'
 
 /**
@@ -38,17 +38,4 @@ export function getEmitsFromProps(
 }
 export function createSymbol(name: string) {
   return typeof Symbol === 'undefined' ? name : Symbol(name)
-}
-
-/**
- * 注入服务
- */
-export function injectService<
-  T extends {
-    new (...args: any[]): InstanceType<T>
-    ProviderKey: InjectionKey<InstanceType<T>>
-  }
->(service: T, defaultService?: InstanceType<T>): InstanceType<T> {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return inject(service.ProviderKey, defaultService)!
 }

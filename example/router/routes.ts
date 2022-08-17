@@ -4,5 +4,5 @@ import type { RouteRecordRaw } from 'vue-router'
 const moduleRoutes = import.meta.globEager('../module/**/*.router.ts')
 
 export const routes: RouteRecordRaw[] = Reflect.ownKeys(moduleRoutes)
-  .map((k) => moduleRoutes[k as string].default as RouteRecordRaw)
+  .map((k) => (moduleRoutes[k as string] as any).default as RouteRecordRaw)
   .filter(Boolean)

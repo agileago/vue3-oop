@@ -4,7 +4,7 @@ export {
   useForwardRef,
   mergeRefs,
 } from './extends/component'
-export { VueService, ProviderKey } from './extends/service'
+export { VueService } from './extends/service'
 export { Mut } from './decorators/mut'
 export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'
@@ -16,7 +16,7 @@ export {
   InjectorKey,
   getCurrentInjector,
   createCurrentInjector,
-  injectFromIoc,
+  injectService,
 } from './di'
 export type { ComponentOptions } from './di'
 export type {

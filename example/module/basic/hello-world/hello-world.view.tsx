@@ -1,5 +1,7 @@
-import { Mut, VueComponent } from 'vue3-oop'
+import { injectService, Mut, VueComponent } from 'vue3-oop'
 import { Button, Card, Input } from 'ant-design-vue'
+import { withModifiers } from 'vue'
+import { RouterService } from '../../../router/router.service'
 
 export class Base extends VueComponent {
   @Mut() count = 1
@@ -10,7 +12,11 @@ export class Base extends VueComponent {
 
 export class Child1 extends Base {
   render() {
-    return <div onClick={() => this.count++}>{super.render()}</div>
+    return (
+      <div onClick={withModifiers(() => this.count++, ['once'])}>
+        {super.render()}
+      </div>
+    )
   }
 }
 
@@ -26,15 +32,16 @@ export class Child2 extends Child1 {
 }
 
 export default class HelloWorldView extends VueComponent {
-  static async = true
-
   @Mut() count = 1
 
   async init() {
     await new Promise((r) => setTimeout(r, 5000))
   }
 
+  router = injectService(RouterService)!
+
   render() {
+    console.log(this.router)
     return (
       <Card title={'加减功能'}>
         <Button type={'primary'} onClick={() => this.count++}>

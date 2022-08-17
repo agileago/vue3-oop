@@ -1,11 +1,10 @@
 import type {
   ComponentOptions,
   ComponentPublicInstance,
-  InjectionKey,
   VNodeChild,
   VNodeRef,
 } from 'vue'
-import { getCurrentInstance, isRef, markRaw, provide } from 'vue'
+import { getCurrentInstance, isRef, markRaw } from 'vue'
 import { getEmitsFromProps, useCtx, useProps } from '../helper'
 import type { Hanlder, VueComponentProps, WithSlotTypes } from '../type'
 import { MutHandler } from '../decorators/mut'
@@ -46,8 +45,6 @@ export class VueComponent<T extends {} = {}> {
   static __vccOpts: ComponentOptions
   /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
   static globalStore?: boolean
-  /** 是否把自己当做服务provide出去，以便子组件可注入 */
-  static ProviderKey?: string | symbol | number | InjectionKey<any>
   /** 组件属性 */
   public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
@@ -107,7 +104,6 @@ export class VueComponent<T extends {} = {}> {
 
     // 处理依赖注入
     const ThisConstructor = this.constructor as typeof VueComponent
-    if (ThisConstructor.ProviderKey) provide(ThisConstructor.ProviderKey, this)
     if (ThisConstructor.globalStore) {
       // 如果作为全局的服务，则注入到根上面
       const app = current.appContext.app
