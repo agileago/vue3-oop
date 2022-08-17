@@ -1,5 +1,12 @@
 
 
+# [1.0.0](https://github.com/agileago/vue3-oop/compare/v0.6.2...v1.0.0) (2022-08-17)
+
+
+### Features
+
+* 删除 ProviderKey, 新增injectService ([0858f83](https://github.com/agileago/vue3-oop/commit/0858f83d0e72e1b9772ce139d2e5d7dd1d3953b2))
+
 ## [0.6.2](https://github.com/agileago/vue3-oop/compare/v0.6.1...v0.6.2) (2022-08-10)
 
 
