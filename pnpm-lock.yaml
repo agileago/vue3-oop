@@ -13,6 +13,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.33.1
   '@typescript-eslint/parser': ^5.33.1
   '@vitejs/plugin-vue': ^3.0.3
+  '@vitest/coverage-c8': ^0.22.0
   '@vitest/ui': ^0.22.0
   '@vue/test-utils': 2.0.2
   '@vue3-oop/plugin-vue-jsx': ^1.4.1
@@ -53,6 +54,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.33.1_vsoshirnpb7xw6mr7xomgfas2i
   '@typescript-eslint/parser': 5.33.1_4rv7y5c6xz3vfxwhbrcxxi73bq
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.8+vue@3.2.37
+  '@vitest/coverage-c8': 0.22.0_z6cyyqjelseniamvm4ekolkpfy
   '@vitest/ui': 0.22.0
   '@vue/test-utils': 2.0.2_vue@3.2.37
   '@vue3-oop/plugin-vue-jsx': 1.4.1_typescript@4.7.4
@@ -1373,6 +1375,24 @@ packages:
     dependencies:
       vite: 3.0.8_sass@1.54.4
       vue: 3.2.37
+    dev: true
+
+  /@vitest/coverage-c8/0.22.0_z6cyyqjelseniamvm4ekolkpfy:
+    resolution: {integrity: sha512-jwW6b8U+h9nbzQfKoRmpf2xjDg+mcAjLIdVUrZGhjTnIdekGfvoqFoeiXzsLv2HwYBeFi4943lYUftuj8qD1FQ==}
+    dependencies:
+      c8: 7.12.0
+      vitest: 0.22.0_z6cyyqjelseniamvm4ekolkpfy
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - sass
+      - stylus
+      - supports-color
+      - terser
     dev: true
 
   /@vitest/ui/0.22.0:
