@@ -11,6 +11,7 @@
     }
   },
   "scripts": {
+    "postinstall": "simple-git-hooks",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
@@ -52,7 +53,6 @@
     "@abraham/reflection": "^0.10.0",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@nexhome/yorkie": "^2.0.8",
     "@release-it/conventional-changelog": "^5.1.0",
     "@types/lodash-es": "^4.17.6",
     "@types/markdown-it": "^12.2.3",
@@ -79,6 +79,7 @@
     "release-it": "^15.3.0",
     "rimraf": "^3.0.2",
     "sass": "^1.54.4",
+    "simple-git-hooks": "^2.8.0",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4",
     "vite": "^3.0.8",
@@ -94,9 +95,9 @@
       "@commitlint/config-conventional"
     ]
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "commitlint -E GIT_PARAMS"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "commit-msg": "pnpm exec commitlint -e \"$@\""
   },
   "lint-staged": {
     "*.{ts,tsx}": [
