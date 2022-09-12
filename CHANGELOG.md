@@ -1,5 +1,12 @@
 
 
+## [1.0.1](https://github.com/agileago/vue3-oop/compare/v1.0.0...v1.0.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* getcurrentinstance 在所有方法调用之前初始化 ([e69528e](https://github.com/agileago/vue3-oop/commit/e69528e4dbf2fd856f5d0d558d9e8102b40a5893))
+
 # [1.0.0](https://github.com/agileago/vue3-oop/compare/v0.6.2...v1.0.0) (2022-08-17)
 
 
