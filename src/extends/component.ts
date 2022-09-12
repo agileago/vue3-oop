@@ -161,6 +161,8 @@ Object.defineProperty(VueComponent, '__vccOpts', {
 
     const setup = (props: any, ctx: any) => {
       const instance = VueComponent.resolveComponent(CompConstructor)
+      // 支持 devtool
+      getCurrentInstance()!.data = instance
       // 支持模板
       if (CompConstructor.__vccOpts__value!.render) return instance
       const render = instance.render.bind(instance)
@@ -171,8 +173,6 @@ Object.defineProperty(VueComponent, '__vccOpts', {
           return res.then(() => render)
         }
       }
-      // 支持 devtool
-      getCurrentInstance()!.data = instance
       return render
     }
 

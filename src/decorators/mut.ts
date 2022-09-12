@@ -26,25 +26,33 @@ function handler(targetThis: Record<string | symbol, any>) {
   if (!list || !list.length) return
   for (const item of list) {
     const { options, key } = item
-    let keyVal: Ref
-    if (options === true) {
-      keyVal = shallowRef()
-    } else if (typeof options === 'function') {
-      keyVal = customRef(options)
-    } else {
-      keyVal = ref()
-    }
-    Object.defineProperty(targetThis, key, {
-      enumerable: true,
-      configurable: true,
-      get() {
-        return keyVal.value
-      },
-      set(v) {
-        keyVal.value = v
-      },
-    })
+    defMut(targetThis, key, options)
   }
+}
+
+export function defMut(
+  targetThis: Record<string | symbol, any>,
+  key: string | symbol,
+  options: any
+) {
+  let keyVal: Ref
+  if (options === true) {
+    keyVal = shallowRef()
+  } else if (typeof options === 'function') {
+    keyVal = customRef(options)
+  } else {
+    keyVal = ref()
+  }
+  Object.defineProperty(targetThis, key, {
+    enumerable: true,
+    configurable: true,
+    get() {
+      return keyVal.value
+    },
+    set(v) {
+      keyVal.value = v
+    },
+  })
 }
 
 export const MutHandler: Hanlder = {

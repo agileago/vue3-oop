@@ -5,7 +5,7 @@ export {
   mergeRefs,
 } from './extends/component'
 export { VueService } from './extends/service'
-export { Mut } from './decorators/mut'
+export { Mut, defMut } from './decorators/mut'
 export { Computed } from './decorators/computed'
 export { Link } from './decorators/link'
 export { Hook } from './decorators/hook'
