@@ -22,8 +22,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "test": "vitest",
-    "coverage": "vitest --coverage",
-    "postinstall": "simple-git-hooks"
+    "coverage": "vitest --coverage"
   },
   "files": [
     "dist",
