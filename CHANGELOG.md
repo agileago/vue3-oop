@@ -1,5 +1,12 @@
 
 
+## [1.0.2](https://github.com/agileago/vue3-oop/compare/v1.0.1...v1.0.2) (2022-09-26)
+
+
+### Bug Fixes
+
+* remove postinstall script ([df8d817](https://github.com/agileago/vue3-oop/commit/df8d817e5d75d13e95416cfc0984811dd6475142))
+
 ## [1.0.1](https://github.com/agileago/vue3-oop/compare/v1.0.0...v1.0.1) (2022-09-12)
 
 
