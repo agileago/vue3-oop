@@ -43,8 +43,6 @@ export class VueComponent<T extends {} = {}> {
   static __vccOpts__value?: ComponentOptions
   /** 组件option定义,vue3遇到类组件会从此属性获取组件的option */
   static __vccOpts: ComponentOptions
-  /** 是否作为全局store提供外部入口，此时会在 当前app上注入2个方法，用于获取此组件的服务 */
-  static globalStore?: boolean
   /** 组件属性 */
   public props = useProps<VueComponentProps<T>>()
   /** 组件上下文 */
@@ -101,25 +99,6 @@ export class VueComponent<T extends {} = {}> {
     // 由于vue会包装一层，会自动代理ref,导致类型错误, 还导致不能修改变量
     current.exposed = this
     current.exposeProxy = this
-
-    // 处理依赖注入
-    const ThisConstructor = this.constructor as typeof VueComponent
-    if (ThisConstructor.globalStore) {
-      // 如果作为全局的服务，则注入到根上面
-      const app = current.appContext.app
-      app.provide(GlobalStoreKey, this)
-      app.getStore = () => this
-      app.getService = (token) => {
-        if (
-          (typeof token === 'function' || typeof token === 'object') &&
-          'ProviderKey' in token
-        ) {
-          token = token.ProviderKey
-        }
-        // @ts-ignore
-        return current?.provides[token]
-      }
-    }
 
     VueComponent.handler.forEach((handler) => handler.handler(this))
   }

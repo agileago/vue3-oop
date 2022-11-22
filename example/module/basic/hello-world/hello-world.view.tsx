@@ -1,4 +1,4 @@
-import { injectService, Mut, VueComponent } from 'vue3-oop'
+import { Hook, injectService, Link, Mut, VueComponent } from 'vue3-oop'
 import { Button, Card, Input } from 'ant-design-vue'
 import { withModifiers } from 'vue'
 import { RouterService } from '../../../router/router.service'
@@ -8,6 +8,10 @@ export class Base extends VueComponent {
   render() {
     return <div>base{this.count}</div>
   }
+}
+
+function Foo() {
+  return <div v-focus>aaaaaaa</div>
 }
 
 export class Child1 extends Base {
@@ -40,11 +44,19 @@ export default class HelloWorldView extends VueComponent {
 
   router = injectService(RouterService)!
 
+  @Link() abc?: any
+
+  @Hook('Mounted')
+  mounted() {
+    console.log(this.abc.provides)
+  }
+
   render() {
     console.log(this.router)
     return (
       <Card title={'加减功能'}>
-        <Button type={'primary'} onClick={() => this.count++}>
+        <Foo></Foo>
+        <Button type={'primary'} onClick={() => this.count++} ref={'abc'}>
           +
         </Button>
         <Input
