@@ -1,7 +1,7 @@
 import {
   Autobind,
   Component,
-  ComponentProps,
+  type ComponentProps,
   Computed,
   Hook,
   Mut,

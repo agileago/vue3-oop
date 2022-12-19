@@ -2,9 +2,6 @@
 
 类组件+自动化的依赖注入(可选) = 极致的代码体验 [DEMO](https://stackblitz.com/edit/vite-y7m4fy?file=main.tsx)
 
-### QQ交流群
-
-<img src="https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg" width=375>
 
 ### 前提条件
 
@@ -48,13 +45,7 @@ pnpm add vue3-oop
 import { Autobind, ComponentProps, Computed, Hook, Link, Mut, VueComponent } from 'vue3-oop'
 import { Directive, VNodeChild, watch } from 'vue'
 
-const focusDirective: Directive = {
-  mounted(el: HTMLInputElement) {
-    el.focus()
-  },
-}
-
-interface Foo_Props {
+interface FooProps {
   size: 'small' | 'large'
   // 组件的slots
   slots: {
@@ -62,13 +53,9 @@ interface Foo_Props {
   }
 }
 
-class Foo extends VueComponent<Foo_Props> {
+class Foo extends VueComponent<FooProps> {
   // vue需要的运行时属性检查
-  static defaultProps: ComponentProps<Foo_Props> = ['size']
-  // 组件需要的局部指令
-  static directives: Record<string, Directive> = {
-    focus: focusDirective,
-  }
+  static defaultProps: ComponentProps<FooProps> = ['size']
 
   constructor() {
     super()
@@ -173,6 +160,10 @@ class BarService extends VueService {
   constructor(private countService: CountService) {super()}
 }
 ```
+
+### QQ交流群
+
+<img src="https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg" width=375>
 
 ### License
 

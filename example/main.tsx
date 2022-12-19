@@ -1,5 +1,13 @@
 import '@abraham/reflection'
-import { Component, Hook, Link, mergeRefs, Mut, VueComponent } from 'vue3-oop'
+import {
+  Component,
+  type ComponentProps,
+  Hook,
+  Link,
+  mergeRefs,
+  Mut,
+  VueComponent,
+} from 'vue3-oop'
 import { createApp, shallowRef } from 'vue'
 import 'ant-design-vue/dist/antd.css'
 import { ConfigProvider, Layout, Menu } from 'ant-design-vue'
@@ -9,7 +17,13 @@ import { routes } from './router/routes'
 import zhCN from 'ant-design-vue/lib/locale/zh_CN'
 import { setup } from './setup'
 
-class Child extends VueComponent {
+interface ChildProps {
+  value?: string
+  'onUpdate:value'?: (val: string) => any
+}
+
+class Child extends VueComponent<ChildProps> {
+  static defaultProps: ComponentProps<ChildProps> = ['value', 'onUpdate:value']
   @Hook('Mounted')
   mounted() {
     console.log('child mounted')
@@ -57,7 +71,6 @@ class App extends VueComponent {
               VUE 示例
             </h2>
             <Child
-              abc={this.collapsed}
               ref={(value, refs) => {
                 console.log(value, refs)
               }}

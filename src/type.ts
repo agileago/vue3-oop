@@ -26,7 +26,7 @@ type MixDefaultSlots<T extends {}> = 'default' extends keyof T
   : DefaultSlots
 
 // 处理tsx slots 类型问题
-export type WithVSlots<T extends {}> = {
+export type WithVSlots<T extends Record<string, any>> = {
   'v-slots'?: 'slots' extends keyof T
     ? Partial<T['slots'] & { $stable: boolean } & MixDefaultSlots<T['slots']>>
     : Partial<{ $stable: boolean; default(): VNodeChild }>
@@ -83,8 +83,8 @@ export type DistributiveOmit<T, K extends keyof any> = T extends T
   ? Omit<T, K>
   : never
 
-type DistributiveVModel<T> = T extends T ? WithVModel<T> : never
-type DistributiveVSlots<T> = T extends T ? WithVSlots<T> : never
+type DistributiveVModel<T extends {}> = T extends T ? WithVModel<T> : never
+type DistributiveVSlots<T extends {}> = T extends T ? WithVSlots<T> : never
 
 export type VueComponentProps<T extends {}> = DistributiveOmit<T, 'slots'> &
   DistributiveVModel<T> &
