@@ -1,4 +1,5 @@
 import '@abraham/reflection'
+import 'ant-design-vue/dist/reset.css'
 import {
   Component,
   type ComponentProps,
@@ -9,7 +10,6 @@ import {
   VueComponent,
 } from 'vue3-oop'
 import { createApp, shallowRef } from 'vue'
-import 'ant-design-vue/dist/antd.css'
 import { ConfigProvider, Layout, Menu } from 'ant-design-vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { RouterStartService } from './router'
