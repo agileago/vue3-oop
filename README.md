@@ -161,6 +161,10 @@ class BarService extends VueService {
 }
 ```
 
+### 支持我
+
+<img src="https://user-images.githubusercontent.com/11799110/248712546-f6b933c9-d4c8-4e17-94c5-afd6684fa95b.jpeg" width=375>
+
 ### QQ交流群
 
 <img src="https://user-images.githubusercontent.com/11799110/163750676-784add60-422d-47ad-bf0f-e9ba6adaacda.jpeg" width=375>
