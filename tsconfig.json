@@ -13,7 +13,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,
-    "verbatimModuleSyntax": true,
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
     "declaration": true,

@@ -191,11 +191,11 @@ export function createCurrentInjector(
 export function injectService<T extends { new (...args: any[]): any }>(
   token: T,
   notFoundValue?: any
-): InstanceType<T> | undefined
+): InstanceType<T>
 export function injectService<T>(
   token: string | number | symbol,
   notFoundValue?: any
-): T | undefined {
+): T {
   const currentInjector = getCurrentInjector()
   if (!currentInjector) return notFoundValue
 
