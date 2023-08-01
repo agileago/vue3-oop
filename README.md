@@ -163,7 +163,14 @@ class BarService extends VueService {
 
 ### 支持我
 
-<img src="https://user-images.githubusercontent.com/11799110/248712546-f6b933c9-d4c8-4e17-94c5-afd6684fa95b.jpeg" width=375>
+#### 微信
+
+<img src="https://github.com/agileago/vue3-oop/assets/11799110/30a79e6d-6b5a-4213-a863-cee70f83d4c8" width="150" />
+
+
+#### 支付宝
+
+<img src="https://github.com/agileago/vue3-oop/assets/11799110/ea4e359a-0037-4c41-8e80-091547dd0bca" width="150" />
 
 ### QQ交流群
 
