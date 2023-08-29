@@ -4,11 +4,11 @@ import { name } from './package.json'
 import dtsPlugin from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command }) => {
   return {
     plugins:
       command === 'build'
-        ? [dtsPlugin({ outputDir: 'types' })]
+        ? [dtsPlugin({ outDir: 'types', include: ['src'] })]
         : [vueJsx({ enableObjectSlots: false }), tsconfigPaths()],
     server: {
       open: '/',

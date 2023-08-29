@@ -2,12 +2,14 @@ import type {
   ClassProvider,
   Provider,
   ResolvedReflectiveProvider,
+  Type,
   TypeProvider,
 } from 'injection-js'
 import {
   Injectable,
   InjectionToken,
   ReflectiveInjector,
+  resolveForwardRef,
   SkipSelf,
 } from 'injection-js'
 import type { InjectionKey } from 'vue'
@@ -15,7 +17,7 @@ import { getCurrentInstance, inject, provide } from 'vue'
 import { createSymbol } from '../helper'
 
 export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol(
-  'VUE3-OOP_ReflectiveInjector'
+  'VUE3-OOP_ReflectiveInjector',
 ) as symbol
 
 const MetadataKey = createSymbol('VUE3-OOP_Component')
@@ -66,11 +68,11 @@ export function resolveComponent(target: { new (...args: []): any }) {
   // 从缓存中拿到解析过得依赖
   let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(
     MetadataProviderKey,
-    target
+    target,
   )
   const options: ComponentOptions | undefined = Reflect.getOwnMetadata(
     MetadataKey,
-    target
+    target,
   )
   if (!resolveProviders || options?.stable === false) {
     // 依赖
@@ -92,7 +94,7 @@ export function resolveComponent(target: { new (...args: []): any }) {
   }
   const injector = ReflectiveInjector.fromResolvedProviders(
     resolveProviders,
-    parent
+    parent,
   )
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
@@ -165,7 +167,7 @@ export function getCurrentInjector(): ReflectiveInjector {
 /** 手动创建当前注射器, 只能用在 setup 中 */
 export function createCurrentInjector(
   providers: Provider[],
-  exclude?: Provider[]
+  exclude?: Provider[],
 ): ReflectiveInjector {
   let deps = resolveDependencies(providers)
   if (exclude?.length) {
@@ -175,7 +177,7 @@ export function createCurrentInjector(
   const parent = inject(InjectorKey, undefined)
   const injector = ReflectiveInjector.fromResolvedProviders(
     resolveProviders,
-    parent
+    parent,
   )
   provide(InjectorKey, injector)
   // 实例化
@@ -188,16 +190,19 @@ export function createCurrentInjector(
  * @param token
  * @param notFoundValue
  */
-export function injectService<T extends { new (...args: any[]): any }>(
+function injectService<T extends Type<any>>(
   token: T,
-  notFoundValue?: any
+  notFoundValue?: any,
 ): InstanceType<T>
-export function injectService<T>(
-  token: string | number | symbol,
-  notFoundValue?: any
-): T {
+function injectService<T>(
+  token: string | number | symbol | Type<any>,
+  notFoundValue?: any,
+): T
+function injectService(token: any, notFoundValue?: any) {
   const currentInjector = getCurrentInjector()
   if (!currentInjector) return notFoundValue
-
+  if (typeof token === 'function') token = resolveForwardRef(token)
   return currentInjector.get(token, notFoundValue)
 }
+
+export { injectService }
