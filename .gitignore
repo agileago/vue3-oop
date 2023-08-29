@@ -7,3 +7,4 @@ dist-ssr
 .vscode
 types
 coverage
+docs/.vitepress/cache

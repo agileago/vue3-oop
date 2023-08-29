@@ -23,7 +23,7 @@ export default defineConfig({
       '/guide/': [
         {
           text: '介绍',
-          collapsible: true,
+          collapsed: true,
           items: [
             { text: '使用指南', link: '/guide/' },
             { text: '组件', link: '/guide/component' },
