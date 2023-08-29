@@ -1,5 +1,12 @@
 
 
+## [1.0.5](https://github.com/agileago/vue3-oop/compare/v1.0.4...v1.0.5) (2023-08-29)
+
+
+### Features
+
+* injectService支持forwardRef ([3b7970a](https://github.com/agileago/vue3-oop/commit/3b7970a0e8ce7e913ecc781c9221b71a63628322))
+
 ## [1.0.2](https://github.com/agileago/vue3-oop/compare/v1.0.1...v1.0.2) (2022-09-26)
 
 
