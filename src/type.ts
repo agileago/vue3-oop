@@ -49,7 +49,7 @@ type ModelProps<T extends {}> = Exclude<
 
 export type WithVModel<
   T extends {},
-  U extends keyof T = ModelProps<T>
+  U extends keyof T = ModelProps<T>,
 > = TransformModelValue<{
   [k in U as `v-model:${k & string}`]?: T[k] | [T[k], string[]]
 }>

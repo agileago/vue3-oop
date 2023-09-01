@@ -46,7 +46,7 @@ export function createDecorator<T = void>(name: string, allowRepeat = false) {
 export function getProtoMetadata<T = void>(
   target: any,
   key: symbol | string,
-  withDesc = false
+  withDesc = false,
 ): MetadataStore<T>[] {
   const proto = Object.getPrototypeOf(target)
   if (!proto) return []
@@ -58,7 +58,7 @@ export function getProtoMetadata<T = void>(
 }
 export function getDeepOwnDescriptor(
   proto: any,
-  key: string | symbol
+  key: string | symbol,
 ): PropertyDescriptor | null {
   if (!proto) return null
   const desc = Object.getOwnPropertyDescriptor(proto, key)

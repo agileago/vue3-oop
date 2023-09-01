@@ -11,7 +11,7 @@ export interface LinkDecorator {
 function handler(targetThis: Record<any, any>) {
   const list = getProtoMetadata<string | undefined>(
     targetThis,
-    Link.MetadataKey
+    Link.MetadataKey,
   )
   if (!list || !list.length) return
   for (const item of list) {

@@ -4,12 +4,6 @@
   "main": "dist/vue3-oop.js",
   "module": "dist/vue3-oop.mjs",
   "types": "types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/vue3-oop.mjs",
-      "require": "./dist/vue3-oop.js"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

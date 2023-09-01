@@ -172,7 +172,7 @@ Object.defineProperty(VueComponent, '__vccOpts', {
         props: defaultProps || {},
         // 放到emits的on函数会自动缓存
         emits: (emits || []).concat(
-          getEmitsFromProps(CompConstructor.defaultProps || {})
+          getEmitsFromProps(CompConstructor.defaultProps || {}),
         ),
         setup,
       }
@@ -202,7 +202,7 @@ export function useForwardRef() {
 export function mergeRefs(...values: VNodeRef[]) {
   return function (
     ref: Element | ComponentPublicInstance | null,
-    refs: Record<string, any>
+    refs: Record<string, any>,
   ) {
     for (const r of values) {
       if (typeof r === 'string') {

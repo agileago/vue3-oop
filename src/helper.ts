@@ -22,7 +22,7 @@ export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app
 }
 export function getEmitsFromProps(
-  defaultProps: Record<string, any> | string[]
+  defaultProps: Record<string, any> | string[],
 ) {
   const keys = Array.isArray(defaultProps)
     ? defaultProps

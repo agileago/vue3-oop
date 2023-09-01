@@ -39,7 +39,7 @@ export interface HookDecorator {
 function handler(targetThis: any) {
   const list = getProtoMetadata<(Lifecycle | Lifecycle[])[]>(
     targetThis,
-    Hook.MetadataKey
+    Hook.MetadataKey,
   )
   if (!list?.length) return
   for (const item of list) {

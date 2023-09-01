@@ -33,7 +33,7 @@ function handler(targetThis: Record<string | symbol, any>) {
 export function defMut(
   targetThis: Record<string | symbol, any>,
   key: string | symbol,
-  options: any
+  options: any,
 ) {
   let keyVal: Ref
   if (options === true) {

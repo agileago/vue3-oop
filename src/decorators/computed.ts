@@ -19,7 +19,7 @@ function handler(targetThis: Record<any, any>) {
   const list = getProtoMetadata<EagerType>(
     targetThis,
     Computed.MetadataKey,
-    true
+    true,
   )
   if (!list || !list.length) return
   for (const item of list) {
@@ -39,7 +39,7 @@ function handler(targetThis: Record<any, any>) {
         },
         {
           flush: option === true ? 'sync' : option,
-        }
+        },
       )
     } else {
       keyVal = computed({
