@@ -1,5 +1,12 @@
 
 
+## [1.0.6](https://github.com/agileago/vue3-oop/compare/v1.0.5...v1.0.6) (2023-09-01)
+
+
+### Bug Fixes
+
+* 调整package.json导出配置，解决vue-tsc类型报错 ([947a107](https://github.com/agileago/vue3-oop/commit/947a10710981cf5b3b6eb79fefd88d1bdb5054cb))
+
 ## [1.0.5](https://github.com/agileago/vue3-oop/compare/v1.0.4...v1.0.5) (2023-08-29)
 
 
