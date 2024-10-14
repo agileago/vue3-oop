@@ -1,5 +1,12 @@
 
 
+## [1.0.7](https://github.com/agileago/vue3-oop/compare/v1.0.6...v1.0.7) (2024-10-14)
+
+
+### Features
+
+* add provideService ([044aa65](https://github.com/agileago/vue3-oop/commit/044aa6554e9d4150fc3fdf4ca38035bcf3f91f11))
+
 ## [1.0.6](https://github.com/agileago/vue3-oop/compare/v1.0.5...v1.0.6) (2023-09-01)
 
 
