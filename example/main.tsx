@@ -34,7 +34,9 @@ class Child extends VueComponent<ChildProps> {
   }
 }
 
-@Component({ providers: [RouterStartService] })
+@Component({
+  providers: [RouterStartService],
+})
 class App extends VueComponent {
   constructor(private a: RouterStartService) {
     super()

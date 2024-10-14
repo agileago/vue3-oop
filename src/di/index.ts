@@ -96,6 +96,7 @@ export function resolveComponent(target: { new (...args: []): any }) {
     resolveProviders,
     parent,
   )
+  console.log(11111, injector)
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -162,7 +163,7 @@ export function resolveDependencies(inputs: Provider[]) {
 export function getCurrentInjector(): ReflectiveInjector {
   const instance = getCurrentInstance()
   // @ts-ignore
-  return instance.provides[InjectorKey] || inject(InjectorKey)
+  return instance?.provides[InjectorKey] || inject(InjectorKey)
 }
 /** 手动创建当前注射器, 只能用在 setup 中 */
 export function createCurrentInjector(
@@ -205,4 +206,38 @@ function injectService(token: any, notFoundValue?: any) {
   return currentInjector.get(token, notFoundValue)
 }
 
-export { injectService }
+interface Constructable {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor: Function
+}
+function provideService<T extends Constructable>(...service: T[]) {
+  const instance = getCurrentInstance()!
+  // @ts-ignore
+  let injector: ReflectiveInjector
+  if (Reflect.has(instance, InjectorKey as symbol)) {
+    // @ts-ignore
+    injector = instance.provides[InjectorKey]
+  }
+  // @ts-ignore
+  if (!injector) {
+    injector = ReflectiveInjector.resolveAndCreate([], inject(InjectorKey))
+    // @ts-ignore
+    instance.provides[InjectorKey] = injector
+  }
+
+  ReflectiveInjector.resolve(
+    service.map((k) => ({ provide: k.constructor, useValue: k })),
+  ).forEach((provider, i) => {
+    // @ts-ignore
+    const index = injector._providers.length
+    // @ts-ignore
+    injector._providers[index] = provider
+    // @ts-ignore
+    injector.keyIds[index] = provider.key.id
+    // @ts-ignore
+    injector.objs[index] = provider[i]
+  })
+  return injector
+}
+
+export { injectService, provideService }

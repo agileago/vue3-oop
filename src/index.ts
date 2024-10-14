@@ -17,6 +17,7 @@ export {
   getCurrentInjector,
   createCurrentInjector,
   injectService,
+  provideService,
 } from './di'
 export type { ComponentOptions } from './di'
 export type {
