@@ -96,7 +96,6 @@ export function resolveComponent(target: { new (...args: []): any }) {
     resolveProviders,
     parent,
   )
-  console.log(11111, injector)
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
