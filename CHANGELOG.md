@@ -1,5 +1,12 @@
 
 
+## [1.0.10](https://github.com/agileago/vue3-oop/compare/v1.0.9...v1.0.10) (2024-11-13)
+
+
+### Bug Fixes
+
+* provideservice correct value ([eaaf9bc](https://github.com/agileago/vue3-oop/commit/eaaf9bc3d2b18ef98b98cb60645b568363f784a4))
+
 ## [1.0.9](https://github.com/agileago/vue3-oop/compare/v1.0.8...v1.0.9) (2024-10-17)
 
 ## [1.0.8](https://github.com/agileago/vue3-oop/compare/v1.0.7...v1.0.8) (2024-10-17)
