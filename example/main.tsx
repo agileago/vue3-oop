@@ -4,18 +4,39 @@ import {
   Component,
   type ComponentProps,
   Hook,
+  injectService,
   Link,
   mergeRefs,
   Mut,
+  provideService,
   VueComponent,
 } from 'vue3-oop'
-import { createApp, shallowRef } from 'vue'
+import { createApp, defineComponent, ref, shallowRef } from 'vue'
 import { ConfigProvider, Layout, Menu } from 'ant-design-vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { RouterStartService } from './router'
 import { routes } from './router/routes'
 import zhCN from 'ant-design-vue/lib/locale/zh_CN'
 import { setup } from './setup'
+
+class AService {
+  height = ref(0)
+}
+
+const A1 = defineComponent(() => {
+  provideService(new AService())
+  return () => (
+    <div>
+      <A2></A2>
+    </div>
+  )
+})
+
+const A2 = defineComponent(() => {
+  const a = injectService(AService)
+  console.log(11111, a)
+  return () => <div>111 {a.height.value}</div>
+})
 
 interface ChildProps {
   value?: string
@@ -101,6 +122,7 @@ class App extends VueComponent {
           </Layout.Sider>
           <Layout.Content>
             <RouterView></RouterView>
+            <A1></A1>
           </Layout.Content>
         </Layout>
       </ConfigProvider>

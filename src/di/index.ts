@@ -234,7 +234,7 @@ function provideService<T extends Constructable>(...service: T[]) {
     // @ts-ignore
     injector.keyIds[index] = provider.key.id
     // @ts-ignore
-    injector.objs[index] = provider[i]
+    injector.objs[index] = service[i]
   })
   return injector
 }
