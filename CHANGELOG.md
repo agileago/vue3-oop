@@ -1,5 +1,12 @@
 
 
+## [1.0.11](https://github.com/agileago/vue3-oop/compare/v1.0.10...v1.0.11) (2024-11-22)
+
+
+### Features
+
+* 增加simple-props组件定义 ([c45e169](https://github.com/agileago/vue3-oop/commit/c45e169b46a35eb3fc83c95fc6a9f4a1277f396f))
+
 ## [1.0.10](https://github.com/agileago/vue3-oop/compare/v1.0.9...v1.0.10) (2024-11-13)
 
 
