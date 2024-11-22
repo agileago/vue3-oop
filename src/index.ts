@@ -11,6 +11,7 @@ export { Link } from './decorators/link'
 export { Hook } from './decorators/hook'
 export { createDecorator, getProtoMetadata } from './decorators/util'
 export * from './helper'
+export * from './simple-props'
 export {
   Component,
   InjectorKey,

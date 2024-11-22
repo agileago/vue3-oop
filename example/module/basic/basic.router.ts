@@ -4,21 +4,21 @@ const routes: RouteRecordRaw = {
   path: '/basic',
   component: () => import('./basic.module'),
   meta: {
-    title: '基础功能',
+    title: '特色功能',
   },
   children: [
     {
-      path: '/basic/hello-world',
-      component: () => import('./hello-world/hello-world.view'),
+      path: '/basic/simple-component',
+      component: () => import('./simple-component/index.view'),
       meta: {
-        title: '加减',
+        title: '简单组件',
       },
     },
     {
-      path: '/basic/user-input',
+      path: '/basic/class-component',
       component: () => import('./user-input/user-input.view'),
       meta: {
-        title: '增删改查',
+        title: '类组件',
       },
     },
     {
@@ -26,6 +26,20 @@ const routes: RouteRecordRaw = {
       component: () => import('./hoc/hoc.view'),
       meta: {
         title: '高阶组件',
+      },
+    },
+    {
+      path: '/basic/service',
+      component: () => import('./hoc/hoc.view'),
+      meta: {
+        title: '简单服务',
+      },
+    },
+    {
+      path: '/basic/inject',
+      component: () => import('./hoc/hoc.view'),
+      meta: {
+        title: '复杂服务注入',
       },
     },
   ],

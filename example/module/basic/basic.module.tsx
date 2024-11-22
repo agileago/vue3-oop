@@ -14,7 +14,7 @@ export default class BasicModule extends VueComponent {
         {({ Component }: { Component: any }) => {
           return (
             <div>
-              <h2>111</h2>
+              <h2>Suspense容器</h2>
               <Suspense
                 v-slots={{
                   default: () => [Component],
