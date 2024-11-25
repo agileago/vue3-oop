@@ -28,4 +28,5 @@ export type {
   WithVModel,
   ComponentPropsObject,
   Hanlder,
+  ClassAndStyleProps,
 } from './type'

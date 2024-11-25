@@ -1,9 +1,9 @@
 import { defineComponent, useClassAndStyle } from 'vue3-oop'
-import { AllowedComponentProps } from '@/type'
+import { ClassAndStyleProps } from '@/type'
 import { ref } from 'vue'
 
 // region 函数组件
-export interface SimpleFuncComponentProps extends AllowedComponentProps {
+export interface SimpleFuncComponentProps extends ClassAndStyleProps {
   count?: number
 }
 export function SimpleFuncComponent(props: SimpleFuncComponentProps) {
