@@ -1,5 +1,12 @@
 
 
+## [1.0.12](https://github.com/agileago/vue3-oop/compare/v1.0.11...v1.0.12) (2024-11-25)
+
+
+### Features
+
+* 导出类和样式 ([c7da5fe](https://github.com/agileago/vue3-oop/commit/c7da5fec551f4db14f9f8ac13a543e504f907cc1))
+
 ## [1.0.11](https://github.com/agileago/vue3-oop/compare/v1.0.10...v1.0.11) (2024-11-22)
 
 
