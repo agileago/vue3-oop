@@ -1,5 +1,12 @@
 
 
+## [1.0.13](https://github.com/agileago/vue3-oop/compare/v1.0.12...v1.0.13) (2024-12-05)
+
+
+### Bug Fixes
+
+* 更新slots类型 ([38f835d](https://github.com/agileago/vue3-oop/commit/38f835d71d68e51589d533f9bde5fae84925750a))
+
 ## [1.0.12](https://github.com/agileago/vue3-oop/compare/v1.0.11...v1.0.12) (2024-11-25)
 
 
