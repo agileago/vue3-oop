@@ -64,8 +64,8 @@ export class VueComponent<T extends {} = {}> {
   get $attrs() {
     return this.$.proxy!.$attrs
   }
-  get $slots() {
-    return this.$.proxy!.$slots
+  get $slots(): Omit<NonNullable<VueComponentProps<T>['v-slots']>, '$stable'> {
+    return this.$.proxy!.$slots as any
   }
   get $options() {
     return this.$.proxy!.$options
