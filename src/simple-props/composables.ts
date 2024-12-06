@@ -7,7 +7,11 @@ import {
 } from 'vue'
 
 export function camelizePropKey(p: string | symbol): string | symbol {
-  return typeof p === 'string' ? camelize(p) : p
+  if (typeof p === 'string') {
+    if (p.startsWith('data-')) return p
+    return camelize(p)
+  }
+  return p
 }
 
 export function useProps<T>(): T {
@@ -20,7 +24,7 @@ export function useProps<T>(): T {
   const getProps = () => {
     return Object.fromEntries(
       Object.entries(instance.vnode.props || {}).map(([k, v]) => [
-        camelize(k),
+        camelizePropKey(k),
         v,
       ]),
     )
@@ -47,6 +51,7 @@ export function useProps<T>(): T {
       ownKeys() {
         return [
           ...new Set([
+            ...Reflect.ownKeys(instance.props),
             ...Reflect.ownKeys(getProps()),
             ...Reflect.ownKeys(slots).map((k) =>
               typeof k === 'string' ? camelize(`render-${k}`) : k,

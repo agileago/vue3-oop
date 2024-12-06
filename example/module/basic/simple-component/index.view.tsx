@@ -31,15 +31,20 @@ export const SimpleStateComponent = defineComponent(
 export const SimpleStateWithDefaultValueComponent = defineComponent(
   function SimpleStateWithDefaultValueComponent(
     props: SimpleStateComponentProps,
+    { attrs },
   ) {
     const classAndStyle = useClassAndStyle()
     const count = ref(props.initialValue || 0)
-    return () => (
-      <div {...classAndStyle}>
-        <h3>带默认属性参数的组件</h3>
-        <input type={'number'} v-model={count.value} />
-      </div>
-    )
+    return () => {
+      console.log(2222, props.initialValue, attrs)
+      console.log(3333, { ...props })
+      return (
+        <div {...classAndStyle} {...props}>
+          <h3>带默认属性参数的组件</h3>
+          <input type={'number'} v-model={count.value} />
+        </div>
+      )
+    }
   },
   {
     props: {
@@ -55,13 +60,23 @@ export const SimpleStateWithDefaultValueComponent = defineComponent(
 
 // 简单状态组件定义
 const SimpleComponent = defineComponent(() => {
+  const init = ref<undefined | number>(10)
+
   return () => (
     <div>
       <h2>简单组件定义</h2>
       <h3>函数组件</h3>
       <SimpleFuncComponent count={20}></SimpleFuncComponent>
       <SimpleStateComponent initialValue={10}></SimpleStateComponent>
-      <SimpleStateWithDefaultValueComponent></SimpleStateWithDefaultValueComponent>
+      <button onClick={() => (init.value = init.value ? undefined : 10)}>
+        切换默认值
+      </button>
+      <SimpleStateWithDefaultValueComponent
+        class={'aaaa'}
+        initialValue={init.value}
+        // @ts-ignore
+        data-a={1111}
+      ></SimpleStateWithDefaultValueComponent>
     </div>
   )
 })

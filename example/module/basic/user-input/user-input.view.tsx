@@ -19,7 +19,7 @@ export default class UserInputView extends VueComponent {
     return (
       <Card title={'增删改查'}>
         <div>
-          <Button type={'primary'} onClick={this.add}>
+          <Button type={'primary'} onClick={this.add} data-a={'111'}>
             增加
           </Button>
         </div>
