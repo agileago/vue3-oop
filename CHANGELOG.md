@@ -1,5 +1,12 @@
 
 
+## [1.0.14](https://github.com/agileago/vue3-oop/compare/v1.0.13...v1.0.14) (2024-12-09)
+
+
+### Bug Fixes
+
+* 支持 data-* ([364ac94](https://github.com/agileago/vue3-oop/commit/364ac940d99fe49905797277f385d9053e821c33))
+
 ## [1.0.13](https://github.com/agileago/vue3-oop/compare/v1.0.12...v1.0.13) (2024-12-05)
 
 
