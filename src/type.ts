@@ -73,7 +73,7 @@ export type ComponentSlots<T extends { props: any }> = NonNullable<
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
 export type ClassType<T> = T
 
-export type ClassAndStyleProps = {
+export interface ClassAndStyleProps {
   class?: any
   style?: StyleValue
   [name: string]: any

@@ -5,11 +5,7 @@ import {
 import type { ComponentType, FunctionalComponent } from './types'
 import { useProps } from './composables'
 
-export {
-  type ClassAndStyle,
-  useClassAndStyle,
-  camelizePropKey,
-} from './composables'
+export { useClassAndStyle, camelizePropKey } from './composables'
 export * from './types'
 
 export function defineComponent<T extends Record<any, any>>(

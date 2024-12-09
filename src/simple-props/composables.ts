@@ -1,10 +1,5 @@
-import {
-  camelize,
-  type CSSProperties,
-  getCurrentInstance,
-  useAttrs,
-  useSlots,
-} from 'vue'
+import { camelize, getCurrentInstance, useAttrs, useSlots } from 'vue'
+import type { ClassAndStyleProps } from '@/type'
 
 export function camelizePropKey(p: string | symbol): string | symbol {
   if (typeof p === 'string') {
@@ -46,7 +41,6 @@ export function useProps<T>(): T {
         } else {
           return Reflect.get(getProps(), key, receiver)
         }
-        return Reflect.get(getProps(), key, receiver)
       },
       ownKeys() {
         return [
@@ -85,12 +79,7 @@ function getSlotName(p: PropertyKey) {
     return p.slice(6).replace(/^[A-Z]/, (s) => s.toLowerCase())
 }
 
-export interface ClassAndStyle {
-  class?: string
-  style?: CSSProperties
-}
-
-export function useClassAndStyle(): ClassAndStyle {
+export function useClassAndStyle(): ClassAndStyleProps {
   const instance = getCurrentInstance()
   if (!instance) {
     throw new Error('useClassAndStyle must be called inside setup()')
