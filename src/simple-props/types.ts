@@ -32,7 +32,7 @@ export type ComponentType<
   ExtractProps<T>,
   ExtractEvent<T>,
   SlotsType<ExtractSlots<T> & S>
-> & { new (): Expose }
+> & { new (...args: any[]): Expose }
 
 type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
 export interface FunctionalComponent<
