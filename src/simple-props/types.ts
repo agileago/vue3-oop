@@ -24,11 +24,15 @@ export type ExtractSlots<T> = {
   [P in keyof T as RemovePrefix<string & P, 'render'>]: T[P]
 }
 
-export type ComponentType<T extends Record<any, any>> = DefineSetupFnComponent<
+export type ComponentType<
+  T extends Record<any, any>,
+  S extends Record<any, any>,
+  Expose extends Record<any, any>,
+> = DefineSetupFnComponent<
   ExtractProps<T>,
   ExtractEvent<T>,
-  SlotsType<ExtractSlots<T>>
->
+  SlotsType<ExtractSlots<T> & S>
+> & { new (): Expose }
 
 type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
 export interface FunctionalComponent<
