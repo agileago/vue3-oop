@@ -8,3 +8,4 @@ dist-ssr
 types
 coverage
 docs/.vitepress/cache
+lib

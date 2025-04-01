@@ -7,3 +7,4 @@ dist
 pnpm-lock.yaml
 coverage
 .github
+.DS_Store

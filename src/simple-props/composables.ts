@@ -1,5 +1,5 @@
 import { camelize, getCurrentInstance, useAttrs, useSlots } from 'vue'
-import type { ClassAndStyleProps } from '@/type'
+import type { ClassAndStyleProps } from '../type'
 
 export function camelizePropKey(p: string | symbol): string | symbol {
   if (typeof p === 'string') {
@@ -17,12 +17,7 @@ export function useProps<T>(): T {
 
   const slots = useSlots()
   const getProps = () => {
-    return Object.fromEntries(
-      Object.entries(instance.vnode.props || {}).map(([k, v]) => [
-        camelizePropKey(k),
-        v,
-      ]),
-    )
+    return Object.fromEntries(Object.entries(instance.vnode.props || {}).map(([k, v]) => [camelizePropKey(k), v]))
   }
 
   const proxy = new Proxy(
@@ -47,9 +42,7 @@ export function useProps<T>(): T {
           ...new Set([
             ...Reflect.ownKeys(instance.props),
             ...Reflect.ownKeys(getProps()),
-            ...Reflect.ownKeys(slots).map((k) =>
-              typeof k === 'string' ? camelize(`render-${k}`) : k,
-            ),
+            ...Reflect.ownKeys(slots).map(k => (typeof k === 'string' ? camelize(`render-${k}`) : k)),
           ]),
         ]
       },
@@ -75,8 +68,7 @@ export function useProps<T>(): T {
 }
 
 function getSlotName(p: PropertyKey) {
-  if (typeof p === 'string' && p.startsWith('render'))
-    return p.slice(6).replace(/^[A-Z]/, (s) => s.toLowerCase())
+  if (typeof p === 'string' && p.startsWith('render')) return p.slice(6).replace(/^[A-Z]/, s => s.toLowerCase())
 }
 
 export function useClassAndStyle(): ClassAndStyleProps {

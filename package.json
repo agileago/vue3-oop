@@ -1,28 +1,11 @@
 {
   "name": "vue3-oop",
   "version": "1.0.16",
-  "main": "dist/vue3-oop.js",
-  "module": "dist/vue3-oop.mjs",
-  "types": "types/index.d.ts",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "type:check": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint --fix .",
-    "format": "prettier --write '**/*.{ts,tsx,js,vue,css,scss,html,json}'",
-    "release": "pnpm build && release-it",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "test": "vitest",
-    "coverage": "vitest --coverage"
+  "packageManager": "pnpm@9.1.1",
+  "engines": {
+    "pnpm": ">=9.0"
   },
-  "files": [
-    "dist",
-    "types",
-    "package.json"
-  ],
+  "description": "vue3-oop take class component and di into vue",
   "author": {
     "name": "agileago",
     "email": "593728759@qq.com"
@@ -40,49 +23,42 @@
     "type": "git",
     "url": "git+https://github.com/agileago/vue3-oop.git"
   },
-  "homepage": "https://agileago.github.io/vue3-oop",
+  "homepage": "https://agileago.github.io/vue3-oop#readme",
+  "bugs": {
+    "url": "https://github.com/agileago/vue3-oop/issues"
+  },
   "license": "MIT",
-  "devDependencies": {
-    "@abraham/reflection": "^0.12.0",
-    "@algolia/client-search": "^4.19.1",
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "@release-it/conventional-changelog": "^7.0.0",
-    "@types/lodash-es": "^4.17.8",
-    "@types/markdown-it": "^13.0.1",
-    "@types/node": "^20.5.7",
-    "@types/prettier": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "@vitejs/plugin-vue": "^4.3.4",
-    "@vitest/coverage-c8": "^0.33.0",
-    "@vitest/ui": "^0.34.3",
-    "@vue/test-utils": "2.4.1",
-    "@vue3-oop/plugin-vue-jsx": "^1.4.6",
-    "ant-design-vue": "^4.0.1",
-    "autobind-decorator": "^2.4.0",
-    "c8": "^8.0.1",
-    "eslint": "^8.48.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "happy-dom": "^10.11.1",
-    "injection-js": "^2.4.0",
-    "lint-staged": "^14.0.1",
-    "lodash-es": "^4.17.21",
-    "prettier": "^3.0.2",
-    "release-it": "^16.3.0",
-    "rimraf": "^5.0.1",
-    "sass": "^1.66.1",
-    "simple-git-hooks": "^2.9.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.5.3",
-    "vite-tsconfig-paths": "^4.2.0",
-    "vitepress": "1.0.0-rc.10",
-    "vitest": "^0.34.3",
-    "vue": "^3.5.13",
-    "vue-router": "^4.2.4"
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --out-dir=lib --dts --clean",
+    "dev": "tsup src/index.ts --format esm --out-dir=lib --watch --dts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --fix .",
+    "format": "prettier --write .",
+    "release": "",
+    "prepublishOnly": "pnpm run build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "test": "vitest",
+    "postinstall": "simple-git-hooks"
   },
   "commitlint": {
     "extends": [
@@ -90,42 +66,34 @@
     ]
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged",
-    "commit-msg": "pnpm exec commitlint -e \"$@\""
+    "pre-commit": "enpm exec lint-staged --allow-empty --concurrent false",
+    "commit-msg": "pnpm exec commitlint -e $1"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{css,scss,html,json,js}": [
-      "prettier --write"
-    ]
+    "*.{ts,tsx}": "eslint --fix",
+    "*.{vue,ts,tsx,js,jsx,less,css}": "prettier --write"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "eslint": "^9.23.0",
+    "@configurajs/eslint": "^0.1.2",
+    "prettier": "^3.5.3",
+    "@configurajs/prettier": "^0.1.4",
+    "simple-git-hooks": "^2.9.0",
+    "lint-staged": "^14.0.1",
+
+    "tslib": "^2.6.2",
+    "typescript": "^5.8.2",
+    "vue": "^3.5.13",
+    "@abraham/reflection": "^0.12.0",
+    "autobind-decorator": "^2.4.0",
+    "injection-js": "^2.4.0",
+
+    "tsup": "^8.4.0"
   },
   "peerDependencies": {
     "injection-js": "*",
     "vue": "3"
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore(release): ${version}",
-      "tagName": "v${version}"
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md",
-        "ignoreRecommendedBump": true
-      }
-    },
-    "github": {
-      "release": true,
-      "web": true,
-      "autoGenerate": true
-    }
   }
 }

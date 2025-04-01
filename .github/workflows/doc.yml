@@ -1,4 +1,4 @@
-name: 发布到github pages
+name: 发布文档到github pages
 on:
   push:
     branches:

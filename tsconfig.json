@@ -1,29 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "es2016",
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "types": ["@abraham/reflection"],
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client", "@abraham/reflection", "vitest", "vue/jsx"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "useDefineForClassFields": false,
-    "allowSyntheticDefaultImports": true,
-    "strictPropertyInitialization": false,
-    "declaration": true,
-    "declarationDir": "./types",
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "vue3-oop": ["src/index.ts"]
-    }
-  },
-  "include": ["src", "test", "example", "vite.config.ts", "package.json"]
+    "outDir": "./lib"
+  }
 }
