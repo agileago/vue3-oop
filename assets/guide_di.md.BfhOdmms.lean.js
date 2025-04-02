@@ -1,1 +1,0 @@
-import{_ as i,c as a,o as n,ae as h}from"./chunks/framework.BhmaVjTC.js";const g=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/di.md","filePath":"guide/di.md"}'),p={name:"guide/di.md"};function l(k,s,t,e,E,r){return n(),a("div",null,s[0]||(s[0]=[h("",7)]))}const y=i(p,[["render",l]]);export{g as __pageData,y as default};

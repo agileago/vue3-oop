@@ -1,1 +1,0 @@
-import{_ as i,c as a,o as n,ae as t}from"./chunks/framework.BhmaVjTC.js";const o=JSON.parse('{"title":"基础类","description":"","frontmatter":{},"headers":[],"relativePath":"guide/api.md","filePath":"guide/api.md"}'),h={name:"guide/api.md"};function e(l,s,p,k,r,d){return n(),a("div",null,s[0]||(s[0]=[t("",52)]))}const g=i(h,[["render",e]]);export{o as __pageData,g as default};
