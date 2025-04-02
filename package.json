@@ -58,7 +58,8 @@
     "docs:preview": "vitepress preview docs",
     "test:dev": "vitest --coverage",
     "test": "vitest run --coverage",
-    "postinstall": "simple-git-hooks"
+    "postinstall": "simple-git-hooks",
+    "demo:dev": "pnpm -C playground dev"
   },
   "commitlint": {
     "extends": [

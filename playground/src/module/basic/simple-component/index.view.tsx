@@ -1,6 +1,5 @@
-import { defineComponent, useClassAndStyle } from 'vue3-oop'
-import { ClassAndStyleProps } from '@/type'
 import { ref } from 'vue'
+import { defineComponent, useClassAndStyle, type ClassAndStyleProps } from 'vue3-oop'
 
 // region 函数组件
 export interface SimpleFuncComponentProps extends ClassAndStyleProps {
@@ -16,23 +15,18 @@ export interface SimpleStateComponentProps {
   initialValue?: number
 }
 
-export const SimpleStateComponent = defineComponent(
-  function SimpleStateComponent(props: SimpleStateComponentProps) {
-    const classAndStyle = useClassAndStyle()
-    const count = ref(props.initialValue || 0)
-    return () => (
-      <div {...classAndStyle}>
-        <input type={'number'} v-model={count.value} />
-      </div>
-    )
-  },
-)
+export const SimpleStateComponent = defineComponent(function SimpleStateComponent(props: SimpleStateComponentProps) {
+  const classAndStyle = useClassAndStyle()
+  const count = ref(props.initialValue || 0)
+  return () => (
+    <div {...classAndStyle}>
+      <input type={'number'} v-model={count.value} />
+    </div>
+  )
+})
 
 export const SimpleStateWithDefaultValueComponent = defineComponent(
-  function SimpleStateWithDefaultValueComponent(
-    props: SimpleStateComponentProps,
-    { attrs },
-  ) {
+  function SimpleStateWithDefaultValueComponent(props: SimpleStateComponentProps, { attrs }) {
     const classAndStyle = useClassAndStyle()
     const count = ref(props.initialValue || 0)
     return () => {
@@ -68,9 +62,7 @@ const SimpleComponent = defineComponent(() => {
       <h3>函数组件</h3>
       <SimpleFuncComponent count={20}></SimpleFuncComponent>
       <SimpleStateComponent initialValue={10}></SimpleStateComponent>
-      <button onClick={() => (init.value = init.value ? undefined : 10)}>
-        切换默认值
-      </button>
+      <button onClick={() => (init.value = init.value ? undefined : 10)}>切换默认值</button>
       <SimpleStateWithDefaultValueComponent
         class={'aaaa'}
         initialValue={init.value}
