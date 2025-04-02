@@ -1,13 +1,4 @@
-import {
-  Autobind,
-  Component,
-  type ComponentProps,
-  Computed,
-  Hook,
-  Mut,
-  VueComponent,
-  VueService,
-} from 'vue3-oop'
+import { Autobind, Component, type ComponentProps, Computed, Hook, Mut, VueComponent, VueService } from 'vue3-oop'
 import type { VNodeChild } from 'vue'
 import { Injectable } from 'injection-js'
 

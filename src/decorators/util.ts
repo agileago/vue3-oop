@@ -15,11 +15,10 @@ export function createDecorator<T = void>(name: string, allowRepeat = false) {
   const MetadataKey = createSymbol(metaName)
   const decoratorFn: DecoratorFn<T> = function (options: T) {
     return function (target: any, key: string | symbol) {
-      let list: MetadataStore<T | T[]>[] =
-        Reflect.getMetadata(MetadataKey, target) || []
+      let list: MetadataStore<T | T[]>[] = Reflect.getMetadata(MetadataKey, target) || []
       // 处理继承
       list = list.slice()
-      const hasIndex = list.findIndex((k) => k.key === key)
+      const hasIndex = list.findIndex(k => k.key === key)
       if (hasIndex === -1) {
         list.push({ key, options: allowRepeat ? [options] : options })
       } else {
@@ -43,23 +42,16 @@ export function createDecorator<T = void>(name: string, allowRepeat = false) {
   })
   return decoratorFn
 }
-export function getProtoMetadata<T = void>(
-  target: any,
-  key: symbol | string,
-  withDesc = false,
-): MetadataStore<T>[] {
+export function getProtoMetadata<T = void>(target: any, key: symbol | string, withDesc = false): MetadataStore<T>[] {
   const proto = Object.getPrototypeOf(target)
   if (!proto) return []
   const res: MetadataStore<any>[] = Reflect.getMetadata(key, proto) || []
   if (withDesc) {
-    res.forEach((k) => (k.desc = getDeepOwnDescriptor(proto, k.key)))
+    res.forEach(k => (k.desc = getDeepOwnDescriptor(proto, k.key)))
   }
   return res
 }
-export function getDeepOwnDescriptor(
-  proto: any,
-  key: string | symbol,
-): PropertyDescriptor | null {
+export function getDeepOwnDescriptor(proto: any, key: string | symbol): PropertyDescriptor | null {
   if (!proto) return null
   const desc = Object.getOwnPropertyDescriptor(proto, key)
   if (desc) return desc

@@ -44,17 +44,14 @@ class App extends VueComponent {
               VUE 示例
             </h2>
             <Menu theme={'dark'} mode={'inline'}>
-              {routes.map((r) => {
+              {routes.map(r => {
                 return (
                   <Menu.SubMenu title={r.meta?.title} key={r.path}>
                     {'children' in r &&
-                      r.children?.map((i) => {
+                      r.children?.map(i => {
                         return (
                           <Menu.Item key={i.path}>
-                            <RouterLink
-                              to={i.path}
-                              style={{ display: 'block' }}
-                            >
+                            <RouterLink to={i.path} style={{ display: 'block' }}>
                               {i.meta?.title}
                             </RouterLink>
                           </Menu.Item>

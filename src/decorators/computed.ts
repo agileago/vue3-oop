@@ -16,11 +16,7 @@ export interface ComputedDecorator {
 }
 
 function handler(targetThis: Record<any, any>) {
-  const list = getProtoMetadata<EagerType>(
-    targetThis,
-    Computed.MetadataKey,
-    true,
-  )
+  const list = getProtoMetadata<EagerType>(targetThis, Computed.MetadataKey, true)
   if (!list || !list.length) return
   for (const item of list) {
     const desc = item.desc

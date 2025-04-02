@@ -19,6 +19,7 @@
     "vite": "^6.2.4",
     "typescript": "^5.8.2",
     "vite-plugin-tsconfig-paths": "^1.4.1",
-    "@vue3-oop/plugin-vue-jsx": "^1.4.6"
+    "@vue3-oop/plugin-vue-jsx": "^1.4.6",
+    "@vue/runtime-dom": "^3.5.13"
   }
 }

@@ -37,10 +37,7 @@ export interface HookDecorator {
 }
 
 function handler(targetThis: any) {
-  const list = getProtoMetadata<(Lifecycle | Lifecycle[])[]>(
-    targetThis,
-    Hook.MetadataKey,
-  )
+  const list = getProtoMetadata<(Lifecycle | Lifecycle[])[]>(targetThis, Hook.MetadataKey)
   if (!list?.length) return
   for (const item of list) {
     let vueFn: any

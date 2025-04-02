@@ -1,7 +1,6 @@
 import { Hook, injectService, Link, Mut, VueComponent } from 'vue3-oop'
 import { Button, Card, Input } from 'ant-design-vue'
-import { withModifiers } from 'vue'
-import { RouterService } from '../../../router/router.service'
+import { RouterService } from '@/router/router.service'
 
 export class Base extends VueComponent {
   @Mut() count = 1
@@ -14,13 +13,16 @@ function Foo() {
   return <div v-focus>aaaaaaa</div>
 }
 
+declare module '@vue/runtime-dom' {
+  interface HTMLAttributes {
+    onClickOnce?: () => void
+    'v-focus'?: any
+  }
+}
+
 export class Child1 extends Base {
   render() {
-    return (
-      <div onClick={withModifiers(() => this.count++, ['once'])}>
-        {super.render()}
-      </div>
-    )
+    return <div onClickOnce={() => this.count++}>{super.render()}</div>
   }
 }
 
@@ -39,7 +41,7 @@ export default class HelloWorldView extends VueComponent {
   @Mut() count = 1
 
   async init() {
-    await new Promise((r) => setTimeout(r, 5000))
+    await new Promise(r => setTimeout(r, 5000))
   }
 
   router = injectService(RouterService)!
@@ -59,10 +61,7 @@ export default class HelloWorldView extends VueComponent {
         <Button type={'primary'} onClick={() => this.count++} ref={'abc'}>
           +
         </Button>
-        <Input
-          v-model:value={this.count}
-          style={{ width: '100px', textAlign: 'center' }}
-        ></Input>
+        <Input v-model:value={this.count} style={{ width: '100px', textAlign: 'center' }}></Input>
         <Button type={'primary'} onClick={() => this.count--}>
           -
         </Button>

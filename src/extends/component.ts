@@ -1,17 +1,12 @@
-import type {
-  ComponentOptions,
-  ComponentPublicInstance,
-  VNodeChild,
-  VNodeRef,
-} from 'vue'
+import type { ComponentOptions, ComponentPublicInstance, VNodeChild, VNodeRef } from 'vue'
 import { getCurrentInstance, isRef, markRaw } from 'vue'
-import { getEmitsFromProps, useCtx, useProps } from '../helper'
-import type { Hanlder, VueComponentProps, WithSlotTypes } from '../type'
-import { MutHandler } from '../decorators/mut'
 import { ComputedHandler } from '../decorators/computed'
 import { HookHandler } from '../decorators/hook'
 import { LinkHandler } from '../decorators/link'
+import { MutHandler } from '../decorators/mut'
 import { resolveComponent } from '../di'
+import { getEmitsFromProps, useCtx, useProps } from '../helper'
+import type { Hanlder, VueComponentProps, WithSlotTypes } from '../type'
 
 export const GlobalStoreKey = 'GlobalStoreKey'
 const hasOwnProperty = Object.prototype.hasOwnProperty
@@ -19,12 +14,7 @@ const hasOwn = (val: any, key: string) => hasOwnProperty.call(val, key)
 
 export class VueComponent<T extends {} = {}> {
   /** 装饰器处理 */
-  static handler: Hanlder[] = [
-    MutHandler,
-    ComputedHandler,
-    LinkHandler,
-    HookHandler,
-  ]
+  static handler: Hanlder[] = [MutHandler, ComputedHandler, LinkHandler, HookHandler]
   /** 是否自定义解析组件 */
   static resolveComponent = resolveComponent
   /** 热更新使用 */
@@ -100,7 +90,7 @@ export class VueComponent<T extends {} = {}> {
     current.exposed = this
     current.exposeProxy = this
 
-    VueComponent.handler.forEach((handler) => handler.handler(this))
+    VueComponent.handler.forEach(handler => handler.handler(this))
   }
 
   /** 渲染函数 */
@@ -133,7 +123,7 @@ Object.defineProperty(VueComponent, '__vccOpts', {
     const parent = Object.getPrototypeOf(this)
     const parentOpt = parent === VueComponent ? null : parent.__vccOpts
     const CompConstructor = this as typeof VueComponent
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { displayName, defaultProps, emits, ...rest } = CompConstructor
 
     let optValue: ComponentOptions
@@ -171,9 +161,7 @@ Object.defineProperty(VueComponent, '__vccOpts', {
         name: displayName || CompConstructor.name,
         props: defaultProps || {},
         // 放到emits的on函数会自动缓存
-        emits: (emits || []).concat(
-          getEmitsFromProps(CompConstructor.defaultProps || {}),
-        ),
+        emits: (emits || []).concat(getEmitsFromProps(CompConstructor.defaultProps || {})),
         setup,
       }
     }
@@ -200,10 +188,7 @@ export function useForwardRef() {
 
 // 合并ref
 export function mergeRefs(...values: VNodeRef[]) {
-  return function (
-    ref: Element | ComponentPublicInstance | null,
-    refs: Record<string, any>,
-  ) {
+  return function (ref: Element | ComponentPublicInstance | null, refs: Record<string, any>) {
     for (const r of values) {
       if (typeof r === 'string') {
         refs[r] = ref

@@ -21,12 +21,8 @@ export function useCtx() {
 export function getCurrentApp() {
   return getCurrentInstance()?.appContext.app
 }
-export function getEmitsFromProps(
-  defaultProps: Record<string, any> | string[],
-) {
-  const keys = Array.isArray(defaultProps)
-    ? defaultProps
-    : Object.keys(defaultProps)
+export function getEmitsFromProps(defaultProps: Record<string, any> | string[]) {
+  const keys = Array.isArray(defaultProps) ? defaultProps : Object.keys(defaultProps)
   const emits: string[] = []
 
   for (let key of keys) {

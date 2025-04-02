@@ -1,11 +1,4 @@
-import type {
-  ComponentCustomProps,
-  Prop,
-  SetupContext,
-  StyleValue,
-  VNodeChild,
-  VNodeProps,
-} from 'vue'
+import type { ComponentCustomProps, Prop, SetupContext, StyleValue, VNodeChild, VNodeProps } from 'vue'
 
 /**
  * 装饰器处理
@@ -21,9 +14,7 @@ type DefaultSlots = {
   default(): VNodeChild
 }
 
-type MixDefaultSlots<T extends {}> = 'default' extends keyof T
-  ? {}
-  : DefaultSlots
+type MixDefaultSlots<T extends {}> = 'default' extends keyof T ? {} : DefaultSlots
 
 // 处理tsx slots 类型问题
 export type WithVSlots<T extends Record<string, any>> = {
@@ -47,28 +38,20 @@ type ModelProps<T extends {}> = Exclude<
   undefined
 >
 
-export type WithVModel<
-  T extends {},
-  U extends keyof T = ModelProps<T>,
-> = TransformModelValue<{
+export type WithVModel<T extends {}, U extends keyof T = ModelProps<T>> = TransformModelValue<{
   [k in U as `v-model:${k & string}`]?: T[k] | [T[k], string[]]
 }>
-export type TransformModelValue<T extends {}> =
-  'v-model:modelValue' extends keyof T
-    ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
-    : T
+export type TransformModelValue<T extends {}> = 'v-model:modelValue' extends keyof T
+  ? Omit<T, 'v-model:modelValue'> & { ['v-model']?: T['v-model:modelValue'] }
+  : T
 
-export type ComponentProps<T extends {}> =
-  | ComponentPropsObject<T>
-  | Array<KeysOfUnion<DistributiveOmit<T, 'slots'>>>
+export type ComponentProps<T extends {}> = ComponentPropsObject<T> | Array<KeysOfUnion<DistributiveOmit<T, 'slots'>>>
 
 export type ComponentPropsObject<T extends {}> = {
   [U in KeysOfUnion<DistributiveOmit<T, 'slots'>>]-?: Prop<any>
 }
 
-export type ComponentSlots<T extends { props: any }> = NonNullable<
-  T['props']['v-slots']
->
+export type ComponentSlots<T extends { props: any }> = NonNullable<T['props']['v-slots']>
 
 /** 为了阻止ts把不相关的类也解析到metadata数据中，用这个工具类型包装一下类 */
 export type ClassType<T> = T
@@ -79,9 +62,7 @@ export interface ClassAndStyleProps {
   [name: string]: any
 }
 
-export type DistributiveOmit<T, K extends keyof any> = T extends T
-  ? Omit<T, K>
-  : never
+export type DistributiveOmit<T, K extends keyof any> = T extends T ? Omit<T, K> : never
 
 type DistributiveVModel<T extends {}> = T extends T ? WithVModel<T> : never
 type DistributiveVSlots<T extends {}> = T extends T ? WithVSlots<T> : never

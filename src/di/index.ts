@@ -1,24 +1,10 @@
-import type {
-  ClassProvider,
-  Provider,
-  ResolvedReflectiveProvider,
-  Type,
-  TypeProvider,
-} from 'injection-js'
-import {
-  Injectable,
-  InjectionToken,
-  ReflectiveInjector,
-  resolveForwardRef,
-  SkipSelf,
-} from 'injection-js'
 import type { InjectionKey } from 'vue'
 import { getCurrentInstance, inject, provide } from 'vue'
+import type { ClassProvider, Provider, ResolvedReflectiveProvider, Type, TypeProvider } from 'injection-js'
+import { Injectable, InjectionToken, ReflectiveInjector, resolveForwardRef, SkipSelf } from 'injection-js'
 import { createSymbol } from '../helper'
 
-export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol(
-  'VUE3-OOP_ReflectiveInjector',
-) as symbol
+export const InjectorKey: InjectionKey<ReflectiveInjector> = createSymbol('VUE3-OOP_ReflectiveInjector') as symbol
 
 const MetadataKey = createSymbol('VUE3-OOP_Component')
 const MetadataProviderKey = createSymbol('VUE3-OOP_ResolveProviders')
@@ -66,14 +52,8 @@ export function resolveComponent(target: { new (...args: []): any }) {
   if (!Reflect.getMetadata('annotations', target)) return new target()
   const parent = inject(InjectorKey, undefined)
   // 从缓存中拿到解析过得依赖
-  let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(
-    MetadataProviderKey,
-    target,
-  )
-  const options: ComponentOptions | undefined = Reflect.getOwnMetadata(
-    MetadataKey,
-    target,
-  )
+  let resolveProviders = Reflect.getOwnMetadata<ResolvedReflectiveProvider[]>(MetadataProviderKey, target)
+  const options: ComponentOptions | undefined = Reflect.getOwnMetadata(MetadataKey, target)
   if (!resolveProviders || options?.stable === false) {
     // 依赖
     let deps: Provider[] = [target]
@@ -86,31 +66,28 @@ export function resolveComponent(target: { new (...args: []): any }) {
     }
     // 排除掉某些依赖
     if (options?.exclude?.length) {
-      deps = deps.filter((k) => !options.exclude?.includes(k))
+      deps = deps.filter(k => !options.exclude?.includes(k))
     }
     resolveProviders = ReflectiveInjector.resolve(deps)
     // 缓存解析过的依赖, 提高性能
     Reflect.defineMetadata(MetadataProviderKey, resolveProviders, target)
   }
-  const injector = ReflectiveInjector.fromResolvedProviders(
-    resolveProviders,
-    parent,
-  )
+  const injector = ReflectiveInjector.fromResolvedProviders(resolveProviders, parent)
   if (options?.globalStore) {
     // 如果作为全局的服务，则注入到根上面
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     const current = getCurrentInstance()!
     const app = current.appContext.app
 
     app.provide(InjectorKey, injector)
     app.getStore = () => injector
-    app.getService = (token) => injector.get(token)
+    app.getService = token => injector.get(token)
   } else {
     provide(InjectorKey, injector)
   }
   const compInstance = injector.get(target)
   // 处理一下providers中的未创建实例的服务
-  resolveProviders.forEach((k) => injector.get(k.key.token))
+  resolveProviders.forEach(k => injector.get(k.key.token))
   return compInstance
 }
 
@@ -127,11 +104,7 @@ export function resolveDependencies(inputs: Provider[]) {
   const deps = new Set<Provider>()
 
   function resolver(klass: Provider) {
-    if (
-      deps.has(klass) ||
-      noConstructor.find((k) => k !== klass && k.provide === klass)
-    )
-      return
+    if (deps.has(klass) || noConstructor.find(k => k !== klass && k.provide === klass)) return
     deps.add(klass)
     const resolves = ReflectiveInjector.resolve([klass])
     for (const item of resolves) {
@@ -165,23 +138,17 @@ export function getCurrentInjector(): ReflectiveInjector {
   return instance?.provides[InjectorKey] || inject(InjectorKey)
 }
 /** 手动创建当前注射器, 只能用在 setup 中 */
-export function createCurrentInjector(
-  providers: Provider[],
-  exclude?: Provider[],
-): ReflectiveInjector {
+export function createCurrentInjector(providers: Provider[], exclude?: Provider[]): ReflectiveInjector {
   let deps = resolveDependencies(providers)
   if (exclude?.length) {
-    deps = deps.filter((k) => exclude?.includes(k))
+    deps = deps.filter(k => exclude?.includes(k))
   }
   const resolveProviders = ReflectiveInjector.resolve(deps)
   const parent = inject(InjectorKey, undefined)
-  const injector = ReflectiveInjector.fromResolvedProviders(
-    resolveProviders,
-    parent,
-  )
+  const injector = ReflectiveInjector.fromResolvedProviders(resolveProviders, parent)
   provide(InjectorKey, injector)
   // 实例化
-  resolveProviders.forEach((k) => injector.get(k.key.token))
+  resolveProviders.forEach(k => injector.get(k.key.token))
   return injector
 }
 
@@ -190,14 +157,8 @@ export function createCurrentInjector(
  * @param token
  * @param notFoundValue
  */
-function injectService<T extends Type<any>>(
-  token: T,
-  notFoundValue?: any,
-): InstanceType<T>
-function injectService<T>(
-  token: string | number | symbol | Type<any>,
-  notFoundValue?: any,
-): T
+function injectService<T extends Type<any>>(token: T, notFoundValue?: any): InstanceType<T>
+function injectService<T>(token: string | number | symbol | Type<any>, notFoundValue?: any): T
 function injectService(token: any, notFoundValue?: any) {
   const currentInjector = getCurrentInjector()
   if (!currentInjector) return notFoundValue
@@ -206,7 +167,6 @@ function injectService(token: any, notFoundValue?: any) {
 }
 
 interface Constructable {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   constructor: Function
 }
 function provideService<T extends Constructable>(...service: T[]) {
@@ -224,9 +184,7 @@ function provideService<T extends Constructable>(...service: T[]) {
     instance.provides[InjectorKey] = injector
   }
 
-  ReflectiveInjector.resolve(
-    service.map((k) => ({ provide: k.constructor, useValue: k })),
-  ).forEach((provider, i) => {
+  ReflectiveInjector.resolve(service.map(k => ({ provide: k.constructor, useValue: k }))).forEach((provider, i) => {
     // @ts-ignore
     const index = injector._providers.length
     // @ts-ignore

@@ -1,11 +1,4 @@
-import {
-  type ComponentProps,
-  Hook,
-  Link,
-  Mut,
-  useForwardRef,
-  VueComponent,
-} from 'vue3-oop'
+import { type ComponentProps, Hook, Link, Mut, useForwardRef, VueComponent } from 'vue3-oop'
 import { nextTick } from 'vue'
 import { Card } from 'ant-design-vue'
 
@@ -25,7 +18,7 @@ class Origin extends VueComponent<OriginProps> {
     return (
       <div>
         <h2 onClick={() => this.count++}>{this.count}</h2>
-        {props.data?.map((k) => <li key={k}>{k}</li>) || <div>nodata</div>}
+        {props.data?.map(k => <li key={k}>{k}</li>) || <div>nodata</div>}
       </div>
     )
   }
@@ -43,7 +36,7 @@ class OriginWithData extends Origin {
 // 自带请求数据的组件
 function WithDataOrigin<T extends { new (...args: any[]): any }>(
   Comp: T,
-  request: (...args: any[]) => Promise<number[]>
+  request: (...args: any[]) => Promise<number[]>,
 ): T {
   class CompWithData extends VueComponent {
     // 处理属性
@@ -64,14 +57,7 @@ function WithDataOrigin<T extends { new (...args: any[]): any }>(
 
     render() {
       if (!this.data) return <div>loading....</div>
-      return (
-        <Comp
-          ref={this.forwardRef}
-          {...this.context.attrs}
-          data={this.data}
-          v-slots={this.context.slots}
-        ></Comp>
-      )
+      return <Comp ref={this.forwardRef} {...this.context.attrs} data={this.data} v-slots={this.context.slots}></Comp>
     }
   }
 
@@ -81,7 +67,7 @@ function WithDataOrigin<T extends { new (...args: any[]): any }>(
 // 自带请求数据的组件
 function WithDataOriginExtends<T extends { new (...args: any[]): any }>(
   Comp: T,
-  request: (...args: any[]) => Promise<number[]>
+  request: (...args: any[]) => Promise<number[]>,
 ): T {
   class CompWithData extends Comp {
     @Mut() data?: number[]
@@ -103,9 +89,9 @@ function WithDataOriginExtends<T extends { new (...args: any[]): any }>(
 const OriginData = WithDataOriginExtends(
   Origin,
   () =>
-    new Promise((resolve) => {
+    new Promise(resolve => {
       setTimeout(() => resolve([1, 2, 3]), 3000)
-    })
+    }),
 )
 
 export default class HocView extends VueComponent {

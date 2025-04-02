@@ -8,16 +8,10 @@ export const Mut: MutDecorator = createDecorator<MutOptions>('Mut')
 type MutOptions = void | true | Parameters<typeof customRef>[0]
 type RefFactory = Parameters<typeof customRef>[0]
 export interface MutDecorator {
-  (): PropertyDecorator
   /**
-   * @param shallow 是否是浅层响应式
+   * @param shallowOrRefFactory
    */
-  (shallow: true): PropertyDecorator
-  /**
-   * 自定义ref 的实现
-   * @param refFactory
-   */
-  (refFactory: RefFactory): PropertyDecorator
+  (shallowOrRefFactory?: true | RefFactory): PropertyDecorator
   MetadataKey: string | symbol
 }
 
@@ -30,11 +24,7 @@ function handler(targetThis: Record<string | symbol, any>) {
   }
 }
 
-export function defMut(
-  targetThis: Record<string | symbol, any>,
-  key: string | symbol,
-  options: any,
-) {
+export function defMut(targetThis: Record<string | symbol, any>, key: string | symbol, options: any) {
   let keyVal: Ref
   if (options === true) {
     keyVal = shallowRef()
