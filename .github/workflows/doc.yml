@@ -1,8 +1,8 @@
 name: 发布文档到github pages
 on:
   push:
-    tags:
-      - 'v*'
+    paths:
+      - '**/doc/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
