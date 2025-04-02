@@ -47,8 +47,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --out-dir=lib --dts --clean",
-    "dev": "tsup src/index.ts --format esm --out-dir=lib --watch --dts",
+    "build": "tsup src/index.ts --format esm,cjs --out-dir=dist --dts --clean",
+    "dev": "tsup src/index.ts --format esm --out-dir=dist --watch --dts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix .",
     "format": "prettier --write .",
