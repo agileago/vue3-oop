@@ -1,3 +1,12 @@
+## [1.0.18](https://github.com/agileago/vue3-oop/compare/v1.0.17...v1.0.18) (2025-04-02)
+
+
+### Bug Fixes
+
+* 打包到dist ([df5554e](https://github.com/agileago/vue3-oop/commit/df5554e9f143280b3929a05e21a9ebf5d3e5dc39))
+
+
+
 ## [1.0.17](https://github.com/agileago/vue3-oop/compare/v1.0.16...v1.0.17) (2025-04-02)
 
 
