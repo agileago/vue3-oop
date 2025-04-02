@@ -11,7 +11,8 @@
     "lib": ["esnext", "dom"],
     "types": ["@abraham/reflection"],
     "module": "esnext",
-    "moduleResolution": "node",
-    "outDir": "./lib"
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true
   }
 }

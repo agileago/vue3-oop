@@ -1,7 +1,7 @@
 import { defineConfig } from '@configurajs/eslint'
 
 export default defineConfig({
-  ignores: [],
+  ignores: ['docs'],
   rules: {
     curly: 'off',
     eqeqeq: 'warn',

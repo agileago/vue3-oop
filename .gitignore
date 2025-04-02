@@ -9,3 +9,4 @@ types
 coverage
 docs/.vitepress/cache
 lib
+docs/.vitepress/dist

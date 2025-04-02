@@ -52,11 +52,10 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix .",
     "format": "prettier --write .",
-    "release": "",
-    "prepublishOnly": "pnpm run build",
+    "release": "pnpm build && vr release",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "docs:preview": "vitepress preview docs",
     "test": "vitest",
     "postinstall": "simple-git-hooks"
   },
@@ -74,23 +73,23 @@
     "*.{vue,ts,tsx,js,jsx,less,css}": "prettier --write"
   },
   "devDependencies": {
+    "@abraham/reflection": "^0.12.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "eslint": "^9.23.0",
     "@configurajs/eslint": "^0.1.2",
-    "prettier": "^3.5.3",
     "@configurajs/prettier": "^0.1.4",
-    "simple-git-hooks": "^2.9.0",
-    "lint-staged": "^14.0.1",
-
-    "tslib": "^2.6.2",
-    "typescript": "^5.8.2",
-    "vue": "^3.5.13",
-    "@abraham/reflection": "^0.12.0",
+    "@varlet/release": "^0.3.3",
     "autobind-decorator": "^2.4.0",
+    "eslint": "^9.23.0",
     "injection-js": "^2.4.0",
-
-    "tsup": "^8.4.0"
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.5.3",
+    "sass-embedded": "^1.86.1",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitepress": "^1.4.1",
+    "vue": "^3.5.13"
   },
   "peerDependencies": {
     "injection-js": "*",

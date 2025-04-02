@@ -1,7 +1,9 @@
+@use "sass:color";
+
 $color: #16a8a7;
 
 :root {
   --vp-c-brand-1: #{$color};
-  --vp-c-brand-2: #{lighten($color, 5%)};
-  --vp-c-brand-3: #{lighten($color, 10%)};
+  --vp-c-brand-2: #{color.adjust($color, $lightness: 5%)};
+  --vp-c-brand-3: #{color.adjust($color, $lightness: 10%)};
 }
