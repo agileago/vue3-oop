@@ -1,11 +1,6 @@
 import '@abraham/reflection'
 import { expect, test } from 'vitest'
-import {
-  type ComponentProps,
-  type ComponentSlots,
-  Mut,
-  VueComponent,
-} from 'vue3-oop'
+import { type ComponentProps, type ComponentSlots, Mut, VueComponent } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
 import { nextTick, type VNodeChild } from 'vue'
 

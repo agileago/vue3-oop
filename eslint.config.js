@@ -23,5 +23,6 @@ export default defineConfig({
     '@typescript-eslint/no-empty-function': 'warn',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
+    'require-await': 'warn',
   },
 })

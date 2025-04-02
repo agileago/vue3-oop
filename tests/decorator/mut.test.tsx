@@ -25,8 +25,7 @@ const debounceRef: CustomRefFactory<any> = (track, trigger) => {
     },
   }
 }
-const delay = (timeout: number) =>
-  new Promise((resolve) => setTimeout(resolve, timeout))
+const delay = (timeout: number) => new Promise(resolve => setTimeout(resolve, timeout))
 
 class CountComponent extends VueComponent {
   @Mut() count = 1

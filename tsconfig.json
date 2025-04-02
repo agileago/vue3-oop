@@ -9,10 +9,17 @@
     "resolveJsonModule": true,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["@abraham/reflection"],
+    "types": ["@abraham/reflection", "vue/jsx"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "verbatimModuleSyntax": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "vue3-oop": ["src"]
+    }
   }
 }

@@ -56,7 +56,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "test": "vitest",
+    "test:dev": "vitest --coverage",
+    "test": "vitest run --coverage",
     "postinstall": "simple-git-hooks"
   },
   "commitlint": {
@@ -89,7 +90,12 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.2",
     "vitepress": "^1.4.1",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vitest": "^3.1.1",
+    "jsdom": "^25.0.1",
+    "@vue3-oop/plugin-vue-jsx": "^1.4.6",
+    "@vue/test-utils": "^2.4.6",
+    "@vitest/coverage-istanbul": "^3.1.1"
   },
   "peerDependencies": {
     "injection-js": "*",

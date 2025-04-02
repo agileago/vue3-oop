@@ -1,12 +1,6 @@
 import '@abraham/reflection'
 import { expect, test } from 'vitest'
-import {
-  Component,
-  getCurrentInjector,
-  Mut,
-  VueComponent,
-  VueService,
-} from 'vue3-oop'
+import { Component, getCurrentInjector, Mut, VueComponent, VueService } from 'vue3-oop'
 import { mount } from '@vue/test-utils'
 import { Injector } from 'injection-js'
 
