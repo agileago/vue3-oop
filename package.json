@@ -1,6 +1,6 @@
 {
   "name": "vue3-oop",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "packageManager": "pnpm@9.1.1",
   "engines": {
     "pnpm": ">=9.0"
@@ -81,9 +81,14 @@
     "@configurajs/eslint": "^0.1.2",
     "@configurajs/prettier": "^0.1.4",
     "@varlet/release": "^0.3.3",
+    "@vitest/coverage-istanbul": "^3.1.1",
+    "@vue/test-utils": "^2.4.6",
+    "@vue3-oop/plugin-vue-jsx": "^1.4.6",
     "autobind-decorator": "^2.4.0",
+    "bumpp": "^10.1.0",
     "eslint": "^9.23.0",
     "injection-js": "^2.4.0",
+    "jsdom": "^25.0.1",
     "lint-staged": "^14.0.1",
     "prettier": "^3.5.3",
     "sass-embedded": "^1.86.1",
@@ -91,12 +96,8 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.2",
     "vitepress": "^1.4.1",
-    "vue": "^3.5.13",
     "vitest": "^3.1.1",
-    "jsdom": "^25.0.1",
-    "@vue3-oop/plugin-vue-jsx": "^1.4.6",
-    "@vue/test-utils": "^2.4.6",
-    "@vitest/coverage-istanbul": "^3.1.1"
+    "vue": "^3.5.13"
   },
   "peerDependencies": {
     "injection-js": "*",
