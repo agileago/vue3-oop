@@ -1,3 +1,7 @@
+## [1.0.21](https://github.com/agileago/vue3-oop/compare/v1.0.20...v1.0.21) (2025-04-04)
+
+
+
 ## [1.0.20](https://github.com/agileago/vue3-oop/compare/v1.0.19...v1.0.20) (2025-04-04)
 
 
