@@ -1,8 +1,13 @@
-## [1.0.21](https://github.com/agileago/vue3-oop/compare/v1.0.20...v1.0.21) (2025-04-04)
+# [1.1.0](https://github.com/agileago/vue3-oop/compare/v1.0.21...v1.1.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* watch不生效 ([2669347](https://github.com/agileago/vue3-oop/commit/266934753d9732216cf0c0967ffaf8865eb1b2c6))
 
 
 
-## [1.0.20](https://github.com/agileago/vue3-oop/compare/v1.0.19...v1.0.20) (2025-04-04)
+## [1.0.21](https://github.com/agileago/vue3-oop/compare/v1.0.19...v1.0.21) (2025-04-04)
 
 
 
@@ -480,11 +485,6 @@
 ## [0.0.6](https://github.com/agileago/vue3-oop/compare/v0.0.5...v0.0.6) (2021-12-04)
 
 
-### Bug Fixes
-
-* **模块一:** 更改readme ([94cb61c](https://github.com/agileago/vue3-oop/commit/94cb61c685f1b567f407104a9c6921cbf151b897))
-
-
 ### Features
 
 * 增加app获取 ([22d2c31](https://github.com/agileago/vue3-oop/commit/22d2c31e5a1e3fc87c8a8d8627933dff3512e50d))
@@ -492,6 +492,11 @@
 
 
 ## [0.0.3](https://github.com/agileago/vue3-oop/compare/v0.0.2...v0.0.3) (2021-11-09)
+
+
+### Bug Fixes
+
+* **模块一:** 更改readme ([94cb61c](https://github.com/agileago/vue3-oop/commit/94cb61c685f1b567f407104a9c6921cbf151b897))
 
 
 
