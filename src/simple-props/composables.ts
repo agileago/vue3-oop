@@ -3,7 +3,7 @@ import type { ClassAndStyleProps } from '../type'
 
 export function camelizePropKey(p: string | symbol): string | symbol {
   if (typeof p === 'string') {
-    if (p.startsWith('data-')) return p
+    if (p.startsWith('data-') || p.startsWith('aria-')) return p
     return camelize(p)
   }
   return p
@@ -19,8 +19,9 @@ export function useProps<T>(): T {
   const getProps = () => {
     return Object.fromEntries(Object.entries(instance.vnode.props || {}).map(([k, v]) => [camelizePropKey(k), v]))
   }
+  const attrs = useAttrs()
 
-  const proxy = new Proxy(
+  return new Proxy(
     {},
     {
       get(target, p, receiver) {
@@ -34,7 +35,7 @@ export function useProps<T>(): T {
           // @ts-ignore
           return instance.props[key]
         } else {
-          return Reflect.get(getProps(), key, receiver)
+          return attrs[key as string] || attrs[p as string]
         }
       },
       ownKeys() {
@@ -63,8 +64,6 @@ export function useProps<T>(): T {
       },
     },
   ) as any
-
-  return proxy
 }
 
 function getSlotName(p: PropertyKey) {

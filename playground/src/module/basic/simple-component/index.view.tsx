@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { defineComponent, useClassAndStyle, type ClassAndStyleProps } from 'vue3-oop'
 
 // region 函数组件
@@ -28,6 +28,10 @@ export const SimpleStateComponent = defineComponent(function SimpleStateComponen
 export const SimpleStateWithDefaultValueComponent = defineComponent(
   function SimpleStateWithDefaultValueComponent(props: SimpleStateComponentProps, { attrs }) {
     const classAndStyle = useClassAndStyle()
+    watch(
+      () => props.initialValue,
+      (n, o) => console.log(555555, n, o),
+    )
     const count = ref(props.initialValue || 0)
     return () => {
       console.log(2222, props.initialValue, attrs)
@@ -41,12 +45,12 @@ export const SimpleStateWithDefaultValueComponent = defineComponent(
     }
   },
   {
-    props: {
-      initialValue: {
-        type: Number,
-        default: 20,
-      },
-    },
+    // props: {
+    //   initialValue: {
+    //     type: Number,
+    //     default: 20,
+    //   },
+    // },
   },
 )
 
