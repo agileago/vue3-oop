@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/agileago/vue3-oop/compare/v1.1.0...v1.1.1) (2025-05-13)
+
+
+### Performance Improvements
+
+* 提高性能 ([180a8b3](https://github.com/agileago/vue3-oop/commit/180a8b3ba8819684852ef4a21c85a138c667a2d8))
+
+
+
 # [1.1.0](https://github.com/agileago/vue3-oop/compare/v1.0.21...v1.1.0) (2025-05-12)
 
 
