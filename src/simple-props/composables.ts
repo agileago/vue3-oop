@@ -19,7 +19,6 @@ export function useProps<T>(): T {
   const getProps = () => {
     return Object.fromEntries(Object.entries(instance.vnode.props || {}).map(([k, v]) => [camelizePropKey(k), v]))
   }
-  const attrs = useAttrs()
 
   return new Proxy(
     {},
@@ -35,7 +34,10 @@ export function useProps<T>(): T {
           // @ts-ignore
           return instance.props[key]
         } else {
-          return attrs[key as string] || attrs[p as string]
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          instance.proxy?.$attrs
+
+          return Reflect.get(getProps(), key, receiver)
         }
       },
       ownKeys() {
