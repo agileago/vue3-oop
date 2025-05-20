@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/agileago/vue3-oop/compare/v1.1.1...v1.1.2) (2025-05-20)
+
+
+### Features
+
+* add If component for conditional rendering ([5f8bd91](https://github.com/agileago/vue3-oop/commit/5f8bd9143aec10e7c00e568fe127fc960b73ba50))
+
+
+
 ## [1.1.1](https://github.com/agileago/vue3-oop/compare/v1.1.0...v1.1.1) (2025-05-13)
 
 
