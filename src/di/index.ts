@@ -170,18 +170,31 @@ interface Constructable {
   constructor: Function
 }
 function provideService<T extends Constructable>(...service: T[]) {
-  const instance = getCurrentInstance()!
+  const currentInstance = getCurrentInstance()!
+  // @ts-ignore
+  let provides = currentInstance.provides
+  // by default an instance inherits its parent's provides object
+  // but when it needs to provide values of its own, it creates its
+  // own provides object using parent provides object as prototype.
+  // this way in `inject` we can simply look up injections from direct
+  // parent and let the prototype chain do the work.
+  // @ts-ignore
+  const parentProvides = currentInstance.parent && currentInstance.parent.provides
+  if (parentProvides === provides) {
+    // @ts-ignore
+    provides = currentInstance.provides = Object.create(parentProvides)
+  }
   // @ts-ignore
   let injector: ReflectiveInjector
-  if (Reflect.has(instance, InjectorKey as symbol)) {
+  if (Object.prototype.hasOwnProperty.call(provides, InjectorKey as symbol)) {
     // @ts-ignore
-    injector = instance.provides[InjectorKey]
+    injector = currentInstance.provides[InjectorKey]
   }
   // @ts-ignore
   if (!injector) {
     injector = ReflectiveInjector.resolveAndCreate([], inject(InjectorKey))
     // @ts-ignore
-    instance.provides[InjectorKey] = injector
+    currentInstance.provides[InjectorKey] = injector
   }
 
   ReflectiveInjector.resolve(service.map(k => ({ provide: k.constructor, useValue: k }))).forEach((provider, i) => {
