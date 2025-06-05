@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/agileago/vue3-oop/compare/v1.1.2...v1.2.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* correct provides handling in provideService function ([edf85eb](https://github.com/agileago/vue3-oop/commit/edf85eb2df1bc5d32e138d5af16c61d4943e0e9a))
+
+
+
 ## [1.1.2](https://github.com/agileago/vue3-oop/compare/v1.1.1...v1.1.2) (2025-05-20)
 
 
