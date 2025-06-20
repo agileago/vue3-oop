@@ -32,7 +32,7 @@ type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
 export interface FunctionalComponent<
   P = {},
   E extends EmitsOptions | Record<string, any[]> = {},
-  S extends Record<string, any> = any,
+  S extends Record<string, any> = { [key: string]: any },
   EE extends EmitsOptions = ShortEmitsToObject<E>,
 > {
   (props: P & EmitsToProps<EE>, ctx: SetupContext<EE, IfAny<S, {}, SlotsType<S>>>): any

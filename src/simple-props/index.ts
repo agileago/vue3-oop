@@ -7,8 +7,8 @@ export * from './types'
 
 export function defineComponent<
   T extends Record<any, any>,
-  S extends Record<any, any> = {},
-  M extends Record<any, any> = {},
+  S extends Record<any, any> = { [key: string]: any },
+  M extends Record<any, any> = { [key: string]: any },
 >(comp: FunctionalComponent<T, any, S>, extraOptions?: ComponentOptions): ComponentType<T, S, M> {
   const fn: FunctionalComponent = (_props, ctx) => {
     const props = useProps()
