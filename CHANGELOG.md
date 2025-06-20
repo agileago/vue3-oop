@@ -1,3 +1,7 @@
+## [1.2.1](https://github.com/agileago/vue3-oop/compare/v1.2.0...v1.2.1) (2025-06-20)
+
+
+
 # [1.2.0](https://github.com/agileago/vue3-oop/compare/v1.1.2...v1.2.0) (2025-06-05)
 
 
@@ -324,8 +328,8 @@
 
 ### Features
 
-* 增加getCurrentInjector,在外部服务中获取注射器 ([e601189](https://github.com/agileago/vue3-oop/commit/e60118962c205c484fdfe3625892b2cff9d60eb3))
 * 更新版本以及类型 ([c00d67c](https://github.com/agileago/vue3-oop/commit/c00d67c23d7c8efefefe95283fcd6afdb7c7d743))
+* 增加getCurrentInjector,在外部服务中获取注射器 ([e601189](https://github.com/agileago/vue3-oop/commit/e60118962c205c484fdfe3625892b2cff9d60eb3))
 
 
 
@@ -334,8 +338,8 @@
 
 ### Features
 
-* expose $ alias getCurrentInstance ([7438234](https://github.com/agileago/vue3-oop/commit/743823473a4f7603d907a611f132014b4c0fc8ca))
 * 依赖进行缓存，提高性能 ([fcf9969](https://github.com/agileago/vue3-oop/commit/fcf99693aec79cfc346eaec5466d4579d61ad030))
+* expose $ alias getCurrentInstance ([7438234](https://github.com/agileago/vue3-oop/commit/743823473a4f7603d907a611f132014b4c0fc8ca))
 
 
 
@@ -512,6 +516,11 @@
 ## [0.0.6](https://github.com/agileago/vue3-oop/compare/v0.0.5...v0.0.6) (2021-12-04)
 
 
+### Bug Fixes
+
+* **模块一:** 更改readme ([94cb61c](https://github.com/agileago/vue3-oop/commit/94cb61c685f1b567f407104a9c6921cbf151b897))
+
+
 ### Features
 
 * 增加app获取 ([22d2c31](https://github.com/agileago/vue3-oop/commit/22d2c31e5a1e3fc87c8a8d8627933dff3512e50d))
@@ -519,11 +528,6 @@
 
 
 ## [0.0.3](https://github.com/agileago/vue3-oop/compare/v0.0.2...v0.0.3) (2021-11-09)
-
-
-### Bug Fixes
-
-* **模块一:** 更改readme ([94cb61c](https://github.com/agileago/vue3-oop/commit/94cb61c685f1b567f407104a9c6921cbf151b897))
 
 
 
